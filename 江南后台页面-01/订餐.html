@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="font-awesome-4.5.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/css-initialization.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/订餐.css" />
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.watermark.js"></script>
+        <script type="text/javascript" src="js/订餐.js"></script>
+        <style type="text/css">
+                /* 第一步：使用font-face声明字体 */
+                @font-face {font-family: 'taobao';  /* 给我们的字体起别名 */
+                  src: url('font/iconfont.eot'); /* IE9*/
+                  src: url('font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+                  url('font/iconfont.woff') format('woff'), /* chrome、firefox */
+                  url('font/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+                  url('font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+                   }
+                /*第二步：定义使用iconfont的样式*/
+                .iconfont{
+                  font-family:"taobao" !important;
+                  font-size:16px; font-style:normal;
+                  -webkit-font-smoothing: antialiased;    
+                  -webkit-text-stroke-width: 0.2px;
+                  -moz-osx-font-smoothing: grayscale;
+                  }
+        </style>
+    </head>
+    <body>
+        <!-- 版心 -->
+        <div class="w">
+            <!-- 头部导航 -->
+            <div class="nav">
+                <div class="nav-l">
+                    <div class="logo">
+                        <img src="img/logo.png"  alt="">
+                        <span>江南健身俱乐部</span>
+                    </div>
+                    <div class="shop">
+                        <ul>
+                            <li>
+                                <span>燕塘店<i class="iconfont">&#xe60f;</i></span>
+                                <ul class="on" id="btn-l">
+                                    <li>燕塘店</li>
+                                    <li>燕塘店</li>
+                                    <li>燕塘店</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="search">
+                        <textarea placeholder="写下您宝贵的评价及意见"></textarea><i class="iconfont">&#xe636;</i>
+                    </div>
+                </div>
+                <div class="nav-r">
+                    <div class="head">
+                        <img src="img/tx.png" height="50" width="50" alt="">
+                        <span>健身管理</span>
+                    </div>
+                    <div class="tuichu">
+                        <i class="iconfont">&#xe603;</i>
+                        <span>退出</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 下分区 -->
+            <div class="lowerpartition">
+                <div class="lowerpartition-l">
+                    <div class="box">
+                        <ul>
+                            <li class="hide">
+                                <span>首页</span>
+                                <ul class="colo">
+                                    <li>一周</li>
+                                    <li>今日</li>
+                                    <li>昨天</li>
+                                </ul>
+                            </li>
+                            <li class="hide">
+                                <span>首页社区<i class="iconfont">&#xe60f;</i></span>
+                                <ul class="colo">
+                                    <li>电影</li>
+                                    <li>游戏</li>
+                                    <li>代码</li>
+                                </ul>
+                            </li>
+                            <li class="hide">
+                                <span>人物<i class="iconfont">&#xe60f;</i></span>
+                                <ul>
+                                    <li>明星</li>
+                                    <li>美女</li>
+                                    <li>帅哥</li>
+                                </ul>
+                            </li>
+                            <li class="hide">
+                                <span>健身房<i class="iconfont">&#xe60f;</i></span>
+                                <ul class="colo">
+                                    <li>一周</li>
+                                    <li>今日</li>
+                                    <li>昨天</li>
+                                </ul>
+                            </li>
+                            <li class="hide">
+                                <span>人员事项</span>
+                            </li>
+                            <li class="hide">
+                                <span>活动</span>
+                            </li>
+                            <li class="hide">
+                                <span>反馈列表</span>
+                            </li>
+                            <li class="hide">
+                                <span>系统设置</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 下分区右边 -->
+                <div class="lowerpartition-r">
+                <!-- 订餐信息 -->
+                    <div class="right-one">
+                        <div class="right-one-left">
+                            <form action="">
+                                <div class="right-one-div">
+                                    <span>标题：</span>
+                                    <input class="right-one-input right-one-input1" type="text" placeholder="专业健身餐" />
+                                </div>
+                                <div class="right-one-div right-one-div2">
+                                    <span>简介：</span>
+                                    <textarea class="right-one-input right-one-input2" type="textarea" placeholder="周一到周五，餐单不重样，每周更新，包括早中晚加餐共4顿，当日制作当日配送。安心健康食材，科学烹饪，助您科学健身。"  name="" id="" ></textarea>
+                                </div>
+                                <div class="right-one-div">
+                                    <span>电话：</span>
+                                    <input class="right-one-input right-one-input3" type="text" placeholder="tel:88888888888" />
+                                </div>
+                                <div class="right-one-div">
+                                    <span>附加信息：</span>
+                                    <input class="right-one-input right-one-input4" type="text" placeholder="欢迎订餐~" />
+                                </div>
+                                <div class="right-one-div">
+                                    <input class="right-one-btn right-one-btn1" type="button" value="提交" />
+                                    <input class="right-one-btn right-one-btn2" type="button" value="取消" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                <!-- 美食列表 -->
+                    <div class="right-two">
+                        <div class="right-two-up">
+                            <span>美食列表</span>
+                            <input class="right-two-upbtn" type="button" value="添加" />
+                        </div>
+                        <div class="right-two-mid">
+                            <ul class="right-two-ulone">
+                                <li class="right-two-ulone-li"><a href="javascript:void;">增肌</a></li>
+                                <li><a href="javascript:void;">减肥</a></li>
+                                <li><a href="javascript:void;">宫寒</a></li>
+                                <li><a href="javascript:void;">高血压</a></li>
+                            </ul>
+                        </div>
+                        <div class="right-two-down">
+                            <ul class="right-two-ultwo right-two-ultwo-ape">
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="right-two-ultwo">
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+苹果</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="right-two-ultwo">
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+梨子</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                            </ul>     
+                            <ul class="right-two-ultwo">
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+火龙果</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="right-two-uldiv">
+                                        <a href="javascript:void;">
+                                        <img src="img/righttwo1.jpg" height="250" width="250" alt="tupian" />
+                                        </a>
+                                        <h1>经典牛排套餐</h1>
+                                        <p>经典牛排+果蔬+牛奶</p>
+                                    </div>
+                                    <div class="right-two-uldiv1">
+                                        <a href="javascript:void;">编辑</a>
+                                        <a href="javascript:void;">删除</a>
+                                    </div>
+                                </li>
+                            </ul>                                                           
+                        </div>
+                    </div>
+                    <!--新增菜品  -->
+                    <div class="add-vegetable">
+                        <ul class="add-vegeul">
+                            <li><span>类别：</span>
+                               <textarea name="" id="" cols="30" rows="10"></textarea>
+                            </li>
+                            <li><span>图片：</span>
+                                <div><a href="javascript:void;"></a></div>
+                            </li>
+                            <li><span></span>
+                                <div><a href="javascript:void;">上传图片</a></div>
+                            </li>
+                            <li><span>套餐：</span>
+                                 <textarea name="" id="" cols="30" rows="10"></textarea>
+                            </li>
+                            <li><span>套餐信息：</span>
+                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                            </li>
+                            <li><span></span>
+                                 <div><input type="button" value="新增" />
+                                 <input class="add-input-del" type="button" value="取消" />
+                                 </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,360 @@
+/* 
+* @Author: Marte
+* @Date:   2016-04-13 09:40:34
+* @Last Modified by:   Marte
+* @Last Modified time: 2016-04-13 18:04:44
+*/
+*{
+    font-size:14px;
+}
+.tuan{
+    background-color: white;
+    float: right;
+    width: 84%;
+    height:auto;
+}
+.tuan-up{
+    width:100%;
+    height:71px;
+}
+.tuan-up-right{
+    position:absolute;
+    right:0px;
+    top:0px;
+    padding-top: 15px;
+}
+.tuan-up-right input{
+    box-sizing: border-box;
+    width:120px;
+    height:40px;
+    padding:10px 42px;
+    margin-right: 20px;
+    color:white;
+    border:0;
+    border-radius: 10px;
+    cursor:pointer;
+}
+.tuan-up-add{
+    background-color: #ea5c46;
+}
+.tuan-up-edit{
+    background-color: #4d5168;
+}
+.tuan-up-del{
+    display:none;
+    background-color: #ea5c46;
+}
+.tuan-up-cancel{
+    display:none;
+    background-color: #4d5168;
+}
+.tuan-down{
+    width:100%;
+    height:auto;
+}
+.tuan-table{
+    width:100%;
+    border-collapse: collapse;
+}
+.tuan-table td,.tuan-table th{
+    color:#525252;
+    border:1px solid #e1e1e1;
+    text-align: center;
+    vertical-align: middle;
+    box-sizing: border-box;
+    width:16%;
+}
+.tuan-table th{
+    font-weight: 500;
+    height:50px;
+    background-color: #e4e5ee;
+}
+.tuan-table td{
+    height:90px;
+}
+.tuan-td-img{
+   background:url(../img/table-tuxiang.png) center no-repeat;
+}
+.tuan-td-a a:hover,.tuan-td-a a:active{
+  color:#ea5c46;
+}
+/*编辑打钩*/
+.tuan-table .tuan-none{
+   display: none;
+   width:4%;
+}
+.tuan-td-cir1{
+   /*display:none;*/
+   width:20px;
+   height:20px;
+   border-radius: 12px;
+   border:2px solid #ea5c46;
+   margin-left:33.3%;
+   margin-right: 33.3%;
+   cursor:pointer;
+}
+.tuan-td-cir2{
+    display:none;
+   width:20px;
+   height:20px;
+   border-radius: 12px;
+   border:2px solid #ea5c46;
+   background-color: #ea5c46;
+   margin-left:33.3%;
+   margin-right: 33.3%;
+   cursor:pointer;
+}
+.tuan-td-cir2 i{
+    color:white;
+    padding-top: 3px;
+    font-size: 16px;
+    /*font-weight: 100;*/
+    cursor:pointer;
+}
+/*新增弹出窗口*/
+.tuan-add-tanchu{
+    display:none;
+    width:500px;
+    height:440px;
+    background-color: white;
+    border-radius: 12px;
+    padding:22px 56px;
+    box-shadow:0px 0px 20px -7px;
+    position:absolute;
+    top:60px;
+    left:300px;
+    z-index: 11;
+    text-align: left;
+    box-sizing: border-box;
+}
+.tuan-add-tanchu h2{
+    width:100%;
+    text-align: center;
+    font-size:16px;
+    line-height: 18px;
+    color:#888888;
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+.add-tanchu-div{
+    width:100%;
+    height:37px;
+    margin-bottom: 21px;
+    padding-left: 67px;
+    position:relative;
+}
+.add-tanchu-div span{
+    position:absolute;
+    top:8px;
+    left:0px;
+    width:67px;
+    text-align: left;
+}
+.add-tanchu-div input{
+    box-sizing: border-box;
+    width:323px;
+    height:100%;
+    border:1px solid #cdcdcd;
+    border-radius: 5px;
+}
+.add-tanchu-div:nth-of-type(1) button{
+    width:80px;
+    height:100%;
+    border-radius: 7px;
+    background-color: #888888;
+    border:0;
+    color:white;
+    cursor:pointer;
+}
+.add-tanchu-div .add-tanchu-inputimg{
+    width:240px;
+    margin-right: 3px;
+}
+.add-tanchu-div select{
+    width:325px;
+    height:100%;
+    border:1px solid #cdcdcd;
+    border-radius: 5px;
+    padding-right: 14px;
+    /*color:gray;*/
+}
+.add-tanchu-btn{
+    margin-top: 7px;
+    width:100%;
+    height:40px;
+}
+.add-tanchu-btn input{
+    width:120px;
+    height:100%;
+    text-align: center;
+    font-size: 16px;
+    color:white;
+    border-radius: 7px;
+    border:0;
+    cursor:pointer;
+}
+.putbtn{
+    margin-left: 66px;
+    margin-right: 40px;
+    background-color: #ea5c46;
+}
+.putnobtn{
+    background-color: #888888;
+}
+/*删除弹出框*/
+.tuan-tanchu{
+    display:none;
+    width:253px;
+    height:132px;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow:0px 0px 20px -7px;
+    padding:45px 35px 20px 35px;
+    position:absolute;
+    top:218px;
+    left:355px;
+    z-index: 10;
+    text-align: center;
+}
+.tuan-tanchu p{
+    font-size: 16px;
+    width:100%;
+    color:#525252;
+    line-height: 16px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+.tuan-tanchu input{
+    box-sizing: border-box;
+    width:80px;
+    height:40px;
+    font-size: 16px;
+    color:white;
+    border-radius: 12px;
+    border:0;
+}
+.tuan-sure{
+    margin-right: 33px;
+    background-color: #ea5c46;
+}
+.tuan-no{
+    background-color: #888888;
+}
+/*座位编辑*/
+.tuan-seat{
+    display:none;
+    width:780px;
+    height:auto;
+    background-color: white;
+    border-radius:20px;
+    box-shadow:0px 0px 20px -7px;
+    position:absolute;
+    top:95px;
+    left:125px;
+    z-index: 10;
+    text-align: center;
+    box-sizing: border-box;
+}
+.seat-one{
+    width:100%;
+    height:50px;
+    padding-top: 18px;
+    border-bottom: 1px solid #cdcdcd;
+    box-sizing: border-box;
+}
+.seat-one h1{
+    color:#525252;
+    font-size: 15px;
+}
+.seat-two{
+    width:100%;
+    height:70px;
+    padding-top: 20px;
+    /*border-bottom: 1px solid #cdcdcd;*/
+    box-sizing: border-box;
+    text-align: center;
+}
+.seat-two span{
+    display:inline-block;
+    width:60px;
+    height:30px;
+    background-color: #888888;
+    color:white;
+    font-size:14px;
+    border-radius: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 5px;
+}
+.seat-three{
+    width:100%;
+    height:auto;
+    /*border-bottom: 1px solid #cdcdcd;*/
+}
+.seat-table{
+    width:100%;
+    border-collapse: collapse;
+}
+.seat-table td,.seat-table th{
+    color:#888888;
+    border:1px solid #e1e1e1;
+    text-align: center;
+    vertical-align: middle;
+    box-sizing: border-box;
+    width:10.5%;
+    height:42px;
+}
+.seat-table .seat-td-1{
+    width:5%;
+}
+.seat-div-cir1{
+   /*display:none;*/
+   width:20px;
+   height:20px;
+   border-radius: 12px;
+   border:2px solid #cecece;
+   margin-left:33.3%;
+   margin-right: 33.3%;
+   cursor:pointer;
+}
+.seat-div-cir2{
+   display:none;
+   width:20px;
+   height:20px;
+   border-radius: 12px;
+   border:2px solid #ea5c46;
+   background-color: #ea5c46;
+   margin-left:33.3%;
+   margin-right: 33.3%;
+   cursor:pointer;
+}
+.seat-div-cir2 i{
+    color:white;
+    padding-top: 3px;
+    font-size: 16px;
+    /*font-weight: 100;*/
+    cursor:pointer;
+}
+.seat-four{
+    width:100%;
+    height:80px;
+    padding-top: 20px;
+    text-align: center;
+}
+.seat-four button{
+    box-sizing: border-box;
+    width:120px;
+    height:40px;
+    font-size: 16px;
+    color:white;
+    border-radius: 12px;
+    border:0;
+    cursor:pointer;
+}
+.seat-btn-save{
+    margin-right: 33px;
+    background-color: #ea5c46;
+}
+.seat-btn-cancel{
+    background-color: #888888;
+}

@@ -1,0 +1,135 @@
+/* 
+* @Author: Marte
+* @Date:   2016-03-30 14:06:37
+* @Last Modified by:   Marte
+* @Last Modified time: 2016-04-01 12:00:07
+*/
+body, p, h1, h2, h3, h4, h5, h6, a, ul, ol, li, input, button, div, span {
+    margin: 0px;
+    padding: 0px;
+    border: 0px none;
+    font-family: "微软雅黑", Arial, Georgia, "Hiragino Sans GB", "宋体", serif, sans-serif;
+    background: none repeat scroll 0px 0px;
+    outline: none;
+    box-sizing: content-box;
+    position: relative;
+}
+::-webkit-input-placeholder {
+
+    /* WebKit browsers */
+    color: #c9cccf;
+}
+:-moz-placeholder {
+
+    /* Mozilla Firefox 4 to 18 */
+    color: #c9cccf;
+}
+::-moz-placeholder {
+
+    /* Mozilla Firefox 19+ */
+    color: #c9cccf;
+}
+:-ms-input-placeholder {
+
+    /* Internet Explorer 10+ */
+    color: #c9cccf;
+}
+ul {
+    list-style: none;
+}
+a:link, a:visited {
+    text-decoration: none;
+    outline: none;
+}
+a:hover, a:active {
+    text-decoration: none;
+    outline: none;
+}
+.div{
+    opacity: 0.5;
+    visibility: visible;
+    background-color: rgb(231, 231, 231);
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 100000;
+    display:none;
+}
+.container11 {
+    opacity: 1;
+    visibility: visible;
+    position: fixed;
+    overflow: auto;
+    z-index: 100001;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+    display: block;
+}
+.container_mid11{
+    width:720px;
+    height:auto;
+    margin:0px auto;
+}
+.header11{
+    width:100%;
+    height:40px;
+}
+.header11 a{
+    float:right;
+}
+.header11 img{
+    width:26px;
+    height:25px;
+}
+.middle11{
+    width:640px;
+    height:auto;
+    margin:0px auto;
+    background-color: white;
+
+}
+.middle_one11{
+    width:100%;
+}
+.middle_one11 img{
+    width:100%;
+}
+.middle_two11{
+    width:90%;
+    height:auto;
+    margin:0px auto;
+}
+.middle_two11 h3{
+    font-size:32px;
+    margin-top: 30px;
+    margin-bottom: 16px;
+}
+.middle_two11 p{
+    padding-bottom: 17px;
+    text-align: left;
+    line-height: 2em;
+    font-size: 14px;
+}
+.middle_two_p1{
+    font-size: 12px;
+    padding-bottom: 30px;
+    text-align: left;
+}
+.middle_two_p3{
+    width:330px;
+    height:220px;
+    box-sizing: border-box;
+   
+}
+#middle_two_p3{
+    padding-bottom: 0px;
+}
+.middle_two_p3 img{
+    width:100%;
+    height:100%;
+}

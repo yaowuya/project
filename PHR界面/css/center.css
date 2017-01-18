@@ -1,0 +1,9 @@
+.row-middle .share-system .div-a a.btn{
+    padding: 8px 0px;
+    width: 44px;
+    border-radius: 50%;
+    text-align: center;
+}
+.row-middle .share-system .div-a a.btn span{
+    color: white;
+}

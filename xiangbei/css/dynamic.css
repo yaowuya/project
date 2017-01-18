@@ -1,0 +1,48 @@
+/* 
+* @Author: Marte
+* @Date:   2016-04-06 15:52:51
+* @Last Modified by:   Marte
+* @Last Modified time: 2016-04-07 18:18:08
+*/
+/*中间部分*/
+.middle { width: 100%; height: auto; background-color: #f5f5f5; padding-bottom: 62px; }
+/*中间部分的logo*/
+.middle-one { background: url("../images/advertisement.jpg") no-repeat center; width: 100%; height: 300px; }
+/*中间部分的中部*/
+.middle-two { width: 100%; height: auto; }
+.middle-two-mid { width: 1200px; height: auto; margin: 0px auto; }
+.middle-two-up { width: 100%; height: 205px; }
+.two-up1 { width: 100%; height: 101px; }
+.two-up-cir { width: 60px; height: 60px; margin: 0px auto; border-radius: 30px; color: white; font-size: 15px; background-color: #EA524F; text-align: center; line-height: 20px; padding-top: 20px; cursor: pointer; }
+.two-up-line { width: 2px; height: 44px; margin: 0px auto; background-color: #ea524f; }
+.middle-two-bottom { width: 100%; height: auto; }
+.middle-two-bot { width: 100%; height: 445px; }
+.two-bot-one { width: 540px; height: 100%; float: left; box-sizing: border-box; padding-top: 46px; padding-left: 43px; }
+.bot-one-mid { width: 100%; height: 100%; background-color: white; border-radius: 7px; }
+.bot-one-mid1 { width: 100%; height: 60px; padding: 17px 24px 24px 50px; background-color: #EA524F; border-top-right-radius: 7px; border-top-left-radius: 7px; }
+.bot-one-mid1 h1 { width: 100%; color: white; font-size: 24px; }
+.bot-one-mid1 h1 a{color:white;text-decoration: none;outline:none;}
+.bot-one-mid1 p { width: 100%; line-height: 13px; font-size: 12px; text-align: right; color: white; font-weight: 500; }
+.bot-one-mid2 { width: 100%; height: 110px; padding: 20px 24px 20px 24px; color: #727272; font-size: 14px; line-height: 22px; }
+.bot-one-mid3 { width: 100%; height: 208px; padding: 0px 24px; }
+.bot-one-mid3 img { width: 100%; height: 100%; }
+.two-bot-two { position: relative; width: 120px; height: 100%; float: left; box-sizing: border-box; }
+.two-bot-three { width: 540px; height: 100%; float: left; box-sizing: border-box; padding-right: 43px; padding-bottom: 46px; }
+.bot-two-index { position: relative; width: 2px; height: 100%; margin: 0px auto; background-color: #ea524f; z-index: 0; }
+.bot-two-box { position: absolute; top: 0px; left: 0px; width: 100%; height: 106px;    /*background-color: red;*/ z-index: 1; }
+.bot-box1 { width: 100%; height: 60px; padding-top: 13px; }
+.bot-box { width: 40px; height: 20px; margin-bottom: 20px; padding: 10px; float: left; }
+.box-two-cir { width: 20px; height: 20px; background-color: #999999; border-radius: 30px; }
+.bot-box-three { padding: 10px 0px 0px 0px; }
+.box-three-triangle { width: 0px; height: 0px; border-top: 10px solid transparent; border-right: 9px solid #EA524F; border-bottom: 10px solid transparent; float: right; }
+.bot-box2 { width: 100%; height: 44px; padding-top: 0px; }
+.bot-box2 .bot-box-two { margin-top: 8px; }
+.bot-box-first { padding: 10px 0px 0px 0px; }
+.box-first-triangle { width: 0px; height: 0px; border-top: 10px solid transparent; border-left: 9px solid #EA524F; border-bottom: 10px solid transparent; float: left; }
+.middle-two-foot { width: 100%; height: 211px; }
+.two-foot-line { width: 2px; height: 130px; margin: 0px auto; background-color: #ea524f; }
+.two-foot-cir { width: 80px; height: 80px; margin: 0px auto; border-radius: 40px; color: white; font-size: 15px; background-color: #EA524F; text-align: center; line-height: 20px; padding-top: 30px; cursor: pointer; }
+/*加载更多的特效*/
+.middle-two-bot4{
+    display:none;
+}

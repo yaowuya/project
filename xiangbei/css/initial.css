@@ -1,0 +1,72 @@
+/* 
+* @Author: Marte
+* @Date:   2016-04-06 17:01:27
+* @Last Modified by:   Marte
+* @Last Modified time: 2016-04-08 12:37:54
+*/
+@charset "utf-8";
+
+/* CSS Document */
+html,body,ul,li,ol,dl,dd,dt,p,h1,h2,h3,h4,h5,h6,form,fieldset,legend,img{margin:0;padding:0;list-style:none;}
+
+/* 2.给网站统一字体，字号，字体颜色  */
+body{font-size:14px;color:#666;font-family: "Zap Bold","方正兰亭准黑_GBK";}
+
+/* 3.针对性把有默认样式的标签同化 */
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+
+/* 统一标题字号 */
+ul,ol{list-style:none;}
+a{text-decoration:none;outline:none;}
+
+/*全局盒子*/
+.contain{width:100%;height:auto;background-color:white;}
+/*鼠标样式*/
+a,p{
+    cursor:pointer;
+}
+/*网页头部*/
+.header{width:100%;height:100px;background-color:white;}
+.header-mid{width:1200px;height:100%;margin:0px auto;}
+.header-left{margin-top:18px;width:56px;height:53px;float:left;}
+.header-left img{width:100%;height:100%;}
+.header-right{float:right;padding-top:30px;}
+.header-right ul{list-style:none;}
+.header-right li{width:100px;display:inline-block;font-size:16px;color:#272727;padding-top:8px;cursor:pointer;text-align:center;}
+.header-li{position:relative;}
+.header-lispan{border-top:2px solid #ea524f;}
+.header-right li span{padding-top:8px;}
+.header-li:nth-of-type(1),.header-li:nth-of-type(3){width:70px;}
+#header-li2{text-align:center;/*    width:100px;*/height:30px;width:120px;}
+.header-ul1{width:120px;position:absolute;padding-left:10px;top:70px;left:0px;background-color:white;display:none;}
+.header-ul1 li{padding:10px;margin-right:10px;margin:0px;}
+.header-ul1 li{display:block;text-align:center;}
+.header-ul1 li:hover,.header-ul1 li:active{border-bottom:2px solid #ea524f;}
+.header-ul1 li a{color:#272727;}
+.header-ul1 li a:hover,.header-ul1 li a:active{text-decoration:none;}
+
+/*网页底部*/
+.footing{clear:both;width:100%;height:auto;background-color:#3a3a3a;}
+.footing-up{box-sizing:border-box;width:1200px;height:240px;margin:0px auto;background-color:#3A3A3A;}
+.footing-up ul{width:600px;height:100%;float:left;}
+.footing-ul-left{padding:60px 0px;}
+.footing-ul-left li{float:left;width:192px;height:110px;padding:0px 55px;border-left:1px solid #7e7e7e;text-align:center;}
+.footing-ul-left li:nth-of-type(3){border-right:1px solid #7e7e7e;}
+.footing-ul-left h2{font-size:18px;margin-bottom:23px;}
+.footing-ul-left p{font-size:14px;line-height:14px;margin-bottom:15px;}
+.footing-ul-left a{color:#e4e4e4;cursor:pointer;text-decoration:none;outline:none;}
+.footing-ul-right{padding-top:60px;}
+.footing-ul-right li{float:right;}
+.footing-ul-right a{outline:none;}
+.footing-ul-right li:nth-of-type(3) img,.footing-ul-right li:nth-of-type(2) img{width:80px;height:80px;border-radius:45px;outline:none;background-color:#3A3A3A;}
+.footing-ul-right li:nth-of-type(3){margin-right:30px;}
+.footing-ul-right li:nth-of-type(3) p{font-size:18px;margin-bottom:20px;color:#e4e4e4;}
+.footing-ul-right li:nth-of-type(2){padding-top:43px;margin-right:50px;}
+.footing-down{width:100%;height:auto;background-color:#222222;}
+.footing-down-mid{width:1200px;height:auto;margin:0px auto;text-align:center;}
+.footing-down-ul{display:block; /*   width:378px;*/height:48px;padding-top:10px;/*    padding-bottom: 40px;*//*    margin:0px auto;*/
+margin:0px auto 40px auto;text-align:center;}
+.footing-down-ul a{outline:none;}
+.footing-down-ul li{display:inline-block;}
+.footing-down-mid p{font-size:14px;padding-bottom:10px;color:#9a9a9a;}
+.footing-down-mid p:nth-of-type(2){padding-bottom:15px;}

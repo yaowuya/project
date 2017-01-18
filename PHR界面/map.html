@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>map</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/map.css">
+    <!--引用百度地图API-->
+    <style type="text/css">
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .iw_poi_title {
+        color: #CC5522;
+        font-size: 14px;
+        font-weight: bold;
+        overflow: hidden;
+        padding-right: 13px;
+        white-space: nowrap
+    }
+    
+    .iw_poi_content {
+        font: 12px arial, sans-serif;
+        overflow: visible;
+        padding-top: 4px;
+        white-space: -moz-pre-wrap;
+        word-wrap: break-word
+    }
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row header">
+                    <div class="col-md-4 text-left">
+                        <ul class="nav nav-pills">
+                            <li>
+                                <a href="index.html" target="_blank">PHR首页</a>
+                            </li>
+                            <li>
+                                <a href="#">就医地图</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8 text-right">
+                        <nav class="navbar vavbar-deafault pull-right" role="navigation">
+                            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                                <ul class="nav navbar-nav">
+                                    <li class="dropdown">
+                                        <a href="#" class="btn btn-primary btn-border" role="button">
+                                            <span class="glyphicon glyphicon-th-list"></span>
+                                        </a>
+                                        <a href="javascript:void;" class="dropdown-toggle color-green btn btn-default btn1" data-toggle="dropdown" role="button">
+                                        健康社区
+                                        <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="health-news.html" target="_blank">健康资讯</a>
+                                            </li>
+                                            <li>
+                                                <a href="drug.html" target="_blank">药品信息</a>
+                                            </li>
+                                            <li>
+                                                <a href="illness.html" target="_blank">慢病管理
+                                            </a>
+                                            </li>
+                                            <li>
+                                                <a href="record.html" target="_blank">健康档案
+                                            </a>
+                                            </li>
+                                            <li>
+                                                <a href="immune.html" target="_blank">
+                                                  计划免疫
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="news.html" target="_blank">
+                                                  新闻频道
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="map.html" target="_blank">
+                                                  就医地图
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="personal.html" target="_blank">
+                                                  自助挂号
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="personal.html" target="_blank">
+                                                  服务评价
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="personal.html" target="_blank">
+                                                  诊疗记录
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="center.html" target="_blank">
+                                                  就诊提醒
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="btn btn-primary btn-border" role="button">
+                                            <span class="glyphicon glyphicon-th-list"></span>
+                                        </a>
+                                        <a href="javascript:void;" class="dropdown-toggle color-green btn btn-default btn1" data-toggle="dropdown" role="button">
+                                        个人应用
+                                        <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="personal.html" target="_blank">PHR管理</a>
+                                            </li>
+                                            <li>
+                                                <a href="personal.html" target="_blank">健康体检</a>
+                                            </li>
+                                            <li>
+                                                <a href="personal.html" target="_blank">健康指数评估
+                                            </a>
+                                            </li>
+                                            <li>
+                                                <a href="serve.html" target="_blank">私人医生服务
+                                            </a>
+                                            </li>
+                                            <li>
+                                                <a href="health.html" target="_blank">
+                                                  健康促进
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="center.html" target="_blank">
+                                                  我的病例夹
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="askOnLine.html" target="_blank">
+                                                  在线咨询
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="家庭群组.html" target="_blank">
+                                                  家庭群组
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="设备租赁.html" target="_blank">
+                                                  设备租赁
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="center.html" target="_blank">
+                                                  我的账户
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="btn btn-primary btn-border" role="button">
+                                            <span class="glyphicon glyphicon-th-list"></span>
+                                        </a>
+                                        <a href="javascript:void;" class="dropdown-toggle color-green btn btn-default btn1" data-toggle="dropdown" role="button">
+                                        系统功能
+                                        <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="center.html" target="_blank">评价分享体系</a>
+                                            </li>
+                                            <li>
+                                                <a href="center.html" target="_blank">风险预警
+                                            </a>
+                                            </li>
+                                            <li>
+                                                <a href="center.html" target="_blank">就诊提醒
+                                            </a>
+                                            </li>
+                                            <li>
+                                                <a href="积分管理管理员.html" target="_blank">管理员积分管理
+                                            </a>
+                                            </li>
+                                            <li>
+                                                <a href="积分管理用户.html" target="_blank">用户积分管理
+                                            </a>
+                                            </li>
+                                            <li>
+                                                <a href="noun.html" target="_blank">名词解释
+                                            </a>
+                                            </li>
+                                            <li>
+                                                <a href="servicecontent.html" target="_blank">服务商管理
+                                            </a>
+                                            </li>
+                                            <li>
+                                                <a href="servicecontent.html" target="_blank">结算管理
+                                            </a>
+                                            </li>
+                                            <li>
+                                                <a href="servicecontent.html" target="_blank">内容管理
+                                            </a>
+                                            </li>
+                                            <li>
+                                                <a href="custom-manage.html" target="_blank">客户管理
+                                            </a>
+                                            </li>
+                                            <li>
+                                                <a href="indent-manage.html" target="_blank">报表管理
+                                            </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div class="row header-one">
+                    <div class="div-headerone"></div>
+                    <div class="col-md-12">
+                        <nav class="navbar" role="navigation">
+                            <div class="navbar-header active active-page">
+                                <a class="navbar-brand" href="#">首页</a>
+                            </div>
+                            <div>
+                                <ul class="nav navbar-nav navbar-left">
+                                    <li>
+                                        <a class="li-map-choice" href="#">地图选择</a>
+                                    </li>
+                                    <li>
+                                        <a class="li-map-manager" href="#">地图数据管理</a>
+                                    </li>
+                                </ul>
+                                <!-- <form class="navbar-form navbar-right" role="search">
+                                <div class="form-group">
+                                    <input type="text" style="width: 200px" class="form-control" placeholder="搜索检查">
+                                </div>
+                                <button type="submit" class="btn btn-default btn-form">搜索</button>
+                            </form> -->
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div class="row row-middle">
+                    <div class="active-page">
+                        <div class="col-md-8">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item active">
+                                    <h4 class="list-group-item-heading">
+                                      医疗机构推荐
+                                </h4>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <h4 class="list-group-item-heading">
+                                   免费域名注册
+                                </h4>
+                                    <p class="list-group-item-text">
+                                        您将通过网页进行免费域名注册。
+                                    </p>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <h4 class="list-group-item-heading">
+                                     24*7 支持
+                                </h4>
+                                    <p class="list-group-item-text">
+                                        我们提供 24*7 支持。
+                                    </p>
+                                </a>
+                            </div>
+                            <div class="list-group">
+                                <a href="#" class="list-group-item active">
+                                    <h4 class="list-group-item-heading">
+                                    医院排名
+                                 </h4>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <h4 class="list-group-item-heading">
+                                    免费域名注册
+                                 </h4>
+                                    <p class="list-group-item-text">
+                                        您将通过网页进行免费域名注册。
+                                    </p>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <h4 class="list-group-item-heading">24*7 支持</h4>
+                                    <p class="list-group-item-text">我们提供 24*7 支持。</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item active">
+                                    <h4 class="list-group-item-heading">
+                                      本地医院排名
+                                </h4>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <h4 class="list-group-item-heading">
+                                   免费域名注册
+                                </h4>
+                                    <p class="list-group-item-text">
+                                        您将通过网页进行免费域名注册。
+                                    </p>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <h4 class="list-group-item-heading">
+                                     24*7 支持
+                                </h4>
+                                    <p class="list-group-item-text">
+                                        我们提供 24*7 支持。
+                                    </p>
+                                </a>
+                            </div>
+                            <div class="list-group">
+                                <a href="#" class="list-group-item active">
+                                    <h4 class="list-group-item-heading">
+                                       小诊所大全
+                                 </h4>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <h4 class="list-group-item-heading">
+                                    免费域名注册
+                                 </h4>
+                                    <p class="list-group-item-text">
+                                        您将通过网页进行免费域名注册。
+                                    </p>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <h4 class="list-group-item-heading">24*7 支持</h4>
+                                    <p class="list-group-item-text">我们提供 24*7 支持。</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="li-map-choice">
+                        <div class="col-md-7">
+                            <!--百度地图容器-->
+                            <div style="width:600px;height:550px;border:#ccc solid 1px;" id="dituContent"></div>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item active">
+                                    <h4 class="list-group-item-heading">
+                                      推荐医院
+                                </h4>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <h4 class="list-group-item-heading">
+                                   免费域名注册
+                                </h4>
+                                    <p class="list-group-item-text">
+                                        您将通过网页进行免费域名注册。
+                                    </p>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <h4 class="list-group-item-heading">
+                                     24*7 支持
+                                </h4>
+                                    <p class="list-group-item-text">
+                                        我们提供 24*7 支持。
+                                    </p>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <h4 class="list-group-item-heading">
+                                   免费域名注册
+                                </h4>
+                                    <p class="list-group-item-text">
+                                        您将通过网页进行免费域名注册。
+                                    </p>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <h4 class="list-group-item-heading">
+                                     24*7 支持
+                                </h4>
+                                    <p class="list-group-item-text">
+                                        我们提供 24*7 支持。
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="li-map-manager">地图数据处理暂无</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/model.js"></script>
+    <script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap() {
+        createMap(); //创建地图
+        setMapEvent(); //设置地图事件
+        addMapControl(); //向地图添加控件
+        addMarker(); //向地图中添加marker
+    }
+
+    //创建地图函数：
+    function createMap() {
+        var map = new BMap.Map("dituContent"); //在百度地图容器中创建一个地图
+        var point = new BMap.Point(103.862849, 30.783476); //定义一个中心点坐标
+        map.centerAndZoom(point, 17); //设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map; //将map变量存储在全局
+    }
+
+    //地图事件设置函数：
+    function setMapEvent() {
+        map.enableDragging(); //启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom(); //启用地图滚轮放大缩小
+        map.enableDoubleClickZoom(); //启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard(); //启用键盘上下左右键移动地图
+    }
+
+    //地图控件添加函数：
+    function addMapControl() {
+        //向地图中添加缩放控件
+        var ctrl_nav = new BMap.NavigationControl({
+            anchor: BMAP_ANCHOR_TOP_LEFT,
+            type: BMAP_NAVIGATION_CONTROL_LARGE
+        });
+        map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+        var ctrl_ove = new BMap.OverviewMapControl({
+            anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
+            isOpen: 1
+        });
+        map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+        var ctrl_sca = new BMap.ScaleControl({
+            anchor: BMAP_ANCHOR_BOTTOM_LEFT
+        });
+        map.addControl(ctrl_sca);
+    }
+
+    //标注点数组
+    var markerArr = [{
+        title: "德源镇",
+        content: "我的备注",
+        point: "103.862166|30.781599",
+        isOpen: 0,
+        icon: {
+            w: 21,
+            h: 21,
+            l: 0,
+            t: 0,
+            x: 6,
+            lb: 5
+        }
+    }];
+    //创建marker
+    function addMarker() {
+        for (var i = 0; i < markerArr.length; i++) {
+            var json = markerArr[i];
+            var p0 = json.point.split("|")[0];
+            var p1 = json.point.split("|")[1];
+            var point = new BMap.Point(p0, p1);
+            var iconImg = createIcon(json.icon);
+            var marker = new BMap.Marker(point, {
+                icon: iconImg
+            });
+            var iw = createInfoWindow(i);
+            var label = new BMap.Label(json.title, {
+                "offset": new BMap.Size(json.icon.lb - json.icon.x + 10, -20)
+            });
+            marker.setLabel(label);
+            map.addOverlay(marker);
+            label.setStyle({
+                borderColor: "#808080",
+                color: "#333",
+                cursor: "pointer"
+            });
+
+            (function() {
+                var index = i;
+                var _iw = createInfoWindow(i);
+                var _marker = marker;
+                _marker.addEventListener("click", function() {
+                    this.openInfoWindow(_iw);
+                });
+                _iw.addEventListener("open", function() {
+                    _marker.getLabel().hide();
+                })
+                _iw.addEventListener("close", function() {
+                    _marker.getLabel().show();
+                })
+                label.addEventListener("click", function() {
+                    _marker.openInfoWindow(_iw);
+                })
+                if (!!json.isOpen) {
+                    label.hide();
+                    _marker.openInfoWindow(_iw);
+                }
+            })()
+        }
+    }
+    //创建InfoWindow
+    function createInfoWindow(i) {
+        var json = markerArr[i];
+        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>" + json.content + "</div>");
+        return iw;
+    }
+    //创建一个Icon
+    function createIcon(json) {
+        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w, json.h), {
+            imageOffset: new BMap.Size(-json.l, -json.t),
+            infoWindowOffset: new BMap.Size(json.lb + 5, 1),
+            offset: new BMap.Size(json.x, json.h)
+        })
+        return icon;
+    }
+
+    initMap(); //创建和初始化地图
+    </script>
+</body>
+
+</html>

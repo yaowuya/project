@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Your description">
+    <meta name="keywords" content="Your,Keywords">
+    <meta name="author" content="ResponsiveWebInc">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>教材管理</title>
+    <link rel="stylesheet" type="text/css" href="font-awesome-4.3.0/css/font-awesome.min.css">
+    <!-- 加载bootstrap层叠样式表 -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/text-book.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="header">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="col-md-1"></div>
+                <div class="col-md-4">
+                    <h1 class="pull-left">
+                       <a href="index.html">四川省高等教育自学考试管理系统</a>
+                    </h1>
+                </div>
+                <div class="col-md-6">
+                    <nav class="navbar vavbar-deafault pull-right" role="navigation">
+                        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown">
+                                    <a href="center.html" target="" class="dropdown-toggle color-green dropdown-a" data-toggle="dropdown">
+                                        <i class="fa fa-comments"></i> 消息
+                                        <span class="label label-success">5</span>
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="personal.html" target="">个人中心</a>
+                                        </li>
+                                        <li>
+                                            <a href="center.html" target="">我的病历夹</a>
+                                        </li>
+                                        <li>
+                                            <a href="personal.html" target="">我要挂号
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="personal.html" target="">我的挂号
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="center.html" target="" class="dropdown-toggle color-green dropdown-a" data-toggle="dropdown">
+                                        <i class="fa fa-user"></i>
+                                        <span>XXX</span>管理员，您好！
+                                        <span class="label label-info">5</span>
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="personal.html" target="">个人中心</a>
+                                        </li>
+                                        <li>
+                                            <a href="center.html" target="">我的病历夹</a>
+                                        </li>
+                                        <li>
+                                            <a href="personal.html" target="">我要挂号
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="personal.html" target="">我的挂号
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="personal.html" target="">
+                                                  个人健康体检
+                                                </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a class="dropdown-a" href="javascript:void;">退出</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </div>
+    <div class="middle">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class=" col-md-offset-1 col-md-2 mid-left">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <div class="navbar-header" style="width: 100%;">
+                            <a class="navbar-brand" href="index.html" style="width: 100%;">
+                                <i class="fa fa-home"></i>首页
+                            </a>
+                        </div>
+                        <div>
+                            <ul class="nav navbar-nav">
+                                <li class="mid-left-li">
+                                    <a href="#">
+                                        <i class="fa fa-star"></i> 用户管理模块
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul>
+                                        <li><a href="#">登录注册</a></li>
+                                        <li><a href="#">用户管理</a></li>
+                                        <li><a href="#">权限管理</a></li>
+                                        <li><a href="#">报名管理</a></li>
+                                        <li><a href="#">考生报考</a></li>
+                                    </ul>
+                                </li>
+                                <li class="mid-left-li">
+                                    <a href="#">
+                                        <i class="fa fa-star"></i> 计划管理模块
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul>
+                                        <li><a href="#">考点管理</a></li>
+                                        <li><a href="#">考点开考专业管理</a></li>
+                                        <li><a href="#">专业管理</a></li>
+                                        <li><a href="#">课程及教材管理</a></li>
+                                        <li><a href="#">毕业条件管理</a></li>
+                                    </ul>
+                                </li>
+                                <li class="mid-left-li">
+                                    <a href="topic-manage.html">
+                                        <i class="fa fa-star"></i>命题管理
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a class="test-sample" href="topic-manage.html">样卷管理</a>
+                                        </li>
+                                        <li><a class="recruitment-manage" href="topic-manage.html">征题管理</a></li>
+                                        <li><a class="topic-sample" href="topic-manage.html">抽题管理</a></li>
+                                        <li><a class="book-sample" href="topic-manage.html">教材变更管理</a></li>
+                                        <li><a class="question-sample" href="topic-manage.html">题库管理</a></li>
+                                    </ul>
+                                </li>
+                                <li class="mid-left-li">
+                                    <a href="javascript:void;">
+                                        <i class="fa fa-star"></i> 教材管理模块
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul>
+                                        <li><a class="buy-textbook" href="textbook-buy.html">教材采购管理</a></li>
+                                        <li><a class="putin-textbook" href="textbook-putin.html">入库调拨管理</a></li>
+                                        <li><a class="stock-textbook" href="textbook-stock.html">库存管理</a></li>
+                                        <li style="background-color: #E7E7E7;"><a class="mail-return-textbook" href="textbook-mailreturn.html">预定邮购及退书管理</a></li>
+                                        <li><a class="finance-textbook" href="textbook-finance.html">教材财务管理</a></li>
+                                    </ul>
+                                </li>
+                                <li class="mid-left-li">
+                                    <a href="#">
+                                        <i class="fa fa-star"></i> 成绩管理模块
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul>
+                                        <li><a href="#">考生录入管理</a></li>
+                                        <li><a href="#">成绩查询</a></li>
+                                        <li><a href="#">成绩修改</a></li>
+                                        <li><a href="#">违纪作弊管理</a></li>
+                                        <li><a href="#">合格证打印</a></li>
+                                    </ul>
+                                </li>
+                                <li class="mid-left-li">
+                                    <a href="exam-home.html">
+                                        <i class="fa fa-star"></i> 考籍管理
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul>
+                                        <li><a href="exam-home.html">User Interface</a></li>
+                                        <li class="mid-left-li-li">
+                                            <a href="exam-home.html">
+                                          毕业管理
+                                          <b class="caret"></b>
+                                        </a>
+                                            <ul>
+                                                <li><a href="exam-home.html">毕业预提管理</a></li>
+                                                <li><a href="exam-home.html">毕业资格审核办理</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="exam-home.html">档案管理</a></li>
+                                    </ul>
+                                </li>
+                                <li class="mid-left-li">
+                                    <a href="#">
+                                        <i class="fa fa-star"></i> 毕业管理模块
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul>
+                                        <li><a href="#">毕业资格审核办理</a></li>
+                                        <li><a href="#">毕业错误证明办理</a></li>
+                                        <li><a href="#">毕业遗失证明办理</a></li>
+                                        <li><a href="#">出国留学证明办理</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div class="col-md-8 mid-right">
+                    <div class="row-fluid mid-right-up">
+                        <h2><i class="fa fa-desktop color"></i>教材管理 <small>自考管理系统</small></h2>
+                    </div>
+                    <div class="row-fluid mid-right-down">
+                        <div class="col-md-12 mid-r-down">
+                            <!-- 预定邮购及退书管理 -->
+                            <div class="mail-return-textbook">
+                                <div class="row-fluid">
+                                    <div class="col-md-12 r-down-head">
+                                        <h3>预定邮购及退书管理</h3>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="col-md-12 r-down-middle">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a class="register-customer-mail" href="javascript:void;">
+                                            登记客户</a></li>
+                                            <li><a class="search-customer-mail" href="javascript:void;">查询客户</a></li>
+                                            <!-- <li><a class="register-order-mail" href="javascript:void;">登记订单</a></li> -->
+                                            <li><a class="search-order-mail" href="javascript:void;">查询订单</a></li>
+                                            <li><a class="register-email-mail" href="javascript:void;">登记邮寄</a></li>
+                                            <li><a class="search-email-mail" href="javascript:void;">查询邮寄</a></li>
+                                            <li><a class="register-book-mail" href="javascript:void;">登记退书</a></li>
+                                            <li><a class="search-book-mail" href="javascript:void;">查询退书</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="col-md-12 r-down-footing">
+                                        <!-- 登记客户信息 -->
+                                        <div class="register-customer-mail">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">客户名字</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="客户名字" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">客户联系方式</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="客户联系方式" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">客户地址</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="客户地址" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">教材类型</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="教材类型" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">教材名字</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="教材名字" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">订购数量</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="订购数量" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">教材单价</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="教材单价" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-2 col-sm-9">
+                                                        <button type="submit" class="btn btn-primary">提交</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!-- 查询客户信息 -->
+                                        <div class="search-customer-mail">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <div class="col-sm-2">
+                                                        <select class="form-control">
+                                                            <option>客户名字</option>
+                                                            <option>教材类型</option>
+                                                            <option>教材名字</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="请选择条件">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <button type="submit" class="btn btn-primary" style="padding:6px 33px;">查询</button>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <p></p>
+                                                        <p class="text-danger"></p>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div class="table-responsive" style="margin-top: 30px;">
+                                                <table class="table table-striped table-bordered table-hover table-condensed">
+                                                    <caption class="text-center">
+                                                        <strong>客户信息列表</strong>
+                                                    </caption>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>客户名字</th>
+                                                            <th>客户联系方式</th>
+                                                            <th>客户地址</th>
+                                                            <th>教材类型</th>
+                                                            <th>教材名字</th>
+                                                            <th>订购数量</th>
+                                                            <th>教材单价</th>
+                                                            <th>修改</th>
+                                                            <th>删除</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <td>小杨</td>
+                                                        <td>1232345</td>
+                                                        <td>成都郫县</td>
+                                                        <td>软件工程</td>
+                                                        <td>Java</td>
+                                                        <td>12</td>
+                                                        <td>50</td>
+                                                        <td>
+                                                            <a class="search-customer-xiugai" href="javascript:void;" title="">修改</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:void;" title="">删除</a>
+                                                        </td>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- 登记订单信息 -->
+                                        <!-- <div class="register-order-mail"></div> -->
+                                        <!-- 查询订单信息 -->
+                                        <div class="search-order-mail">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <div class="col-sm-2">
+                                                        <select class="form-control">
+                                                            <option>客户名字</option>
+                                                            <option>教材类型</option>
+                                                            <option>教材名字</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="请选择条件">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <button type="submit" class="btn btn-primary" style="padding:6px 33px;">查询</button>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <p></p>
+                                                        <p class="text-danger"></p>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div class="table-responsive" style="margin-top: 30px;">
+                                                <table class="table table-striped table-bordered table-hover table-condensed">
+                                                    <caption class="text-center">
+                                                        <strong>订单信息列表</strong>
+                                                    </caption>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>订单编号</th>
+                                                            <th>客户名字</th>
+                                                            <th>客户联系方式</th>
+                                                            <th>客户地址</th>
+                                                            <th>教材类型</th>
+                                                            <th>教材名字</th>
+                                                            <th>订购数量</th>
+                                                            <th>教材单价</th>
+                                                            <th>修改</th>
+                                                            <th>删除</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <td>2</td>
+                                                        <td>小杨</td>
+                                                        <td>1232345</td>
+                                                        <td>成都郫县</td>
+                                                        <td>软件工程</td>
+                                                        <td>Java</td>
+                                                        <td>12</td>
+                                                        <td>50</td>
+                                                        <td>
+                                                            <a class="search-order-xiugai" href="javascript:void;" title="">修改</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:void;" title="">删除</a>
+                                                        </td>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- 登记邮寄信息 -->
+                                        <div class="register-email-mail">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">订单编号</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="订单编号" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">教材编号</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="教材编号" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">客户名字</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="客户名字" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">客户联系方式</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="客户联系方式" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">客户地址</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="客户地址" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">订购数量</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="订购数量" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">教材单价</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="教材单价" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">发货时间</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="发货时间" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">邮费</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="邮费" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">是否邮寄</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="是否邮寄" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-2 col-sm-9">
+                                                        <button type="submit" class="btn btn-primary">提交</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!-- 查询邮寄信息 -->
+                                        <div class="search-email-mail">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <div class="col-sm-2">
+                                                        <select class="form-control">
+                                                            <option>客户名字</option>
+                                                            <option>教材类型</option>
+                                                            <option>教材名字</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="请选择条件">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <button type="submit" class="btn btn-primary" style="padding:6px 33px;">查询</button>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <p></p>
+                                                        <p class="text-danger"></p>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div class="table-responsive" style="margin-top: 30px;">
+                                                <table class="table table-striped table-bordered table-hover table-condensed">
+                                                    <caption class="text-center">
+                                                        <strong>邮寄信息列表</strong>
+                                                    </caption>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>订单编号</th>
+                                                            <th>教材编号</th>
+                                                            <th>客户名字</th>
+                                                            <th>客户联系方式</th>
+                                                            <th>客户地址</th>
+                                                            <th>订购数量</th>
+                                                            <th>教材单价</th>
+                                                            <th>发货时间</th>
+                                                            <th>邮费</th>
+                                                            <th>是否邮寄</th>
+                                                            <th>邮寄</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <td>2</td>
+                                                        <td>小杨</td>
+                                                        <td>1232345</td>
+                                                        <td>成都郫县</td>
+                                                        <td>12</td>
+                                                        <td>50</td>
+                                                        <td>2015-6-6</td>
+                                                        <td>10</td>
+                                                        <td>未邮寄</td>
+                                                        <td>
+                                                            <a class="javascript:void;" href="javascript:void;" title="">邮寄</a>
+                                                        </td>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- 登记退书信息 -->
+                                        <div class="register-book-mail">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">退书编号</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="退书编号" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">教材编号</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="教材编号" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">退书时间</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="退书时间" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">退书数量</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="退书数量" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">退书理由</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="退书理由" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">退书单价</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="退书单价" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="col-sm-2 control-label">审核状态</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="审核状态" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-2 col-sm-9">
+                                                        <button type="submit" class="btn btn-primary">提交</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!-- 查询退书信息 -->
+                                        <div class="search-book-mail">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <div class="col-sm-2">
+                                                        <select class="form-control">
+                                                            <option>客户名字</option>
+                                                            <option>教材类型</option>
+                                                            <option>教材名字</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <input type="text" class="form-control" id="firstname" placeholder="请选择条件">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <button type="submit" class="btn btn-primary" style="padding:6px 33px;">查询</button>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <p></p>
+                                                        <p class="text-danger"></p>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div class="table-responsive" style="margin-top: 30px;">
+                                                <table class="table table-striped table-bordered table-hover table-condensed">
+                                                    <caption class="text-center">
+                                                        <strong>退书信息列表</strong>
+                                                    </caption>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>退书编号</th>
+                                                            <th>教材编号</th>
+                                                            <th>退书时间</th>
+                                                            <th>退书数量</th>
+                                                            <th>退书理由</th>
+                                                            <th>单价</th>
+                                                            <th>审核状态</th>
+                                                            <th>审核</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <td>2</td>
+                                                        <td>13</td>
+                                                        <td>2015-4-4</td>
+                                                        <td>44</td>
+                                                        <td>没啥用</td>
+                                                        <td>12</td>
+                                                        <td>未审核</td>
+                                                        <td>
+                                                            <a class="javascript:void;" href="javascript:void;" title="">审核</a>
+                                                        </td>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- 预定邮购及退书管理--跳转模块 -->
+                                        <div class="mail-xiugai">
+                                            <div class="row-fluid">
+                                                <div class="col-md-12">
+                                                    <!-- 查询客户信息--跳转页面 -->
+                                                    <div class="search-customer-xiugai">
+                                                        <form class="form-horizontal" role="form">
+                                                            <div class="form-group">
+                                                                <label for="firstname" class="col-sm-2 control-label">客户名字</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="firstname" placeholder="" value="客户名字">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="firstname" class="col-sm-2 control-label">客户联系方式</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="firstname" placeholder="" value="客户联系方式">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="firstname" class="col-sm-2 control-label">客户地址</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="firstname" placeholder="" value="客户地址">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="firstname" class="col-sm-2 control-label">教材类型</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="firstname" placeholder="" value="教材类型">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="firstname" class="col-sm-2 control-label">教材名字</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="firstname" placeholder="" value="教材名字">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="firstname" class="col-sm-2 control-label">订购数量</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="firstname" placeholder="" value="订购数量">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="firstname" class="col-sm-2 control-label">教材单价</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="firstname" placeholder="" value="教材单价">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-offset-2 col-sm-9">
+                                                                    <button type="submit" class="btn btn-primary">提交</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <!-- 查询订单信息--跳转页面 -->
+                                                    <div class="search-order-xiugai">
+                                                        <form class="form-horizontal" role="form">
+                                                            <div class="form-group">
+                                                                <label for="firstname" class="col-sm-2 control-label">订单编号</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="firstname" placeholder="" value="订单编号">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="firstname" class="col-sm-2 control-label">客户名字</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="firstname" placeholder="" value="客户名字">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="firstname" class="col-sm-2 control-label">客户联系方式</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="firstname" placeholder="" value="客户联系方式">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="firstname" class="col-sm-2 control-label">客户地址</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="firstname" placeholder="" value="客户地址">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="firstname" class="col-sm-2 control-label">教材类型</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="firstname" placeholder="" value="教材类型">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="firstname" class="col-sm-2 control-label">教材名字</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="firstname" placeholder="" value="教材名字">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="firstname" class="col-sm-2 control-label">订购数量</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="firstname" placeholder="" value="订购数量">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="firstname" class="col-sm-2 control-label">教材单价</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="firstname" placeholder="" value="教材单价">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-offset-2 col-sm-9">
+                                                                    <button type="submit" class="btn btn-primary">提交</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid footing">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="col-md-12 footer">
+                    <p class="text-center">
+                        Copyright 2013 © - Bootstrap Themes
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery库，同时加载该库必须在加载bootstrap.min.js之前 -->
+    <script src="js/jquery-2.1.4.js"></script>
+    <!-- 加载bootstrap的核心js库 -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <!-- <script type="text/javascript" src="js/text-book.js"></script> -->
+    <script type="text/javascript">
+    //左边导航栏打开状态设置
+    $(".mid-left .nav .mid-left-li").eq(3).addClass("open");
+    $(".mid-left .nav .mid-left-li").eq(3).children('ul').slideDown();
+    //预定邮购及退书管理--start
+    //导航栏
+    $(".mail-return-textbook .nav li").click(function(event) {
+        $(this).addClass('active').siblings('li').removeClass('active');
+    })
+    $(".mail-return-textbook .r-down-footing .register-customer-mail").show().siblings('div').hide();
+    $(".mail-return-textbook .r-down-middle .nav li a").click(function(event) {
+            $(".mail-return-textbook .r-down-footing ." + event.target.className).show();
+            $(".mail-return-textbook .r-down-footing ." + event.target.className).siblings('div').hide();
+        })
+        // 查询客户信息--修改跳转
+    $(".search-customer-mail .table td .search-customer-xiugai").click(function(event) {
+            $(".mail-return-textbook .r-down-footing .mail-xiugai").show().siblings('div').hide();
+            $(".mail-xiugai ." + event.target.className).show().siblings().hide();
+        })
+        // 查询订单信息--修改跳转
+    $(".search-order-mail .table td .search-order-xiugai").click(function(event) {
+            $(".mail-return-textbook .r-down-footing .mail-xiugai").show().siblings('div').hide();
+            $(".mail-xiugai ." + event.target.className).show().siblings().hide();
+        })
+        //预定邮购及退书管理--end
+    </script>
+</body>
+
+</html>

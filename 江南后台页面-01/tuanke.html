@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="font-awesome-4.5.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/css-initialization.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/tuanke.css" />
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.watermark.js"></script>
+        <script type="text/javascript" src="js/tuanke.js"></script>
+        <style type="text/css">
+                                                /* 第一步：使用font-face声明字体 */
+                                                @font-face {font-family: 'taobao';  /* 给我们的字体起别名 */
+                                                src: url('font/iconfont.eot'); /* IE9*/
+                                                src: url('font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+                                                url('font/iconfont.woff') format('woff'), /* chrome、firefox */
+                                                url('font/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+                                                url('font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+                                                }
+                                                /*第二步：定义使用iconfont的样式*/
+                                                .iconfont{
+                                                font-family:"taobao" !important;
+                                                font-size:16px; font-style:normal;
+                                                    -webkit-font-smoothing: antialiased;
+                                                -webkit-text-stroke-width: 0.2px;
+                                                -moz-osx-font-smoothing: grayscale;
+                                                }
+        </style>
+    </head>
+    <body>
+        <!-- 版心 -->
+        <div class="w">
+            <!-- 头部导航 -->
+            <div class="nav">
+                <div class="nav-l">
+                    <div class="logo">
+                        <img src="img/logo.png"  alt="">
+                        <span>江南健身俱乐部</span>
+                    </div>
+                    <div class="shop">
+                        <ul>
+                            <li>
+                                <span>燕塘店<i class="iconfont">&#xe60f;</i></span>
+                                <ul class="on" id="btn-l">
+                                    <li>燕塘店</li>
+                                    <li>燕塘店</li>
+                                    <li>燕塘店</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="search">
+                        <textarea placeholder="写下您宝贵的评价及意见"></textarea><i class="iconfont">&#xe636;</i>
+                    </div>
+                </div>
+                <div class="nav-r">
+                    <div class="head">
+                        <img src="img/tx.png" height="50" width="50" alt="">
+                        <span>健身管理</span>
+                    </div>
+                    <div class="tuichu">
+                        <i class="iconfont">&#xe603;</i>
+                        <span>退出</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 下分区 -->
+            <div class="lowerpartition">
+                <div class="lowerpartition-l">
+                    <div class="box">
+                        <ul>
+                            <li class="hide">
+                                <span>首页</span>
+                                <ul>
+                                    <li>一周</li>
+                                    <li>今日</li>
+                                    <li>昨天</li>
+                                </ul>
+                            </li>
+                            <li class="hide">
+                                <span>首页社区<i class="iconfont">&#xe60f;</i></span>
+                                <ul>
+                                    <li>电影</li>
+                                    <li>游戏</li>
+                                    <li>代码</li>
+                                </ul>
+                            </li>
+                            <li class="hide">
+                                <span>人物<i class="iconfont">&#xe60f;</i></span>
+                                <ul>
+                                    <li>明星</li>
+                                    <li>美女</li>
+                                    <li>帅哥</li>
+                                </ul>
+                            </li>
+                            <li class="hide">
+                                <span>健身房<i class="iconfont">&#xe60f;</i></span>
+                                <ul>
+                                    <li>一周</li>
+                                    <li>今日</li>
+                                    <li>昨天</li>
+                                </ul>
+                            </li>
+                            <li class="hide">
+                                <span>人员事项</span>
+                            </li>
+                            <li class="hide">
+                                <span>活动</span>
+                            </li>
+                            <li class="hide">
+                                <span>反馈列表</span>
+                            </li>
+                            <li class="hide">
+                                <span>系统设置</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tuan">
+                    <div class="tuan-up">
+                        <div class="tuan-up-right">
+                            <input class="tuan-up-add" type="button" value="新增" />
+                            <input class="tuan-up-cancel" type="button" value="取消" />
+                            <input class="tuan-up-edit" type="button" value="编辑" />
+                            <input class="tuan-up-del" type="button" value="删除" />
+                        </div>
+                    </div>
+                    <div class="tuan-down">
+                    <!-- 新增弹框 -->
+                    <div class="tuan-add-tanchu">
+                       <form action="">
+                            <h2>新增团课</h2>
+                        <div class="add-tanchu-div">
+                            <span>项目图标</span>
+                            <input class="add-tanchu-inputimg" type="text" />
+                            <button>上传</button>
+                        </div>
+                        <div class="add-tanchu-div">
+                            <span>项目</span>
+                            <input type="text" placeholder="请输入项目名" />
+                        </div>
+                        <div class="add-tanchu-div">
+                            <span>时间</span>
+                            <select name="time" id="">
+                                <option value="">请输入时间</option>
+                                <option value="">2016-4-13</option>
+                                <option value="">2016-4-14</option>
+                                <option value="">2016-4-15</option>
+                            </select>
+                        </div>
+                        <div class="add-tanchu-div">
+                            <span>教练</span>
+                            <select placeholder="请选择教练" name="jiaolian" id="">
+                                <option value="">请选择教练</option>
+                                <option  value="">
+                                    亮亮
+                                </option>
+                                <option  value="">
+                                    亮了
+                                </option>
+                                <option  value="">
+                                    亮亮了
+                                </option>
+                            </select>
+                        </div>
+                        <div class="add-tanchu-div">
+                            <span>课室</span>
+                            <input type="text" placeholder="请输入课室" />
+                        </div>
+                        <div class="add-tanchu-btn">
+                            <input class="putbtn" type="button" value="提交" />
+                            <input class="putnobtn" type="button" value="取消" />
+                        </div>
+                       </form>
+                    </div>
+                        <!-- 删除弹出框 -->
+                        <div class="tuan-tanchu">
+                            <p>确定删除吗？</p>
+                            <input class="tuan-sure" type="button" value="确定" />
+                            <input class="tuan-no" type="button" value="取消" />
+                        </div>
+                        <!-- 座位编辑 -->
+                        <div class="tuan-seat">
+                            <div class="seat-one">
+                                <h1>有氧舞蹈-座位编辑</h1>
+                            </div>
+                            <div class="seat-two">
+                                <span>讲台</span>
+                            </div>
+                            <div class="seat-three">
+                                <table class="seat-table">
+                                    <tr class="seat-tr">
+                                        <td class="seat-td seat-td-1"></td>
+                                        <td class="seat-td">9</td>
+                                        <td class="seat-td">8</td>
+                                        <td class="seat-td">7</td>
+                                        <td class="seat-td">6</td>
+                                        <td class="seat-td">5</td>
+                                        <td class="seat-td">4</td>
+                                        <td class="seat-td">3</td>
+                                        <td class="seat-td">2</td>
+                                        <td class="seat-td">1</td>
+                                    </tr>
+                                    <tr char="seat-tr">
+                                        <td class="seat-td seat-td-1">A</td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr char="seat-tr">
+                                        <td class="seat-td seat-td-1">B</td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr char="seat-tr">
+                                        <td class="seat-td seat-td-1">C</td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr char="seat-tr">
+                                        <td class="seat-td seat-td-1">D</td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr char="seat-tr">
+                                        <td class="seat-td seat-td-1">E</td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr char="seat-tr">
+                                        <td class="seat-td seat-td-1">F</td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr char="seat-tr">
+                                        <td class="seat-td seat-td-1">G</td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                        <td class="seat-td">
+                                            <div class="seat-div-cir1"></div>
+                                            <div class="seat-div-cir2">
+                                                <i class="fa fa-check fa-1x fa-fw"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="seat-four">
+                                <button class="seat-btn-save">保存</button>
+                                <button class="seat-btn-cancel">取消</button>
+                            </div>
+                        </div>
+                        <!-- 列表 -->
+                        <table class="tuan-table">
+                            <tr class="tuan-tr-one">
+                                <th class="tuan-th-none tuan-none"></th>
+                                <th>图标</th>
+                                <th>项目</th>
+                                <th>时间</th>
+                                <th>教练</th>
+                                <th>课室</th>
+                                <th>座位编辑</th>
+                            </tr>
+                            <tr class="tuan-tr-two">
+                                <td class="tuan-td-span tuan-none">
+                                    <div class="tuan-td-cir1">
+                                    </div>
+                                    <div class="tuan-td-cir2">
+                                        <i class="fa fa-check fa-1x fa-fw">
+                                        </i>
+                                    </div>
+                                </td>
+                                <td class="tuan-td-img">
+                                </td>
+                                <td>有氧舞蹈</td>
+                                <td>9:00-10:00</td>
+                                <td>黄晓明</td>
+                                <td>瑜伽室</td>
+                                <td class="tuan-td-a"><a href="javascript:void;">进入编辑</a></td>
+                            </tr>
+                            <tr class="tuan-tr-two">
+                                <td class="tuan-td-span tuan-none"><div class="tuan-td-cir1"></div><div class="tuan-td-cir2">
+                                <i class="fa fa-check fa-1x fa-fw"></i>
+                            </div>
+                        </td>
+                        <td class="tuan-td-img">
+                        </td>
+                        <td>有氧舞蹈</td>
+                        <td>9:00-10:00</td>
+                        <td>黄晓明</td>
+                        <td>瑜伽室</td>
+                        <td class="tuan-td-a"><a href="javascript:void;">进入编辑</a></td>
+                    </tr>
+                    <tr class="tuan-tr-two">
+                        <td class="tuan-td-span tuan-none"><div class="tuan-td-cir1"></div><div class="tuan-td-cir2">
+                        <i class="fa fa-check fa-1x fa-fw"></i>
+                       </div>
+                        </td>
+                       <td class="tuan-td-img">
+                        </td>
+                       <td>有氧舞蹈</td>
+                       <td>9:00-10:00</td>
+                        <td>黄晓明</td>
+                        <td>瑜伽室</td>
+                        <td class="tuan-td-a"><a href="javascript:void;">进入编辑</a></td>
+                    </tr>
+        </table>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</html>

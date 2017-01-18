@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; list-style:none;}
+/* 2.给网站统一字体，字号，字体颜色  */
+body{ font-size:12px; color:#666; font-family:"方正兰亭准黑_GBK";}
+/* 3.针对性把有默认样式的标签同化 */
+h1,h2,h3,h4,h5,h6{ font-size:100%;}		/* 统一标题字号 */
+ul,ol{ list-style:none;}		        /* 清除列表默认样式 */
+textarea { resize:none; }				
+a{ color:#666; text-decoration:none; }
+a:hover{ color:#80BD00;}
+/* 清除浮动 */
+.clearfix:after,.clearfix:before{ content:""; display:table;}
+.clearfix:after{ clear:both;}
+.clearfix{*zoom:1;}
+.w{width:100%; margin:0 auto;}
+img{ border:0; display:block;}
+html{color: #525252;}
+/* --------------------------------------------- */

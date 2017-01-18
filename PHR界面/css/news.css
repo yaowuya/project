@@ -1,0 +1,159 @@
+* {
+    color: #666;
+}
+
+body {
+    background-color: #fff;
+    color: #666;
+}
+
+a {
+    color: #666;
+}
+
+.container {
+    padding: 0px;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1000px;
+    }
+}
+.header{
+    margin-top: 10px;
+}
+.header .text-left li {
+    position: relative;
+}
+
+.header .text-left li:nth-of-type(1):after {
+    position: absolute;
+    top: 13px;
+    right: 0px;
+    content: " ";
+    width: 1px;
+    height: 28px;
+    border-right: 1px solid #EAEAEA;
+}
+
+.header .text-left li:nth-of-type(1) a {
+    font-size: 24px;
+    font-weight: 500;
+    color: #25B6A0;
+}
+
+.header .text-left li:nth-of-type(2) a {
+    padding-top: 15px;
+    font-size: 19px;
+    font-weight: 400;
+    color: #666;
+}
+
+/* 修改 */
+.header{
+    margin-top: 20px;
+}
+.header .text-right .dropdown {
+    /* margin-top: 15px; */
+    margin-left: 28px;
+}
+.header .text-right .navbar{
+    margin-bottom: 0px;
+}
+.header .text-right .navbar .collapse{
+    padding-top: 10px;
+    padding-right: 0px;
+}
+.header .text-right .btn {
+    border: 1px solid #28B4C3;
+    border-left: 1px solid white;
+}
+
+.header .text-right .btn-border {
+    /* height: 20px; */
+    width: 42px;
+    border: 1px solid #28B4C3;
+    border-radius: 50%;
+    background-color: #28B4C3;
+    margin-right: -2px;
+    padding: 8px 12px;
+    text-align: center;
+    display: inline-block;
+}
+.header .text-right .btn-border span{
+    color: white;
+}
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+.dropdown .color-green {
+    color: #666;
+    padding: 8px 27px;
+}
+.header .text-right .btn1 {
+    margin-top: 2px;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 6px 14px;
+    display: inline-block;
+}
+.header .text-right .dropdown-menu{
+    min-width: 72px;
+    text-align: center;
+    left: 46px;
+    top: 36px;
+}
+.header .text-right .dropdown-menu li a{
+    padding: 3px 21px;
+}
+
+.header-one{
+    height: 39px;
+    position: relative;
+    margin-top: 20px;
+}
+.div-headerone{
+    position: absolute;
+    top: 0px;
+    left: -50%;
+    width: 200%;
+    z-index: -1;
+    height: 50px;
+    background-color: #28b4c3;
+}
+.header-one .navbar{
+    height: 38px;
+    margin-bottom: 0px;
+}
+.header-one .btn-form{
+    padding: 6px 22px;
+    color: white;
+    background-color:#7FBA0A ;
+}
+.header-one .navbar-brand{
+    color: white;
+    font-weight: 500;
+    background-color:#1ba0af;
+    height: 49px;
+}
+.header-one .nav li a{
+    color: white;
+    font-weight: 400;
+    font-size: 17px;
+    padding: 17px 24px;
+    height: 49px;
+}
+.header-one .nav li a:hover{
+    background-color:#1ba0af ;
+}
+.row-middle{
+    margin-top: 33px;
+}
+.row-middle .active{
+    background-color:#28b4c3 ;
+}
+.row-middle .list-group a:hover,.row-middle .list-group a:active{
+    background-color:#1ba0af ;
+}
