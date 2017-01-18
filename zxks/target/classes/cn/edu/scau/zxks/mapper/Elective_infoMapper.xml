@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.scau.zxks.dao.Elective_infoMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.scau.zxks.entity.Elective_info" >
+    <id column="elective_id" property="electiveId" jdbcType="VARCHAR" />
+    <result column="course_id" property="courseId" jdbcType="VARCHAR" />
+    <result column="stu_num" property="stuNum" jdbcType="VARCHAR" />
+    <result column="elective_time" property="electiveTime" jdbcType="TIMESTAMP" />
+    <result column="mig_grade" property="migGrade" jdbcType="DOUBLE" />
+    <result column="term_grade" property="termGrade" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    elective_id, course_id, stu_num, elective_time, mig_grade, term_grade
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.scau.zxks.entity.Elective_infoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from elective_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from elective_info
+    where elective_id = #{electiveId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from elective_info
+    where elective_id = #{electiveId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.edu.scau.zxks.entity.Elective_infoExample" >
+    delete from elective_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.edu.scau.zxks.entity.Elective_info" >
+    insert into elective_info (elective_id, course_id, stu_num, 
+      elective_time, mig_grade, term_grade
+      )
+    values (#{electiveId,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, #{stuNum,jdbcType=VARCHAR}, 
+      #{electiveTime,jdbcType=TIMESTAMP}, #{migGrade,jdbcType=DOUBLE}, #{termGrade,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.scau.zxks.entity.Elective_info" >
+    insert into elective_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="electiveId != null" >
+        elective_id,
+      </if>
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="stuNum != null" >
+        stu_num,
+      </if>
+      <if test="electiveTime != null" >
+        elective_time,
+      </if>
+      <if test="migGrade != null" >
+        mig_grade,
+      </if>
+      <if test="termGrade != null" >
+        term_grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="electiveId != null" >
+        #{electiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null" >
+        #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="stuNum != null" >
+        #{stuNum,jdbcType=VARCHAR},
+      </if>
+      <if test="electiveTime != null" >
+        #{electiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="migGrade != null" >
+        #{migGrade,jdbcType=DOUBLE},
+      </if>
+      <if test="termGrade != null" >
+        #{termGrade,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.edu.scau.zxks.entity.Elective_infoExample" resultType="java.lang.Integer" >
+    select count(*) from elective_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update elective_info
+    <set >
+      <if test="record.electiveId != null" >
+        elective_id = #{record.electiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseId != null" >
+        course_id = #{record.courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuNum != null" >
+        stu_num = #{record.stuNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.electiveTime != null" >
+        elective_time = #{record.electiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.migGrade != null" >
+        mig_grade = #{record.migGrade,jdbcType=DOUBLE},
+      </if>
+      <if test="record.termGrade != null" >
+        term_grade = #{record.termGrade,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update elective_info
+    set elective_id = #{record.electiveId,jdbcType=VARCHAR},
+      course_id = #{record.courseId,jdbcType=VARCHAR},
+      stu_num = #{record.stuNum,jdbcType=VARCHAR},
+      elective_time = #{record.electiveTime,jdbcType=TIMESTAMP},
+      mig_grade = #{record.migGrade,jdbcType=DOUBLE},
+      term_grade = #{record.termGrade,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.scau.zxks.entity.Elective_info" >
+    update elective_info
+    <set >
+      <if test="courseId != null" >
+        course_id = #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="stuNum != null" >
+        stu_num = #{stuNum,jdbcType=VARCHAR},
+      </if>
+      <if test="electiveTime != null" >
+        elective_time = #{electiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="migGrade != null" >
+        mig_grade = #{migGrade,jdbcType=DOUBLE},
+      </if>
+      <if test="termGrade != null" >
+        term_grade = #{termGrade,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where elective_id = #{electiveId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.scau.zxks.entity.Elective_info" >
+    update elective_info
+    set course_id = #{courseId,jdbcType=VARCHAR},
+      stu_num = #{stuNum,jdbcType=VARCHAR},
+      elective_time = #{electiveTime,jdbcType=TIMESTAMP},
+      mig_grade = #{migGrade,jdbcType=DOUBLE},
+      term_grade = #{termGrade,jdbcType=DOUBLE}
+    where elective_id = #{electiveId,jdbcType=VARCHAR}
+  </update>
+</mapper>

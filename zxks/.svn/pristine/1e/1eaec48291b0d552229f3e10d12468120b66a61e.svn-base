@@ -1,0 +1,47 @@
+.mid-r-down {
+    opacity: 1;
+    min-height: 525px;
+}
+.r-down-head {
+    /* height: 20px; */
+    padding: 10px;
+}
+.r-down-head h3 {
+    margin: 0px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    line-height: 25px;
+    color: #666;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+}
+.r-down-middle{
+    /* min-height: 300px; */
+    margin-top: 15px;
+}
+.r-down-footing{
+    margin-top: 30px;
+}
+.r-down-footer{
+    margin-top: 100px;
+}
+.r-down-footering{
+    margin-top: 30px;
+}
+/* 样卷管理的样卷入库出库 */
+/* .add-sample,.out-sample{
+    padding-top: 30px;
+} */
+/* 审题管理 */
+.auditing-recruitment .table a{
+    margin-right: 7px;
+}
+.topic-sample .r-down-footing{
+    margin-top: 77px;
+}
+/* 配置bootstrap的button长和宽 */
+.w-h-btn{
+    padding: 6px 33px;
+}
+

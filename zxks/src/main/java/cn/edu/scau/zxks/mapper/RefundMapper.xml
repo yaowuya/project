@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.scau.zxks.dao.RefundMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.scau.zxks.entity.Refund" >
+    <id column="Refund_id" property="refundId" jdbcType="VARCHAR" />
+    <result column="textbook_id" property="textbookId" jdbcType="VARCHAR" />
+    <result column="textbook_io_id" property="textbookIoId" jdbcType="VARCHAR" />
+    <result column="refund_time" property="refundTime" jdbcType="TIMESTAMP" />
+    <result column="refund_amount" property="refundAmount" jdbcType="DOUBLE" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="refund_price" property="refundPrice" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Refund_id, textbook_id, textbook_io_id, refund_time, refund_amount, reason, refund_price
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.scau.zxks.entity.RefundExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from refund
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from refund
+    where Refund_id = #{refundId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from refund
+    where Refund_id = #{refundId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.edu.scau.zxks.entity.RefundExample" >
+    delete from refund
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.edu.scau.zxks.entity.Refund" >
+    insert into refund (Refund_id, textbook_id, textbook_io_id, 
+      refund_time, refund_amount, reason, 
+      refund_price)
+    values (#{refundId,jdbcType=VARCHAR}, #{textbookId,jdbcType=VARCHAR}, #{textbookIoId,jdbcType=VARCHAR}, 
+      #{refundTime,jdbcType=TIMESTAMP}, #{refundAmount,jdbcType=DOUBLE}, #{reason,jdbcType=VARCHAR}, 
+      #{refundPrice,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.scau.zxks.entity.Refund" >
+    insert into refund
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="refundId != null" >
+        Refund_id,
+      </if>
+      <if test="textbookId != null" >
+        textbook_id,
+      </if>
+      <if test="textbookIoId != null" >
+        textbook_io_id,
+      </if>
+      <if test="refundTime != null" >
+        refund_time,
+      </if>
+      <if test="refundAmount != null" >
+        refund_amount,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="refundPrice != null" >
+        refund_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="refundId != null" >
+        #{refundId,jdbcType=VARCHAR},
+      </if>
+      <if test="textbookId != null" >
+        #{textbookId,jdbcType=VARCHAR},
+      </if>
+      <if test="textbookIoId != null" >
+        #{textbookIoId,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTime != null" >
+        #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundAmount != null" >
+        #{refundAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="refundPrice != null" >
+        #{refundPrice,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.edu.scau.zxks.entity.RefundExample" resultType="java.lang.Integer" >
+    select count(*) from refund
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update refund
+    <set >
+      <if test="record.refundId != null" >
+        Refund_id = #{record.refundId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.textbookId != null" >
+        textbook_id = #{record.textbookId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.textbookIoId != null" >
+        textbook_io_id = #{record.textbookIoId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refundTime != null" >
+        refund_time = #{record.refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.refundAmount != null" >
+        refund_amount = #{record.refundAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.reason != null" >
+        reason = #{record.reason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refundPrice != null" >
+        refund_price = #{record.refundPrice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update refund
+    set Refund_id = #{record.refundId,jdbcType=VARCHAR},
+      textbook_id = #{record.textbookId,jdbcType=VARCHAR},
+      textbook_io_id = #{record.textbookIoId,jdbcType=VARCHAR},
+      refund_time = #{record.refundTime,jdbcType=TIMESTAMP},
+      refund_amount = #{record.refundAmount,jdbcType=DOUBLE},
+      reason = #{record.reason,jdbcType=VARCHAR},
+      refund_price = #{record.refundPrice,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.scau.zxks.entity.Refund" >
+    update refund
+    <set >
+      <if test="textbookId != null" >
+        textbook_id = #{textbookId,jdbcType=VARCHAR},
+      </if>
+      <if test="textbookIoId != null" >
+        textbook_io_id = #{textbookIoId,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTime != null" >
+        refund_time = #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundAmount != null" >
+        refund_amount = #{refundAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="refundPrice != null" >
+        refund_price = #{refundPrice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where Refund_id = #{refundId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.scau.zxks.entity.Refund" >
+    update refund
+    set textbook_id = #{textbookId,jdbcType=VARCHAR},
+      textbook_io_id = #{textbookIoId,jdbcType=VARCHAR},
+      refund_time = #{refundTime,jdbcType=TIMESTAMP},
+      refund_amount = #{refundAmount,jdbcType=DOUBLE},
+      reason = #{reason,jdbcType=VARCHAR},
+      refund_price = #{refundPrice,jdbcType=DOUBLE}
+    where Refund_id = #{refundId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,13 @@
+$(document).ready(function() {
+    // 考点管理
+    $("#exampoint-add").validate();
+    $("#exampoint-add-xiugai").validate();
+    // 专业课程管理
+    $("#majorManage-add").validate();
+    $("#majorManage-xiugai").validate();
+    $("#courseManage-add").validate();
+    $("#courseManage-xiugai").validate();
+//    成绩管理
+    $("#grade-from").validate();
+    
+});

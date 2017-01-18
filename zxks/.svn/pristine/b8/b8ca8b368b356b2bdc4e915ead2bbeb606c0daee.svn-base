@@ -1,0 +1,445 @@
+package cn.edu.scau.zxks.controller;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import cn.edu.scau.zxks.dto.Page;
+import cn.edu.scau.zxks.dto.Result;
+import cn.edu.scau.zxks.entity.Exam_apply;
+import cn.edu.scau.zxks.entity.Graduation_information;
+import cn.edu.scau.zxks.entity.Student;
+import cn.edu.scau.zxks.entity.StudentMessage;
+import cn.edu.scau.zxks.entity.Study_abroad;
+import cn.edu.scau.zxks.entity.User;
+import cn.edu.scau.zxks.exception.ERNMException;
+import cn.edu.scau.zxks.exception.UserException;
+import cn.edu.scau.zxks.service.inter.ExamRegistNumManage;
+import cn.edu.scau.zxks.utill.CommonUtills;
+
+@Controller
+@RequestMapping("/ERNM")
+public class ExamRegistNum 
+{
+	@Autowired
+	private ExamRegistNumManage eRNM;
+
+	public ExamRegistNum() 
+	{
+		// TODO Auto-generated constructor stub
+	}
+	
+	@RequestMapping("/skip1")
+	public String skip1()
+	{
+		try{
+			
+		}catch(UserException e){
+			
+		}	
+		return "ToBeforeGraduate";
+	}
+
+	@RequestMapping("/skip2")
+	public String skip2()
+	{
+		try{
+			
+		}catch(UserException e){
+			
+		}	
+		return "handleGraduateQua";
+	}
+	
+	@RequestMapping("/skip3")
+	public String skip3()
+	{
+		try{
+			
+		}catch(UserException e){
+			
+		}	
+		return "LostRecord";
+	}
+	
+	@RequestMapping("/skip4")
+	public String skip4()
+	{
+		try{
+			
+		}catch(UserException e){
+			
+		}	
+		return "Abroadnews";
+	}
+	
+	@RequestMapping("/AAS")
+	public String addAbroadStu(Study_abroad studyAbroad)		//添加出国学生信息
+	{
+		System.out.print(studyAbroad.getStuNum());
+		System.out.print(studyAbroad.getDestinationC());
+		System.out.print(studyAbroad.getDestinationS());
+		
+		eRNM.addGoAbroadMessage(studyAbroad);
+		eRNM.updateStuToAbroad(studyAbroad.getStuNum());
+		return "Abroadnews";
+	}
+	
+	@RequestMapping("/QASM")
+	@ResponseBody
+	public Map<String, Object> quaryAbroadStuMes(String studentId)	//查询出国学生信息
+	{		
+		Map<String, Object> modelMap = new HashMap<String, Object>(6);
+		try
+		{
+			Student student = eRNM.quaryStudentMessage(studentId);
+			String majorName = eRNM.quaryMajorName(student.getMajorId());
+			List<Study_abroad> studyAbroad = eRNM.quaryAbroadMessage(studentId);
+			User user = eRNM.quaryStuUser(student.getEmail());
+
+			
+			modelMap.put("user", user);
+			modelMap.put("studyAbroad", studyAbroad.get(0));
+			modelMap.put("student", student);
+			modelMap.put("majorName", majorName);
+			modelMap.put("statu", 0);		
+			return modelMap;
+		}
+		catch(Exception e)
+		{
+			modelMap.put("statu", 1);
+			return modelMap;
+		}
+	}
+	
+	@RequestMapping("/AASM")		
+	@ResponseBody
+	public Map<String, Object> alterAbroadStuMes(String id)					//查询出国学生信息
+	{
+		//ModelAndView modelAndView = new ModelAndView("/Abroadnews");
+		Map<String, Object> modelMap = new HashMap<String, Object>(6);
+		try
+		{
+			System.out.println(id);
+			
+			
+			
+			Student student = eRNM.quaryStudentMessage(id);
+			String majorName = eRNM.quaryMajorName(student.getMajorId());
+			List<Study_abroad> studyAbroad = eRNM.quaryAbroadMessage(id);
+			User user = eRNM.quaryStuUser(student.getEmail());
+			System.out.println(user.getGender());
+			System.out.println(majorName);
+			
+			modelMap.put("searchUser", user);
+			modelMap.put("searchStudyAbroad", studyAbroad.get(0));
+			modelMap.put("searchStudent", student);
+			modelMap.put("searchMajorName", majorName);
+			
+			modelMap.put("statu", 1);
+			return modelMap;	
+			
+		}
+		catch(Exception e)
+		{
+			modelMap.put("statu", 0);
+			return modelMap;
+		}
+		/*return null;*/
+	}
+	
+	@RequestMapping("/AASM2")		
+	@ResponseBody
+	public Map<String, Object> alterAbroadStuMes2(String id, String studentId, String country, String school)					//查询出国学生信息
+	{
+		System.out.println(id);
+		System.out.println(studentId);
+		System.out.println(country);
+		System.out.println(school);
+		
+		Study_abroad stuAbroad = new Study_abroad();
+		stuAbroad.setStuNum(studentId);
+		stuAbroad.setDestinationC(country);
+		stuAbroad.setDestinationS(school);
+		
+		if (id.equals("changeMes"))
+		{
+			eRNM.alterAbroadMessage(stuAbroad);
+		}
+		else if(id.equals("delMes"))
+		{
+			eRNM.delAbroadMessage(studentId);
+		}
+	
+		Map<String, Object> modelMap = new HashMap<String, Object>(6);	
+		
+		return modelMap;
+		
+	}
+	
+	
+	@RequestMapping("/CSTBG")
+	@ResponseBody				/***/
+	public Map<String, Object> changeStuToBeforeGraduate(String studentId)	//添加毕业预提生
+	{
+		Map<String, Object> modelMap = new HashMap<String, Object>(1);
+		try
+		{
+			if(eRNM.quaryStudentMessage(studentId) == null)
+			{
+				throw new Exception("ee");
+			}
+			eRNM.addBeforeStudent(studentId);
+			modelMap.put("statu", 1);
+			return modelMap;
+		}
+		catch(Exception e)
+		{
+			modelMap.put("statu", 0);
+			return modelMap;
+		}
+	}
+	
+	@RequestMapping("/QBGM")	
+	public ModelAndView quaryBeforeGraduateMes(@RequestParam String actionPP, String alterStudentId)		//查询毕业预提生（未完成）
+	{
+		ModelAndView modelAndView = new ModelAndView("/BeforeGraduate");
+		try
+		{
+			User user = eRNM.quaryBeforeGraduateUser(alterStudentId);
+			List<Exam_apply> examApplyList = eRNM.quaryBeforeGraduateExamMes(alterStudentId);
+			List<String> siteName = eRNM.quarytestSiteName(examApplyList);
+			
+			modelAndView.addObject("user", user);
+			modelAndView.addObject("examApplyList", examApplyList);
+			modelAndView.addObject("siteName", siteName);
+			
+			return modelAndView;
+			
+		}
+		catch(ERNMException e)
+		{
+			return null;
+		}	
+	}
+	
+	@RequestMapping("/DSTBG")
+	public void delStuToBeforeGraduate(String studentId)	//删除毕业预提生
+	{
+		try
+		{
+			eRNM.addBeforeStudent(studentId);
+		}
+		catch(ERNMException e)
+		{
+			
+		}
+	}
+	
+	@RequestMapping("/ALM")
+	public void addLostMessage(String studentName, String studentId, String major, String lostTime, String L1, String L2, String L3)
+	{
+		try
+		{
+			System.out.println(studentName);
+			System.out.println(studentId);
+			System.out.println(major);
+			System.out.println(lostTime);
+		
+			String id = CommonUtills.generateID();
+			Graduation_information graduationInfo = new Graduation_information();
+			
+			SimpleDateFormat sdf =   new SimpleDateFormat( "yyyy-MM-dd" );
+			Date date = sdf.parse(lostTime);
+			
+			graduationInfo.setGraduationId(id);
+			graduationInfo.setStuNum(studentId);
+			graduationInfo.setLostTime(date);
+			graduationInfo.setLostInfo("wait for make up");
+			
+			eRNM.addLostMessage(graduationInfo);
+			
+		}
+		catch(ERNMException e)
+		{
+			
+		} 
+		catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	@RequestMapping("/ALMx")
+	@ResponseBody
+	public Map<String, Object> alterLostMessage(String studentId)
+	{
+		//ModelAndView modelAndView = new ModelAndView("/LostRecord");
+		Map<String, Object> modelMap = new HashMap<String, Object>(1);	
+		try
+		{
+			
+			Graduation_information graduationInfo = eRNM.quaryLostMessage(studentId);
+			String stuName = eRNM.searchName(studentId);
+			String majorName = eRNM.quaryMajorName(studentId);			
+			modelMap.put("id", graduationInfo.getGraduationId());
+			modelMap.put("stuNum", graduationInfo.getStuNum());
+			modelMap.put("date", graduationInfo.getLostTime());
+			modelMap.put("lostInfo", graduationInfo.getLostInfo());
+			modelMap.put("errorInfo", graduationInfo.getErrorInfo());
+			modelMap.put("stuName", stuName);
+			modelMap.put("majorName", majorName);
+			
+			modelMap.put("statu", 1);
+			return modelMap;
+		}
+		catch(Exception e)
+		{
+			modelMap.put("statu", 0);
+			return modelMap;
+		}
+	}
+	
+	@RequestMapping("/ALMx2")
+	public String alterLostMessage2(String studentId)								//补办
+	{
+		System.out.println(studentId);
+		eRNM.alterLostMessage(studentId);		
+		return "LostRecord";
+	}
+	
+	@RequestMapping("/GCE")
+	@ResponseBody
+	public Map<String, Object> GraCerExam(String studentId,Integer current)		//审核资格查询********
+	{
+		//ModelAndView modelAndView = new ModelAndView("/GraduationCertiExam");
+		try
+		{
+			if(current == null||current == 0)
+			{
+				current = 1;
+			}
+			
+			Page page = eRNM.SearchBeforeGra(studentId, current);
+			Map<String, Object> modelMap = new HashMap<String, Object>(1);
+			modelMap.put("page", page);
+			
+			return modelMap;
+		}
+		catch(ERNMException e)
+		{
+			
+		}
+		return null;		
+	}
+	
+	@RequestMapping("/SBG")
+	@ResponseBody
+	public Map<String, Object> searchBeGra(String studentId)
+	{
+		Map<String, Object> modelMap = new HashMap<String, Object>(2);
+		try
+		{
+			String majorName = eRNM.quaryMajorName(studentId);
+			String stuName = eRNM.searchName(studentId);
+		
+			modelMap.put("majorName", majorName);
+			modelMap.put("stuName", stuName);
+			modelMap.put("statu", 1);
+			return modelMap;	
+		}
+		catch(ERNMException e)
+		{
+			modelMap.put("statu", 0);
+			return modelMap;
+		}
+	}
+	
+	@RequestMapping("/SBGM")
+	@ResponseBody
+	public Map<String, Object> SearchBeforeGraduateMes(String studentId)				//查询通过id毕业预提生
+	{
+		Map<String, Object> modelMap = new HashMap<String, Object>(10);
+		try
+		{
+			
+			System.out.println(studentId);		
+			User user = eRNM.quaryBeforeGraduateUser(studentId);
+			Exam_apply examApply = eRNM.searchExamApply(studentId);
+			
+			modelMap.put("stuNum", studentId);
+			modelMap.put("user", user);
+			/*modelMap.put("stuName", user.getUserName());
+			modelMap.put("email", user.getEmail());
+			modelMap.put("sex", user.getGender());
+			modelMap.put("phonse", user.getPhone());*/
+			modelMap.put("examApply", examApply);
+			/*modelMap.put("examId", examApply.getExamId());
+			modelMap.put("siteId", examApply.getSiteId());
+			modelMap.put("roomId", examApply.getExamRoom());*/
+			
+			return modelMap;
+		}
+		catch(ERNMException e)
+		{
+			return modelMap;
+		}
+	}
+	
+	
+	@RequestMapping("/D")
+	@ResponseBody
+	public Map<String, Object> delBeforeGraduate(String studentId)				//删除毕业预提生
+	{
+		try
+		{
+			eRNM.delBeforeStudent(studentId);
+			Map<String, Object> modelMap = new HashMap<String, Object>(1);			
+			return modelMap;
+		}
+		catch(ERNMException e)
+		{
+			return null;
+		}
+	}
+	
+	@RequestMapping("/ZZZ")
+	@ResponseBody
+	public Map<String, Object> searchBefore()
+	{
+		
+		
+		return null;
+	}
+	
+	
+	@RequestMapping("/PASS")
+	@ResponseBody
+	public Map<String, Object> pass(String studentId)				//查询通过id毕业预提生
+	{
+		Map<String, Object> modelMap = new HashMap<String, Object>(10);
+		try
+		{
+			eRNM.alterStuToGrad(studentId);
+			return modelMap;
+		}
+		catch(ERNMException e)
+		{
+			return modelMap;
+		}
+	}
+}

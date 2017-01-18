@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.scau.zxks.dao.MajorSchoolMapper" >
+
+	<select id="searchByKeyInPage" resultType="cn.edu.scau.zxks.entity.Major_info" parameterType="cn.edu.scau.zxks.dto.Page">
+	    SELECT 
+	    *
+	    FROM major_info NATURAL JOIN school_information WHERE major_id LIKE CONCAT(CONCAT('%', #{key}), '%') OR major_name LIKE CONCAT(CONCAT('%', #{key}), '%') OR major_type LIKE CONCAT(CONCAT('%', #{key}), '%') OR major_layer LIKE CONCAT(CONCAT('%', #{key}), '%') OR major_pro LIKE CONCAT(CONCAT('%', #{key}), '%') ORDER BY major_id LIMIT #{start}, #{size}
+	</select>
+	
+	<select id="searchAll" resultType="cn.edu.scau.zxks.entity.Major_info" parameterType="cn.edu.scau.zxks.dto.Page">
+	    SELECT 
+	    *
+	    FROM major_info NATURAL JOIN school_information ORDER BY major_id LIMIT #{start}, #{size}
+  </select>
+</mapper>

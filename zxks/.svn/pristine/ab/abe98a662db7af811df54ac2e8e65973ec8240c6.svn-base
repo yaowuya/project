@@ -1,0 +1,34 @@
+package cn.edu.scau.zxks.dao;
+
+import cn.edu.scau.zxks.entity.Course_information;
+import cn.edu.scau.zxks.entity.Course_informationExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface Course_informationMapper {
+    int countByExample(Course_informationExample example);
+    
+    int countAll();
+
+    int deleteByExample(Course_informationExample example);
+
+    int deleteByPrimaryKey(String courseId);
+
+    int insert(Course_information record);
+
+    int insertSelective(Course_information record);
+
+    List<Course_information> selectByExample(Course_informationExample example);
+
+    Course_information selectByPrimaryKey(String courseId);
+    
+    List<Course_information> selectAll();
+
+    int updateByExampleSelective(@Param("record") Course_information record, @Param("example") Course_informationExample example);
+
+    int updateByExample(@Param("record") Course_information record, @Param("example") Course_informationExample example);
+
+    int updateByPrimaryKeySelective(Course_information record);
+
+    int updateByPrimaryKey(Course_information record);
+}

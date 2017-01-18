@@ -1,0 +1,20 @@
+$(document).ready(function() {
+    // 制定征题计划--新卷入库
+    $("#topic-Form-rec").validate();
+    // 教材采购管理
+    $("#text-form-adddealer").validate();
+    $("#text-form-note").validate();
+    $("#text-form-addinfo").validate();
+    $("#text-form-dealerbuy").validate();
+    $("#text-form-infomation-xiugai").validate();
+    $("#text-form-note-xiugai").validate();
+    // 入库调拨管理
+    $("#text-form-rejectcheck").validate();
+    $("#text-book-bookout").validate();
+    $("#text-form-bookin").validate();
+    // 预定邮购及退书管理
+    $("#text-form-searchorder").validate();
+    $("#text-form-register").validate();
+    $("#text-form-managebook").validate();
+    
+});

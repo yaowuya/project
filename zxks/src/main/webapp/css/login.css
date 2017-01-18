@@ -1,0 +1,42 @@
+.middle{
+    margin-top: 70px;
+}
+.login-mid-left {
+    height: 380px;
+    background: gray;
+    background: url('../images/bc.jpg') no-repeat;
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.login-mid-right {
+    width: 100%;
+    border-left:1px solid #eee;
+    border-top:1px solid #eee;
+    border-right: 3px solid #eee;
+    border-bottom: 3px solid #eee;
+    background-color: white;
+    border-radius: 10px;
+
+}
+.login-mid-right .panel{
+    margin-top: 20px;
+}
+.login-mid-right .panel-heading h1 {
+    font-size: 35px;
+    margin: 10px 0px 28px 0px;
+    padding: 0px;
+    color: #9C9C9C;
+}
+
+.login-mid-right .panel-heading hr {
+    margin-bottom: 15px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+.login-mid-right .panel-body .btn{
+    padding: 6px 33px;
+}
+.footer{
+    margin-top: 79px;
+}

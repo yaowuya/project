@@ -1,0 +1,20 @@
+package cn.edu.scau.zxks.service.inter;
+
+import java.util.List;
+
+import cn.edu.scau.zxks.dto.Page;
+import cn.edu.scau.zxks.entity.Questionbank;
+
+
+public interface QuestionBankInter {
+	public int addQuestionBank(Questionbank questionBank);
+	public int countSum();
+	public List<Questionbank> searchQuestionBankTestbookId(String testbookId);
+	public List<Questionbank> searchQuestionBankLike(String search);
+	public List<Questionbank> searchQuestionBank(String search);
+	public Page searchQuestionCanBorrow(String search, String pageNum);
+	public boolean deleteQuestionBank(Questionbank questionBank);
+	public boolean updateQuestionBank(Questionbank questionBank);
+	public List<Questionbank> search2QuestionBank(String search);
+	public List<Questionbank> search3QuestionBank(String search);
+}

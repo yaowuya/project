@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.scau.zxks.dao.CourseAddScoreMapper" >
+<select id="Select"  parameterType="java.lang.String" resultType="cn.edu.scau.zxks.entity.CourseAddScore">
+	select 
+		student.stu_num, course_name, user.user_name 
+	from 
+		user,student,elective_info, course_information 
+	where 
+		elective_info.course_id = course_information.course_id and student.email=user.email and student.stu_num = elective_info.stu_num and course_name=#{courseName};
+</select>
+</mapper>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Your description">
+    <meta name="keywords" content="Your,Keywords">
+    <meta name="author" content="ResponsiveWebInc">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>考籍管理</title>
+    <link rel="stylesheet" type="text/css" href="font-awesome-4.3.0/css/font-awesome.min.css">
+    <!-- 加载bootstrap层叠样式表 -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/exam-home.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row-fluid header">
+            <div class="col-md-1"></div>
+            <div class="col-md-4">
+                <h1 class="pull-left">
+              <a href="index.html">四川省高等教育自学考试管理系统</a>
+            </h1>
+            </div>
+            <div class="col-md-6">
+                <nav class="navbar vavbar-deafault pull-right" role="navigation">
+                    <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="center.html" target="" class="dropdown-toggle color-green dropdown-a" data-toggle="dropdown">
+                                    <i class="fa fa-comments"></i> 消息
+                                    <span class="label label-success">5</span>
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="personal.html" target="">个人中心</a>
+                                    </li>
+                                    <li>
+                                        <a href="center.html" target="">我的病历夹</a>
+                                    </li>
+                                    <li>
+                                        <a href="personal.html" target="">我要挂号
+                                            </a>
+                                    </li>
+                                    <li>
+                                        <a href="personal.html" target="">我的挂号
+                                            </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="center.html" target="" class="dropdown-toggle color-green dropdown-a" data-toggle="dropdown">
+                                    <i class="fa fa-user"></i>
+                                    <span>XXX</span>管理员，您好！
+                                    <span class="label label-info">5</span>
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="personal.html" target="">个人中心</a>
+                                    </li>
+                                    <li>
+                                        <a href="center.html" target="">我的病历夹</a>
+                                    </li>
+                                    <li>
+                                        <a href="personal.html" target="">我要挂号
+                                            </a>
+                                    </li>
+                                    <li>
+                                        <a href="personal.html" target="">我的挂号
+                                            </a>
+                                    </li>
+                                    <li>
+                                        <a href="personal.html" target="">
+                                                  个人健康体检
+                                                </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a class="dropdown-a" href="javascript:void;">退出</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row-fluid middle">
+            <div class=" col-md-offset-1 col-md-2 mid-left">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header" style="width: 100%;">
+                        <a class="navbar-brand" href="index.html" style="width: 100%;">
+                            <i class="fa fa-home"></i>首页
+                        </a>
+                    </div>
+                    <div>
+                        <ul class="nav navbar-nav">
+                            <li class="mid-left-li">
+                                <a href="#">
+                                    <i class="fa fa-star"></i> 成绩管理
+                                    <b class="caret"></b>
+                                </a>
+                                <ul>
+                                    <li><a href="#">成绩管理</a></li>
+                                    <li><a href="#">合格证打印</a></li>
+                                </ul>
+                            </li>
+                            <li class="mid-left-li">
+                                <a href="exam-home.html">
+                                    <i class="fa fa-star"></i> 考籍管理
+                                    <b class="caret"></b>
+                                </a>
+                                <ul>
+                                    <li><a class="exampoint-manage" href="javascript:void;">User Interface</a></li>
+                                    <li class="mid-left-li-li">
+                                        <a href="javascript:void;">
+                                          毕业管理
+                                          <b class="caret"></b>
+                                        </a>
+                                        <ul>
+                                            <li><a class="graduate-manage" href="javascript:void;">毕业预提管理</a></li>
+                                            <li><a class="graduate-title-manage" href="javascript:void;">毕业资格审核办理</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="dossier-manage" href="javascript:void;">档案管理</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-8 mid-right">
+                <div class="row-fluid mid-right-up">
+                    <h2><i class="fa fa-desktop color"></i> 考籍管理 <small>自考管理系统</small></h2>
+                </div>
+                <div class="row-fluid mid-right-down">
+                    <div class="col-md-12 mid-r-down">
+                        <div class="exampoint-manage">
+                            <div class="row-fluid r-down-head">
+                                <h3>考点管理</h3>
+                            </div>
+                            <div class="row-fluid r-down-mid">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a class="add-exampoint" href="javascript:void;">增加考点</a></li>
+                                    <li><a class="start-exampoint" href="javascript:void;">启用考点</a></li>
+                                    <li><a class="stop-exampoint" href="javascript:void;">停用考点</a></li>
+                                    <li><a class="watch-exampoint" href="javascript:void;">查看考点</a></li>
+                                </ul>
+                                <hr>
+                            </div>
+                            <div class="row-fluid r-down-footing">
+                                <div class="col-md-12">
+                                    <div class="add-exampoint">a</div>
+                                    <div class="start-exampoint">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <label for="exampoint" class="col-sm-2 control-label">选择考点</label>
+                                                <div class="col-sm-4">
+                                                    <select class="form-control">
+                                                        <option>考点1</option>
+                                                        <option>考点2</option>
+                                                        <option>考点3</option>
+                                                        <option>考点4</option>
+                                                        <option>考点5</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered table-hover table-condensed">
+                                                        <caption class="text-center">考点1信息</caption>
+                                                        <thead>
+                                                            <tr>
+                                                                <th>考点ID</th>
+                                                                <th>考点名</th>
+                                                                <th>考试专业</th>
+                                                                <th>点点</th>
+                                                                <th>开考时间</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>Ashok</td>
+                                                                <td>India</td>
+                                                                <td>23</td>
+                                                                <td>93</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td>Kumarasamy</td>
+                                                                <td>USA</td>
+                                                                <td>22</td>
+                                                                <td>92</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td>Babura</td>
+                                                                <td>UK</td>
+                                                                <td>43</td>
+                                                                <td>80</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>4</td>
+                                                                <td>Ravi Kumar</td>
+                                                                <td>China</td>
+                                                                <td>73</td>
+                                                                <td>81</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>5</td>
+                                                                <td>Santhosh</td>
+                                                                <td>Japan</td>
+                                                                <td>43</td>
+                                                                <td>73</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <button type="submit" class="btn btn-primary pull-right">打印</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="stop-exampoint">c</div>
+                                    <div class="watch-exampoint">d</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graduate-manage">
+                            <div class="row-fluid r-down-head">
+                                <h3>毕业预提管理</h3>
+                            </div>
+                            <div class="row-fluid r-down-footing">
+                                <div class="col-md-12">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="firstname" placeholder="输入考号、考室号、座位号、考试地点编号、考生姓名等多种查询条件">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <button type="submit" class="btn btn-primary" style="padding:6px 33px;">查询</button>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered table-hover table-condensed">
+                                                    <caption class="text-center">
+                                                        <strong>毕业预提申请名单</strong>
+                                                    </caption>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>学生学号</th>
+                                                            <th>姓名</th>
+                                                            <th>攻读专业</th>
+                                                            <th>年级</th>
+                                                            <th>成绩</th>
+                                                            <th>操作</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>Ashok</td>
+                                                            <td>India</td>
+                                                            <td>23</td>
+                                                            <td>93</td>
+                                                            <td>
+                                                                <a href="javascript:void;" class="btn btn-default">
+                                                                    修改
+                                                                </a>
+                                                                <a href="javascript:void;" class="btn btn-default">
+                                                                    删除
+                                                                </a>
+                                                                <a href="javascript:void;" class="btn btn-default">
+                                                                    浏览
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>Kumarasamy</td>
+                                                            <td>USA</td>
+                                                            <td>22</td>
+                                                            <td>92</td>
+                                                            <td>
+                                                                <a href="javascript:void;" class="btn btn-default">
+                                                                    修改
+                                                                </a>
+                                                                <a href="javascript:void;" class="btn btn-default">
+                                                                    删除
+                                                                </a>
+                                                                <a href="javascript:void;" class="btn btn-default">
+                                                                    浏览
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td>Babura</td>
+                                                            <td>UK</td>
+                                                            <td>43</td>
+                                                            <td>80</td>
+                                                            <td>
+                                                                <a href="javascript:void;" class="btn btn-default">
+                                                                    修改
+                                                                </a>
+                                                                <a href="javascript:void;" class="btn btn-default">
+                                                                    删除
+                                                                </a>
+                                                                <a href="javascript:void;" class="btn btn-default">
+                                                                    浏览
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>4</td>
+                                                            <td>Ravi Kumar</td>
+                                                            <td>China</td>
+                                                            <td>73</td>
+                                                            <td>81</td>
+                                                            <td>
+                                                                <a href="javascript:void;" class="btn btn-default">
+                                                                    修改
+                                                                </a>
+                                                                <a href="javascript:void;" class="btn btn-default">
+                                                                    删除
+                                                                </a>
+                                                                <a href="javascript:void;" class="btn btn-default">
+                                                                    浏览
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>5</td>
+                                                            <td>Santhosh</td>
+                                                            <td>Japan</td>
+                                                            <td>43</td>
+                                                            <td>73</td>
+                                                            <td>
+                                                                <a href="javascript:void;" class="btn btn-default">
+                                                                    修改
+                                                                </a>
+                                                                <a href="javascript:void;" class="btn btn-default">
+                                                                    删除
+                                                                </a>
+                                                                <a href="javascript:void;" class="btn btn-default">
+                                                                    浏览
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graduate-title-manage">c</div>
+                        <div class="dossier-manage">d</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="col-md-12 footer">
+                <p class="text-center">
+                    Copyright 2013 © - Bootstrap Themes
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery库，同时加载该库必须在加载bootstrap.min.js之前 -->
+    <script src="js/jquery-2.1.4.js"></script>
+    <!-- 加载bootstrap的核心js库 -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/exam-home.js"></script>
+</body>
+
+</html>

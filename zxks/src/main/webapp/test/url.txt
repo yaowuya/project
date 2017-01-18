@@ -1,0 +1,10 @@
+http://localhost:8080/zxks/Controller4Jims/toUrl003		样卷管理
+http://localhost:8080/zxks/Controller4Jims/toUrl002		征题管理
+http://localhost:8080/zxks/Controller4Jims/toUrl0011	抽题管理
+http://localhost:8080/zxks/QuestionBankExtend/query3	教材变更管理
+http://localhost:8080/zxks/Controller4Jims/toUrl009		题库管理
+http://localhost:8080/zxks/Controller4Jims/toUrl004		教材采购
+http://localhost:8080/zxks/Controller4Jims/toUrl0010	入库调拨
+http://localhost:8080/zxks/Controller4Jims/toUrl006		库存管理
+http://localhost:8080/zxks/Controller4Jims/toUrl005		预定邮购及退书管理
+http://localhost:8080/zxks/FinanceBill/create			教材财务管理

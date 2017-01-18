@@ -1,0 +1,16 @@
+package cn.edu.scau.zxks.service.inter;
+
+import java.util.List;
+
+import cn.edu.scau.zxks.entity.Exam_sites;
+
+public interface ExamSiteService {
+	public Exam_sites getBySiteId(String siteId);
+	
+	public void update(Exam_sites exam_sites);
+	
+	public int addExamSite(Exam_sites exam_sites);
+	
+	public List<Exam_sites> getAll();
+	
+}

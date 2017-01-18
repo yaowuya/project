@@ -1,0 +1,31 @@
+.mid-r-down {
+    opacity: 1;
+    min-height: 525px;
+}
+.r-down-footing{
+    margin-top: 30px;
+}
+.r-down-footer .btn-search{
+    margin-top: 300px;
+}
+.r-down-head {
+    /* height: 20px; */
+    padding: 10px;
+}
+
+.r-down-head h3 {
+    margin: 0px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    line-height: 25px;
+    color: #666;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+}
+.start-exampoint .control-label{
+    text-align: left;
+}
+.graduate-manage button{
+    margin-left: 10px;
+}

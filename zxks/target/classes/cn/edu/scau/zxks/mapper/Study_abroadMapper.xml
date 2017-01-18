@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.scau.zxks.dao.Study_abroadMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.scau.zxks.entity.Study_abroad" >
+    <result column="stu_num" property="stuNum" jdbcType="VARCHAR" />
+    <result column="destination_c" property="destinationC" jdbcType="VARCHAR" />
+    <result column="destination_s" property="destinationS" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    stu_num, destination_c, destination_s
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.scau.zxks.entity.Study_abroadExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from study_abroad
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="cn.edu.scau.zxks.entity.Study_abroadExample" >
+    delete from study_abroad
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.edu.scau.zxks.entity.Study_abroad" >
+    insert into study_abroad (stu_num, destination_c, destination_s
+      )
+    values (#{stuNum,jdbcType=VARCHAR}, #{destinationC,jdbcType=VARCHAR}, #{destinationS,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.scau.zxks.entity.Study_abroad" >
+    insert into study_abroad
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stuNum != null" >
+        stu_num,
+      </if>
+      <if test="destinationC != null" >
+        destination_c,
+      </if>
+      <if test="destinationS != null" >
+        destination_s,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stuNum != null" >
+        #{stuNum,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationC != null" >
+        #{destinationC,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationS != null" >
+        #{destinationS,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.edu.scau.zxks.entity.Study_abroadExample" resultType="java.lang.Integer" >
+    select count(*) from study_abroad
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update study_abroad
+    <set >
+      <if test="record.stuNum != null" >
+        stu_num = #{record.stuNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.destinationC != null" >
+        destination_c = #{record.destinationC,jdbcType=VARCHAR},
+      </if>
+      <if test="record.destinationS != null" >
+        destination_s = #{record.destinationS,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update study_abroad
+    set stu_num = #{record.stuNum,jdbcType=VARCHAR},
+      destination_c = #{record.destinationC,jdbcType=VARCHAR},
+      destination_s = #{record.destinationS,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

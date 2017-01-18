@@ -1,0 +1,292 @@
+package cn.edu.scau.zxks.controller;
+
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
+
+
+
+
+
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.ibatis.javassist.expr.NewArray;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.edu.scau.zxks.entity.Role;
+import cn.edu.scau.zxks.entity.Student;
+import cn.edu.scau.zxks.entity.User;
+import cn.edu.scau.zxks.exception.UserException;
+import cn.edu.scau.zxks.service.inter.RoleService;
+import cn.edu.scau.zxks.service.inter.StudentService;
+import cn.edu.scau.zxks.service.inter.UserService;
+import cn.edu.scau.zxks.utill.VerifyCode;
+
+
+@Controller
+@RequestMapping("/user")
+public class UserController {
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
+	
+	@Autowired
+	private StudentService studentService;
+	
+	/**
+	 * 登陆功能使用的controller
+	 * @author Pavilion 15
+	 * @param model
+	 * @param user
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/login")
+	public String login(Model model, User user, HttpSession session, String verifyCode){
+		
+		String vc_code = (String) session.getAttribute("session_vCode");
+		
+		if(!vc_code.equalsIgnoreCase(verifyCode)){
+			model.addAttribute("msg", "验证码错误");
+			return "login";
+		}
+		else{
+			try{
+				user = userService.login(user.getEmail(), user.getPassword());
+			}catch(UserException e){
+				model.addAttribute("msg", e.getMessage());
+				return "login";
+			}
+			session.setAttribute("user", user);
+			return "redirect:/menu/generateMenu";
+		}
+		
+	}
+	
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session){
+		//session.setAttribute("user", null);
+		session.removeAttribute("user");
+		session.removeAttribute("menuList");
+		session.removeAttribute("fatherList");
+		return "login";
+	}
+	
+	/**
+	 * 注册功能用的controller
+	 * @author Pavilion 15
+	 * @param model
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/register")
+	public String register(Model model, User user){
+
+		try{
+			//System.out.println(user);
+			userService.register(user);
+		}catch(UserException e){
+			model.addAttribute("msg", e.getMessage());
+			return "login";
+		}	
+		return "login";
+	}
+	
+	@RequestMapping("/user_manager")
+	public String user_manager(Model model, User user, HttpSession session){
+		
+		User u = (User) session.getAttribute("user");
+		List<User> userList = userService.getAllUserNotManager();
+		if(u.getRoleId().equals("000")){
+			userList = userService.getAllUserNotSuperManager();
+		}
+		
+		if(u.getRoleId().equals("001")){
+			userList = userService.getAllUserNotManager();
+		}
+		
+		//System.out.println(userList.get(0));
+		model.addAttribute("userList", userList);
+		return "usermanage_son";
+	}
+	
+	@RequestMapping("/changeUser")
+	public String changeUser(Model model, User user){
+		user = userService.findByEmail(user.getEmail());
+		//System.out.println(user);
+		model.addAttribute("u", user);
+		return "changeuser";
+	}
+	
+	@RequestMapping("/updateUser")
+	public String updateUser(User user, Model model, HttpSession session){
+		User u = userService.findByEmail(user.getEmail());
+		user.setRoleId(u.getRoleId());
+		userService.updateUser(user);
+		
+		User loginUser = (User)session.getAttribute("user");
+		
+		List<User> userList = null;
+		
+		if(loginUser.getRoleId().equals("000")){
+			userList = userService.getAllUserNotSuperManager();
+		}else{
+			userList = userService.getAllUserNotManager();
+		}
+		
+		
+		model.addAttribute("userList", userList);
+		return "usermanage_son";
+	}
+	
+	@RequestMapping("/deleteUser")
+	public String deleteUser(User user){
+		
+		userService.deleteUser(user.getEmail());
+		return "usermanager";
+	}
+	
+	@RequestMapping("/userAuthority")
+	public String userAuthority(Model model, User user, HttpSession session){
+		User u = (User) session.getAttribute("user");
+		List<User> userList = null;
+		if(u.getRoleId().equals("000")){
+			userList = userService.getAllUserNotSuperManager();
+		}
+		else{
+			userList = userService.getAllUserNotManager();
+		}
+		model.addAttribute("userList", userList);
+		
+		List<Role> roleList = roleService.getAllRole();
+		model.addAttribute("r", roleList);
+		
+		return "authority";
+	}
+	
+	@RequestMapping("/updateAuthority")
+	public String updateAuthority(Model model, User user, HttpSession session){
+		User u = (User) session.getAttribute("user");
+		
+		//System.out.println(userList.get(0));
+		user = userService.findByEmail(user.getEmail());
+		List<Role> roleList = roleService.getAllRole();
+
+		for(int i = 0; i < roleList.size(); i++){
+			if(u.getRoleId().equals("000") && roleList.get(i).getRoleName().equals("超级管理员")){
+				roleList.remove(i);
+				break;
+			}
+			if(u.getRoleId().equals("001") && roleList.get(i).getRoleName().equals("超级管理员")){
+				roleList.remove(i);
+			}
+			if(u.getRoleId().equals("001") && roleList.get(i).getRoleName().equals("管理员")){
+				roleList.remove(i);
+			}
+		}
+
+		//System.out.println(roleList.size());
+		model.addAttribute("u", user);
+		model.addAttribute("r", roleList);
+		return "authority_son";
+	}
+	
+	@RequestMapping("/changeAuthority")
+	public String changeAuthority(Model model, User user, String role, HttpSession session){
+		//System.out.println(userList.get(0));
+		User u = (User) session.getAttribute("user");
+		user = userService.findByEmail(user.getEmail());
+		System.out.println(role);
+		
+		Role r = roleService.getById(role);
+		if(r.getRoleName().equals("学生")){
+			Student student = studentService.getByEmail(user.getEmail());
+			if(student == null){
+				student = new Student();
+				student.setStuNum(generateStuNum());
+				student.setEmail(user.getEmail());
+				studentService.insertStudent(student);
+			}
+		}
+		
+		user.setRoleId(role);
+		userService.updateUser(user);
+		
+		List<User> userList = null;
+		if(u.getRoleId().equals("000")){
+			userList = userService.getAllUserNotSuperManager();
+		}
+		else{
+			userList = userService.getAllUserNotManager();
+		}
+		//System.out.println(userList.get(0));
+		model.addAttribute("userList", userList);
+		
+		List<Role> roleList = roleService.getAllRole();
+		model.addAttribute("r", roleList);
+		
+		return "authority";
+	}
+	
+	@RequestMapping("/verifyCode")
+	public String VerifyCode(Model model, HttpServletResponse response, HttpSession session){
+		
+		VerifyCode vc = new VerifyCode();
+		BufferedImage image = vc.getImage();
+		session.setAttribute("session_vCode", vc.getText());
+		//model.addAttribute("session_vCode", vc.getText());
+		try {
+			VerifyCode.output(image, response.getOutputStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	@RequestMapping("/check")
+	@ResponseBody
+	public Map<String, Object> chenk(String email){
+		
+		User u = userService.findByEmail(email);
+		Map<String, Object> m = new HashMap<String, Object>();
+		if(u == null){
+			m.put("flag", new Boolean(true));
+		}
+		else{
+			m.put("flag", new Boolean(false));
+		}
+		System.out.println(m.get("flag"));
+		return m;
+	}
+	
+	private String generateStuNum(){
+		Date date = new Date();
+		String d = new SimpleDateFormat("yyyy").format(date);
+
+		int num = studentService.countAll();
+				
+		String temp = String.format("%08d", num);
+		
+		String stuNum = d + temp;
+		
+		//System.out.println(stuNum);
+		return stuNum;
+	}
+}

@@ -1,0 +1,11 @@
+package cn.edu.scau.zxks.service.inter;
+
+import java.util.List;
+
+import cn.edu.scau.zxks.entity.QuestionBankExtend;
+
+public interface QuestionBankExtendInter {
+	public List<QuestionBankExtend> queryQuestionBankExtend(String search);
+	public List<QuestionBankExtend> query2QuestionBankExtend(String search);
+	public List<QuestionBankExtend> query3QuestionBankExtend();
+}

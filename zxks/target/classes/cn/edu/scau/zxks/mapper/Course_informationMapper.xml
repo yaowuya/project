@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.scau.zxks.dao.Course_informationMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.scau.zxks.entity.Course_information" >
+    <id column="course_id" property="courseId" jdbcType="VARCHAR" />
+    <result column="major_id" property="majorId" jdbcType="VARCHAR" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="school_id" property="schoolId" jdbcType="VARCHAR" />
+    <result column="course_credit" property="courseCredit" jdbcType="INTEGER" />
+    <result column="course_type" property="courseType" jdbcType="VARCHAR" />
+    <result column="is_on" property="isOn" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    course_id, major_id, course_name, school_id, course_credit, course_type, is_on
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.scau.zxks.entity.Course_informationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from course_information
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_information
+    where course_id = #{courseId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_information
+  </select>
+  
+  <select id="searchCourseByKeyInPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_information WHERE course_id LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+    course_name LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+    course_type LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+    course_credit LIKE CONCAT(CONCAT('%', #{key}), '%')
+    LIMIT #{start},#{size}
+  </select>
+  
+  <select id="countCourseByKeyInPage" resultType="java.lang.Integer" >
+    select 
+    COUNT(*)
+    from course_information WHERE course_id LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+    course_name LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+    course_type LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+    course_credit LIKE CONCAT(CONCAT('%', #{key}), '%')
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from course_information
+    where course_id = #{courseId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.edu.scau.zxks.entity.Course_informationExample" >
+    delete from course_information
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.edu.scau.zxks.entity.Course_information" >
+    insert into course_information (course_id, major_id, course_name, 
+      school_id, course_credit, course_type, 
+      is_on)
+    values (#{courseId,jdbcType=VARCHAR}, #{majorId,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}, 
+      #{schoolId,jdbcType=VARCHAR}, #{courseCredit,jdbcType=INTEGER}, #{courseType,jdbcType=VARCHAR}, 
+      #{isOn,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.scau.zxks.entity.Course_information" >
+    insert into course_information
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="majorId != null" >
+        major_id,
+      </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
+      <if test="schoolId != null" >
+        school_id,
+      </if>
+      <if test="courseCredit != null" >
+        course_credit,
+      </if>
+      <if test="courseType != null" >
+        course_type,
+      </if>
+      <if test="isOn != null" >
+        is_on,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="majorId != null" >
+        #{majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolId != null" >
+        #{schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseCredit != null" >
+        #{courseCredit,jdbcType=INTEGER},
+      </if>
+      <if test="courseType != null" >
+        #{courseType,jdbcType=VARCHAR},
+      </if>
+      <if test="isOn != null" >
+        #{isOn,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.edu.scau.zxks.entity.Course_informationExample" resultType="java.lang.Integer" >
+    select count(*) from course_information
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="countAll" resultType="java.lang.Integer" >
+    select count(*) from course_information
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update course_information
+    <set >
+      <if test="record.courseId != null" >
+        course_id = #{record.courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.majorId != null" >
+        major_id = #{record.majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseName != null" >
+        course_name = #{record.courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolId != null" >
+        school_id = #{record.schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseCredit != null" >
+        course_credit = #{record.courseCredit,jdbcType=INTEGER},
+      </if>
+      <if test="record.courseType != null" >
+        course_type = #{record.courseType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isOn != null" >
+        is_on = #{record.isOn,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update course_information
+    set course_id = #{record.courseId,jdbcType=VARCHAR},
+      major_id = #{record.majorId,jdbcType=VARCHAR},
+      course_name = #{record.courseName,jdbcType=VARCHAR},
+      school_id = #{record.schoolId,jdbcType=VARCHAR},
+      course_credit = #{record.courseCredit,jdbcType=INTEGER},
+      course_type = #{record.courseType,jdbcType=VARCHAR},
+      is_on = #{record.isOn,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.scau.zxks.entity.Course_information" >
+    update course_information
+    <set >
+      <if test="majorId != null" >
+        major_id = #{majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolId != null" >
+        school_id = #{schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseCredit != null" >
+        course_credit = #{courseCredit,jdbcType=INTEGER},
+      </if>
+      <if test="courseType != null" >
+        course_type = #{courseType,jdbcType=VARCHAR},
+      </if>
+      <if test="isOn != null" >
+        is_on = #{isOn,jdbcType=TINYINT},
+      </if>
+    </set>
+    where course_id = #{courseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.scau.zxks.entity.Course_information" >
+    update course_information
+    set major_id = #{majorId,jdbcType=VARCHAR},
+      course_name = #{courseName,jdbcType=VARCHAR},
+      school_id = #{schoolId,jdbcType=VARCHAR},
+      course_credit = #{courseCredit,jdbcType=INTEGER},
+      course_type = #{courseType,jdbcType=VARCHAR},
+      is_on = #{isOn,jdbcType=TINYINT}
+    where course_id = #{courseId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,37 @@
+package cn.edu.scau.zxks.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import cn.edu.scau.zxks.dao.Course_informationMapper;
+import cn.edu.scau.zxks.dao.TextbookMapper;
+import cn.edu.scau.zxks.entity.Textbook;
+import cn.edu.scau.zxks.service.inter.QuestionBankExtendInter;
+
+@Service
+public class QuestionBankExtendImpl implements QuestionBankExtendInter {
+	@Autowired
+	Course_informationMapper course_informationMapper;
+	@Autowired
+	TextbookMapper textbookMapper;
+	
+	@Override
+	public List<Textbook> queryQuestionBankExtend(String search) {
+		List<Textbook> textbookList = textbookMapper.selectByLike("%"+search+"%");
+		return textbookList;
+	}
+	
+	@Override
+	public List<Textbook> query2QuestionBankExtend(String search) {
+		List<Textbook> textbookList = textbookMapper.selectByLikeIsNo("%"+search+"%");
+		return textbookList;
+	}
+	
+	@Override
+	public List<Textbook> query3QuestionBankExtend() {
+		List<Textbook> textbookList = textbookMapper.selectNoOverdue();
+		return textbookList;
+	}
+}

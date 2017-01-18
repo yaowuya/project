@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.scau.zxks.dao.SearchScoreMapper" >
+<select id="search" parameterType="String" resultType="cn.edu.scau.zxks.entity.StudentCourseGrade">
+	select 
+	course_information.course_id,course_name,term_grade 
+	from 
+	elective_info, course_information 
+	where 
+	stu_num = #{stuNum} and elective_info.course_id = course_information.course_id;
+</select>
+</mapper>

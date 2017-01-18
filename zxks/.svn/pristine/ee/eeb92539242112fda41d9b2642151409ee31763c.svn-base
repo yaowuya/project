@@ -1,0 +1,303 @@
+package cn.edu.scau.zxks.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import cn.edu.scau.zxks.dao.Exam_applyMapper;
+import cn.edu.scau.zxks.dao.Graduation_informationMapper;
+import cn.edu.scau.zxks.dao.Major_infoMapper;
+import cn.edu.scau.zxks.dao.StudentMapper;
+import cn.edu.scau.zxks.dao.StudentMessageMapper;
+import cn.edu.scau.zxks.dao.Study_abroadMapper;
+import cn.edu.scau.zxks.dao.Test_sitesMapper;
+import cn.edu.scau.zxks.dao.UserMapper;
+import cn.edu.scau.zxks.dto.Page;
+import cn.edu.scau.zxks.entity.Exam_apply;
+import cn.edu.scau.zxks.entity.Exam_applyExample;
+import cn.edu.scau.zxks.entity.Graduation_information;
+import cn.edu.scau.zxks.entity.Graduation_informationExample;
+import cn.edu.scau.zxks.entity.Major_info;
+import cn.edu.scau.zxks.entity.Student;
+import cn.edu.scau.zxks.entity.StudentExample;
+import cn.edu.scau.zxks.entity.StudentMessage;
+import cn.edu.scau.zxks.entity.Study_abroad;
+import cn.edu.scau.zxks.entity.Study_abroadExample;
+import cn.edu.scau.zxks.entity.User;
+import cn.edu.scau.zxks.exception.ERNMException;
+import cn.edu.scau.zxks.exception.ScoreManageException;
+import cn.edu.scau.zxks.service.inter.ExamRegistNumManage;
+
+@Service
+public class ExamRegistNumManageImpl implements ExamRegistNumManage 
+{
+	@Autowired
+	StudentMapper studentMapper;
+	
+	@Autowired
+	Study_abroadMapper studyAbroadMapper;
+	
+	@Autowired
+	Major_infoMapper majorInfoMapper;
+	
+	@Autowired
+	UserMapper userMapper;
+	
+	@Autowired
+	Exam_applyMapper examApplyMapper;
+	
+	@Autowired
+	Test_sitesMapper testSitesMapper;
+	
+	@Autowired
+	Graduation_informationMapper graduateInfomapper;
+	
+	@Autowired
+	StudentMessageMapper studentMessageMapper;
+	
+	public ExamRegistNumManageImpl() 
+	{
+		// TODO Auto-generated constructor stub
+	}
+	
+	public void addBeforeStudent(String studentId)  //添加毕业预提生
+	{
+		Student student = new Student();
+		student.setStuNum(studentId);
+		student.setGraduateState(5);
+		studentMapper.updateByPrimaryKeySelective(student);
+	}
+	
+	public void delBeforeStudent(String studentId)  //删除毕业预提生
+	{
+		Student student = new Student();
+		student.setStuNum(studentId);
+		student.setGraduateState(4);
+		studentMapper.updateByPrimaryKeySelective(student);
+	}
+	
+	public Student quaryBeforeStudentMessage(String studentId)  //查询毕业预提生信息
+	{
+		Student student = studentMapper.selectByPrimaryKey(studentId);
+		return student;
+	}
+	
+	
+	public void updateStuToAbroad(String studentId)			//修改学生为出国学生
+	{
+		Student student = studentMapper.selectByPrimaryKey(studentId);
+		student.setGraduateState(7);
+		studentMapper.updateByPrimaryKey(student);
+	}
+	
+	public void addGoAbroadMessage(Study_abroad studyAbroad)  //添加留学生信息
+	{
+		System.out.println(studyAbroad.getStuNum());
+		System.out.println(studyAbroad.getDestinationC());
+		System.out.println(studyAbroad.getDestinationS());
+		studyAbroadMapper.insertSelective(studyAbroad);
+	}
+	
+	public String quaryMajorName(String MajorId)				//查询专业名称
+	{
+		try
+		{
+			if (MajorId == null)
+			{
+				throw new ScoreManageException("没有信息输入");
+			}
+			else
+			{
+				Major_info majorInfo = majorInfoMapper.selectByPrimaryKey(MajorId);
+				return majorInfo.getMajorName();
+			}
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
+	}
+	
+	public User quaryStuUser(String email)			//通过email查询用户信息
+	{
+		User user = userMapper.selectByPrimaryKey(email);
+		System.out.println(user);
+		return user;
+	}
+	
+	public Student quaryStudentMessage(String studentId)				//查找学生信息
+	{
+		return studentMapper.selectByPrimaryKey(studentId);
+	}
+	
+	public List<Study_abroad> quaryAbroadMessage(String abroadId)		//查找留学信息
+	{
+		Study_abroadExample example = new Study_abroadExample();
+		Study_abroadExample.Criteria cri = example.createCriteria();
+		cri.andStuNumLike(abroadId);
+		return studyAbroadMapper.selectByExample(example);
+	}
+	
+	public void alterAbroadMessage(Study_abroad studyAbroad)			//修改留学信息
+	{
+		Study_abroadExample example = new Study_abroadExample();
+		Study_abroadExample.Criteria cri = example.createCriteria();
+		cri.andStuNumLike(studyAbroad.getStuNum());
+		studyAbroadMapper.updateByExampleSelective(studyAbroad, example);
+	}
+	
+	public void delAbroadMessage(String studentId)				//删除留学生信息
+	{
+		Study_abroadExample example = new Study_abroadExample();
+		Study_abroadExample.Criteria cri = example.createCriteria();
+		cri.andStuNumLike(studentId);
+		System.out.println("###");
+		studyAbroadMapper.deleteByExample(example);
+	}
+	
+	public User quaryBeforeGraduateUser(String studentId)		//查询学生User信息
+	{
+		try
+		{
+			String email = studentMapper.selectByPrimaryKey(studentId).getEmail();
+			return quaryStuUser(email);
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
+	}
+	
+	public List<Exam_apply> quaryBeforeGraduateExamMes(String studentId)		//查询毕业预提生考试信息
+	{
+		Exam_applyExample example = new Exam_applyExample();
+		Exam_applyExample.Criteria cri = example.createCriteria();
+		cri.andStuNumLike(studentId);
+		
+		return examApplyMapper.selectByExample(example);
+	}
+		
+	public List<String> quarytestSiteName(List<Exam_apply> examApplyList)					//查询考点名称
+	{		
+		List<String> siteName = new ArrayList<String>();
+		for (int i = 0;i < examApplyList.size(); i++)
+		{
+			siteName.add(testSitesMapper.selectByPrimaryKey(examApplyList.get(i).getSiteId()).getSiteName());
+		}
+		return siteName;
+	}
+	
+	public void addLostMessage(Graduation_information lostMessage)				//添加遗失信息
+	{
+		graduateInfomapper.insert(lostMessage);
+	}
+	
+	public Graduation_information quaryLostMessage(String studentId)						//查询遗失信息
+	{
+		
+		try
+		{
+			Graduation_informationExample example = new Graduation_informationExample();
+			Graduation_informationExample.Criteria cri = example.createCriteria();
+			cri.andStuNumLike(studentId);
+			cri.andLostInfoNotEqualTo("finish");
+			List<Graduation_information> graduationInfo = graduateInfomapper.selectByExample(example);
+			
+			return graduationInfo.get(0);
+		}
+		catch(Exception e)
+		{
+			throw new ERNMException("lostMessage");
+		}
+	}
+	
+	public void alterLostMessage(String studentId)						//修改遗失信息
+	{
+		Graduation_information graInfo = quaryLostMessage(studentId);
+		graInfo.setLostInfo("finish");
+		graduateInfomapper.updateByPrimaryKeySelective(graInfo);
+	}
+	
+	public void alterStuToGrad(String studentId)
+	{
+		Student student = studentMapper.selectByPrimaryKey(studentId);
+		student.setGraduateState(6);
+		studentMapper.updateByPrimaryKeySelective(student);
+	}
+
+	public Page SearchBeforeGra(String stuNum, int current) 			//查找毕业预提生**********
+	{
+		Page page = new Page(current);
+		if(stuNum == "")
+		{
+			stuNum = null;
+		}
+		System.out.println(stuNum);
+		int count = studentMessageMapper.count(stuNum);	
+		page.setCount(count);
+		page.setKey(stuNum);
+		List<StudentMessage> studentMessage = studentMessageMapper.selectByPrimerykey(page);
+		page.setList(studentMessage);
+		return page;
+	}
+	
+	
+	public String searchName(String studentId)				//查找专业名称
+	{
+		try
+		{
+			Student student = studentMapper.selectByPrimaryKey(studentId);
+			String majorName = userMapper.selectByPrimaryKey(student.getEmail()).getUserName();
+			return majorName;
+		}
+		catch(Exception e)
+		{
+			throw new ERNMException("11");
+		}
+	}
+	
+	public Exam_apply searchExamApply(String studentid)			//查找考试信息
+	{
+		try
+		{
+			Exam_applyExample example = new Exam_applyExample();
+			Exam_applyExample.Criteria cri = example.createCriteria();
+			cri.andStuNumEqualTo(studentid);
+			Exam_apply examApply = examApplyMapper.selectByExample(example).get(0);
+			return examApply;
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
+	}
+	
+	public String testIsVoid(String studentId)
+	{
+		try
+		{
+			Student student = studentMapper.selectByPrimaryKey(studentId);
+			return student.getEmail();
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
+	}
+	
+	public String searchCourseNameByStudentId(String studentId)
+	{
+		try
+		{
+			Student student = studentMapper.selectByPrimaryKey(studentId);
+			String majorName = majorInfoMapper.selectByPrimaryKey(student.getMajorId()).getMajorName();
+			return majorName;
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
+	}
+}

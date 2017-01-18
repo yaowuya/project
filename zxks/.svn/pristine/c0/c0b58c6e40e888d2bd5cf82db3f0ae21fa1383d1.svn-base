@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.scau.zxks.dao.ExamMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.scau.zxks.entity.Exam" >
+    <id column="exam_id" property="examId" jdbcType="VARCHAR" />
+    <result column="major_id" property="majorId" jdbcType="VARCHAR" />
+    <result column="exam_name" property="examName" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="apply_start" property="applyStart" jdbcType="TIMESTAMP" />
+    <result column="apply_end" property="applyEnd" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    exam_id, major_id, exam_name, time, apply_start, apply_end
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.scau.zxks.entity.ExamExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from exam
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from exam
+    where exam_id = #{examId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from exam
+  </select>
+  <select id="selectAllInTime" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from exam WHERE apply_end >= NOW() AND NOW() >= apply_start;
+  </select>
+  
+  <select id="searchByKeyInPage" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from exam 
+    WHERE
+    exam_id LIKE CONCAT(CONCAT('%', #{key}), '%') 
+    OR exam_name LIKE CONCAT(CONCAT('%', #{key}), '%') 
+    LIMIT #{start},#{size}
+    ;
+  </select>
+  
+  <select id="countByKey" resultType="java.lang.Integer">
+    select COUNT(*) from exam 
+    WHERE
+    exam_id LIKE CONCAT(CONCAT('%', #{key}), '%') 
+    OR exam_name LIKE CONCAT(CONCAT('%', #{key}), '%') 
+    ;
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from exam
+    where exam_id = #{examId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.edu.scau.zxks.entity.ExamExample" >
+    delete from exam
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.edu.scau.zxks.entity.Exam" >
+    insert into exam (exam_id, major_id, exam_name, 
+      time, apply_start, apply_end
+      )
+    values (#{examId,jdbcType=VARCHAR}, #{majorId,jdbcType=VARCHAR}, #{examName,jdbcType=VARCHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{applyStart,jdbcType=TIMESTAMP}, #{applyEnd,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.scau.zxks.entity.Exam" >
+    insert into exam
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="examId != null" >
+        exam_id,
+      </if>
+      <if test="majorId != null" >
+        major_id,
+      </if>
+      <if test="examName != null" >
+        exam_name,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="applyStart != null" >
+        apply_start,
+      </if>
+      <if test="applyEnd != null" >
+        apply_end,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="examId != null" >
+        #{examId,jdbcType=VARCHAR},
+      </if>
+      <if test="majorId != null" >
+        #{majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="examName != null" >
+        #{examName,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyStart != null" >
+        #{applyStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyEnd != null" >
+        #{applyEnd,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.edu.scau.zxks.entity.ExamExample" resultType="java.lang.Integer" >
+    select count(*) from exam
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="countAll" resultType="java.lang.Integer" >
+    select count(*) from exam
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update exam
+    <set >
+      <if test="record.examId != null" >
+        exam_id = #{record.examId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.majorId != null" >
+        major_id = #{record.majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examName != null" >
+        exam_name = #{record.examName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.applyStart != null" >
+        apply_start = #{record.applyStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.applyEnd != null" >
+        apply_end = #{record.applyEnd,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update exam
+    set exam_id = #{record.examId,jdbcType=VARCHAR},
+      major_id = #{record.majorId,jdbcType=VARCHAR},
+      exam_name = #{record.examName,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      apply_start = #{record.applyStart,jdbcType=TIMESTAMP},
+      apply_end = #{record.applyEnd,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.scau.zxks.entity.Exam" >
+    update exam
+    <set >
+      <if test="majorId != null" >
+        major_id = #{majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="examName != null" >
+        exam_name = #{examName,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyStart != null" >
+        apply_start = #{applyStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyEnd != null" >
+        apply_end = #{applyEnd,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where exam_id = #{examId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.scau.zxks.entity.Exam" >
+    update exam
+    set major_id = #{majorId,jdbcType=VARCHAR},
+      exam_name = #{examName,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      apply_start = #{applyStart,jdbcType=TIMESTAMP},
+      apply_end = #{applyEnd,jdbcType=TIMESTAMP}
+    where exam_id = #{examId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,115 @@
+package cn.edu.scau.zxks.dto;
+
+import java.io.Serializable;
+import java.util.List;
+
+public class Page implements Serializable 
+{
+private static final long serialVersionUID = 5356314552375586360L;
+	
+	//页码总数
+	private int count;
+	//每页大小
+	private int size = 10;
+	//数据总量
+	private int total;
+	//当前页码
+	private int current = 1;
+	//开始数据项
+	private int start;
+	
+	private List<?> list;
+	
+	private String key;
+	
+	public Page() {}
+
+	public Page(int current) 
+	{
+		this.current = current;
+		
+		this.start = (current - 1) * this.size;
+	}
+
+	public int getCount() 
+	{
+		return count;
+	}
+
+	public void setCount(int count) 
+	{
+		this.count = count;
+		
+		this.total = (count / this.size) + ((count % this.size) > 0 ? 1 : 0);
+	}
+
+	public int getSize() 
+	{
+		return size;
+	}
+
+	public void setSize(int size)
+	{
+		this.size = size;
+	}
+
+	public int getTotal() 
+	{
+		return total;
+	}
+
+	public void setTotal(int total) 
+	{
+		this.total = total;
+	}
+
+	public int getCurrent() 
+	{
+		return current;
+	}
+
+	public void setCurrent(int current) 
+	{
+		this.current = current;
+	}
+	
+	public int getStart() 
+	{
+		return start;
+	}
+
+	public void setStart(int start) 
+	{
+		this.start = start;
+	}
+
+	public List<?> getList() 
+	{
+		return list;
+	}
+
+	public void setList(List<?> list) 
+	{
+		this.list = list;
+	}
+
+	
+	
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
+	@Override
+	public String toString() 
+	{
+		return "Page [count=" + count + ", size=" + size + ", total=" + total + ", current=" + current + ", list="
+				+ list + "]";
+	}
+	
+	
+
+}

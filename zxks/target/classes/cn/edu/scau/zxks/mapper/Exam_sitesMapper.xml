@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.scau.zxks.dao.Exam_sitesMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.scau.zxks.entity.Exam_sites" >
+    <id column="exam_site_id" property="examSiteId" jdbcType="VARCHAR" />
+    <result column="site_id" property="siteId" jdbcType="VARCHAR" />
+    <result column="exam_id" property="examId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    exam_site_id, site_id, exam_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.scau.zxks.entity.Exam_sitesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from exam_sites
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from exam_sites
+    where exam_site_id = #{examSiteId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectBySiteId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	SELECT  <include refid="Base_Column_List" /> FROM exam_sites WHERE site_id=#{siteId,jdbcType=VARCHAR} ORDER BY exam_site_id DESC LIMIT 0,1;
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from exam_sites
+  </select>
+  
+  <select id="getAllAvailable" resultMap="BaseResultMap">
+    SELECT 
+    	exam_site_id, test_sites.site_id, exam_sites.exam_id
+    FROM exam_sites, test_sites, (
+		SELECT COUNT(*) AS c,exam_id,site_id 
+		FROM exam_apply NATURAL JOIN test_sites 
+		GROUP BY exam_id,site_id) AS A WHERE exam_sites.exam_id = A.exam_id AND test_sites.site_id = A.site_id AND site_room_number * 30 > c
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from exam_sites
+    where exam_site_id = #{examSiteId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.edu.scau.zxks.entity.Exam_sitesExample" >
+    delete from exam_sites
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.edu.scau.zxks.entity.Exam_sites" >
+    insert into exam_sites (exam_site_id, site_id, exam_id
+      )
+    values (#{examSiteId,jdbcType=VARCHAR}, #{siteId,jdbcType=VARCHAR}, #{examId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.scau.zxks.entity.Exam_sites" >
+    insert into exam_sites
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="examSiteId != null" >
+        exam_site_id,
+      </if>
+      <if test="siteId != null" >
+        site_id,
+      </if>
+      <if test="examId != null" >
+        exam_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="examSiteId != null" >
+        #{examSiteId,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=VARCHAR},
+      </if>
+      <if test="examId != null" >
+        #{examId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.edu.scau.zxks.entity.Exam_sitesExample" resultType="java.lang.Integer" >
+    select count(*) from exam_sites
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="countAll" resultType="java.lang.Integer" >
+    select count(*) from exam_sites
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update exam_sites
+    <set >
+      <if test="record.examSiteId != null" >
+        exam_site_id = #{record.examSiteId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteId != null" >
+        site_id = #{record.siteId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examId != null" >
+        exam_id = #{record.examId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update exam_sites
+    set exam_site_id = #{record.examSiteId,jdbcType=VARCHAR},
+      site_id = #{record.siteId,jdbcType=VARCHAR},
+      exam_id = #{record.examId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.scau.zxks.entity.Exam_sites" >
+    update exam_sites
+    <set >
+      <if test="siteId != null" >
+        site_id = #{siteId,jdbcType=VARCHAR},
+      </if>
+      <if test="examId != null" >
+        exam_id = #{examId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where exam_site_id = #{examSiteId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.scau.zxks.entity.Exam_sites" >
+    update exam_sites
+    set site_id = #{siteId,jdbcType=VARCHAR},
+      exam_id = #{examId,jdbcType=VARCHAR}
+    where exam_site_id = #{examSiteId,jdbcType=VARCHAR}
+  </update>
+</mapper>

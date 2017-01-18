@@ -1,0 +1,161 @@
+package cn.edu.scau.zxks.service.impl;
+
+import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import cn.edu.scau.zxks.dao.QuestionbankMapper;
+import cn.edu.scau.zxks.entity.Questionbank;
+import cn.edu.scau.zxks.entity.QuestionbankExample;
+import cn.edu.scau.zxks.entity.QuestionbankExample.Criteria;
+import cn.edu.scau.zxks.service.inter.QuestionBankInter;
+
+@Service
+public class QuestionBankImpl implements QuestionBankInter {
+
+	@Autowired
+	QuestionbankMapper questionbankMapper;
+	
+	
+	public int countSum(){
+		QuestionbankExample questionbankExample = new QuestionbankExample();
+		Criteria criteria = questionbankExample.createCriteria();
+		criteria.andQuestionbankIdIsNotNull();
+		return questionbankMapper.countByExample(questionbankExample);
+	}
+	
+	public int addQuestionBank(Questionbank questionBank) {
+		try {
+			return questionbankMapper.insert(questionBank);
+		} catch (Exception e) {
+			System.out.println(e+"  QuestionBankImpl.addQuestionBank is error!!!");
+			return 0;
+		}
+		
+	}
+
+	public List<Questionbank> searchQuestionBankTestbookId(String testbookId) {
+		try {
+			QuestionbankExample questionbankExample = new QuestionbankExample();
+			Criteria criteria = questionbankExample.createCriteria();
+			criteria.andTestbookIdEqualTo(testbookId);
+			criteria.andStatusNotEqualTo(new Byte("3"));
+			List<Questionbank> questionbankList = questionbankMapper.selectByExample(questionbankExample);
+			return questionbankList;
+		} catch (Exception e) {
+			System.out.println("QuestionBankImpl.searchQuestionBankPaperType is error!!!");
+			return null;
+		}
+	}
+	
+	public List<Questionbank> searchQuestionBank(String search) {
+		try {
+			QuestionbankExample questionbankExample1 = new QuestionbankExample();
+			Criteria criteria1 = questionbankExample1.createCriteria();
+			criteria1.andPaperTypeLike("%"+search+"%");
+			criteria1.andStatusEqualTo(new Byte("0"));
+			List<Questionbank> questionbankList = questionbankMapper.selectByExample(questionbankExample1);
+			
+//			QuestionbankExample questionbankExample2 = new QuestionbankExample();
+//			Criteria criteria2 = questionbankExample2.createCriteria();
+//			criteria2.andQuestionbankIdLike("%"+search+"%");
+//			questionbankList.addAll(questionbankMapper.selectByExample(questionbankExample2));
+//			
+//			QuestionbankExample questionbankExample3 = new QuestionbankExample();
+//			Criteria criteria3 = questionbankExample3.createCriteria();
+//			criteria3.andWriterLike("%"+search+"%");
+//			questionbankList.addAll(questionbankMapper.selectByExample(questionbankExample3));
+//			
+//			System.out.println(questionbankList);
+//			//É¾³ýÖØ¸´
+//			HashSet hashSet  =   new  HashSet(questionbankList);
+//			questionbankList.clear();
+//			questionbankList.addAll(hashSet);
+			
+			return questionbankList;
+		} catch (Exception e) {
+			System.out.println("QuestionBankImpl.searchQuestionBank is error!!!");
+			return null;
+		}
+	}
+	
+	public List<Questionbank> search2QuestionBank(String search) {
+		try {
+			QuestionbankExample questionbankExample1 = new QuestionbankExample();
+			Criteria criteria1 = questionbankExample1.createCriteria();
+			criteria1.andTestbookIdEqualTo(search);
+			List<Questionbank> questionbankList = questionbankMapper.selectByExample(questionbankExample1);
+			
+			return questionbankList;
+		} catch (Exception e) {
+			System.out.println("QuestionBankImpl.searchQuestionBank is error!!!");
+			return null;
+		}
+	}
+	
+	public List<Questionbank> search3QuestionBank(String search) {
+		try {
+			QuestionbankExample questionbankExample1 = new QuestionbankExample();
+			Criteria criteria1 = questionbankExample1.createCriteria();
+			criteria1.andTestbookIdEqualTo(search);
+			criteria1.andUsedEqualTo(0);
+			criteria1.andBorrowedEqualTo(0);
+			criteria1.andStatusEqualTo(new Byte("1"));
+			List<Questionbank> questionbankList = questionbankMapper.selectByExample(questionbankExample1);
+			
+			return questionbankList;
+		} catch (Exception e) {
+			System.out.println("QuestionBankImpl.searchQuestionBank is error!!!");
+			return null;
+		}
+	}
+	
+	public List<Questionbank> searchQuestionCanBorrow(String search){
+		QuestionbankExample questionbankExample1 = new QuestionbankExample();
+		Criteria criteria1 = questionbankExample1.createCriteria();
+		criteria1.andPaperTypeLike("%"+search+"%");
+		criteria1.andBorrowedEqualTo(0);
+		criteria1.andUsedEqualTo(0);
+		criteria1.andStatusEqualTo(new Byte("1"));
+		
+		try {
+			List<Questionbank> questionbankList = questionbankMapper.selectByExample(questionbankExample1);
+			System.out.println(questionbankList);
+			return questionbankList;
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+			System.out.println("QuestionBankImpl.searchQuestionCanBorrow is error!!!");
+			return null;
+		}
+		
+		
+		
+		
+	}
+	
+	public boolean deleteQuestionBank(Questionbank questionBank) {
+		try {
+			
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean updateQuestionBank(Questionbank questionBank) {
+		try {
+			questionbankMapper.updateByPrimaryKeySelective(questionBank);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+}

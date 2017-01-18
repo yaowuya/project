@@ -1,0 +1,51 @@
+package cn.edu.scau.zxks.controller;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import cn.edu.scau.zxks.entity.Menu;
+import cn.edu.scau.zxks.entity.Privilege;
+import cn.edu.scau.zxks.entity.User;
+import cn.edu.scau.zxks.service.inter.MenuService;
+import cn.edu.scau.zxks.service.inter.PrivilegeService;
+
+@Controller
+@RequestMapping("/menu")
+public class MenuController {
+	
+	@Autowired
+	PrivilegeService privilegeServce;
+	
+	@Autowired
+	MenuService menuService;
+	
+	@RequestMapping("/generateMenu")
+	public String generateMenu(Model model, HttpSession session){
+		
+		User user = (User) session.getAttribute("user");
+		
+		List<Privilege> pList = privilegeServce.getByRoleId(user.getRoleId());
+		
+		List<Menu> menuList = new LinkedList<Menu>();
+		
+		for(int i = 0; i < pList.size(); i++){
+			Menu menu = menuService.getById(pList.get(i).getMenuId());
+			menuList.add(menu);
+		}
+		session.setAttribute("menuList", menuList);
+
+		List<Menu> fatherList = menuService.selectFatherNameInRole(user.getRoleId());
+		session.setAttribute("fatherList", fatherList);
+		
+		System.out.println(fatherList.size());
+		
+		return "index";
+	}
+}

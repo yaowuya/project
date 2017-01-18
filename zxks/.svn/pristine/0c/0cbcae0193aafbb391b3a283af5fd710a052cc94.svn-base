@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.scau.zxks.dao.Test_sitesMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.scau.zxks.entity.Test_sites" >
+    <id column="site_id" property="siteId" jdbcType="VARCHAR" />
+    <result column="site_name" property="siteName" jdbcType="VARCHAR" />
+    <result column="site_address" property="siteAddress" jdbcType="VARCHAR" />
+    <result column="site_room_number" property="siteRoomNumber" jdbcType="INTEGER" />
+    <result column="site_linkman" property="siteLinkman" jdbcType="VARCHAR" />
+    <result column="site_linkphone" property="siteLinkphone" jdbcType="VARCHAR" />
+    <result column="site_state" property="siteState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    site_id, site_name, site_address, site_room_number, site_linkman, site_linkphone, 
+    site_state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.scau.zxks.entity.Test_sitesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from test_sites
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from test_sites
+    where site_id = #{siteId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from test_sites
+  </select>
+  <select id="countAll" resultType="java.lang.Integer" >
+    select 
+    COUNT(*)
+    from test_sites
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from test_sites
+    where site_id = #{siteId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.edu.scau.zxks.entity.Test_sitesExample" >
+    delete from test_sites
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.edu.scau.zxks.entity.Test_sites" >
+    insert into test_sites (site_id, site_name, site_address, 
+      site_room_number, site_linkman, site_linkphone, 
+      site_state)
+    values (#{siteId,jdbcType=VARCHAR}, #{siteName,jdbcType=VARCHAR}, #{siteAddress,jdbcType=VARCHAR}, 
+      #{siteRoomNumber,jdbcType=INTEGER}, #{siteLinkman,jdbcType=VARCHAR}, #{siteLinkphone,jdbcType=VARCHAR}, 
+      #{siteState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.scau.zxks.entity.Test_sites" >
+    insert into test_sites
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="siteId != null" >
+        site_id,
+      </if>
+      <if test="siteName != null" >
+        site_name,
+      </if>
+      <if test="siteAddress != null" >
+        site_address,
+      </if>
+      <if test="siteRoomNumber != null" >
+        site_room_number,
+      </if>
+      <if test="siteLinkman != null" >
+        site_linkman,
+      </if>
+      <if test="siteLinkphone != null" >
+        site_linkphone,
+      </if>
+      <if test="siteState != null" >
+        site_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="siteId != null" >
+        #{siteId,jdbcType=VARCHAR},
+      </if>
+      <if test="siteName != null" >
+        #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="siteAddress != null" >
+        #{siteAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="siteRoomNumber != null" >
+        #{siteRoomNumber,jdbcType=INTEGER},
+      </if>
+      <if test="siteLinkman != null" >
+        #{siteLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="siteLinkphone != null" >
+        #{siteLinkphone,jdbcType=VARCHAR},
+      </if>
+      <if test="siteState != null" >
+        #{siteState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.edu.scau.zxks.entity.Test_sitesExample" resultType="java.lang.Integer" >
+    select count(*) from test_sites
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update test_sites
+    <set >
+      <if test="record.siteId != null" >
+        site_id = #{record.siteId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteName != null" >
+        site_name = #{record.siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteAddress != null" >
+        site_address = #{record.siteAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteRoomNumber != null" >
+        site_room_number = #{record.siteRoomNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.siteLinkman != null" >
+        site_linkman = #{record.siteLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteLinkphone != null" >
+        site_linkphone = #{record.siteLinkphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteState != null" >
+        site_state = #{record.siteState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update test_sites
+    set site_id = #{record.siteId,jdbcType=VARCHAR},
+      site_name = #{record.siteName,jdbcType=VARCHAR},
+      site_address = #{record.siteAddress,jdbcType=VARCHAR},
+      site_room_number = #{record.siteRoomNumber,jdbcType=INTEGER},
+      site_linkman = #{record.siteLinkman,jdbcType=VARCHAR},
+      site_linkphone = #{record.siteLinkphone,jdbcType=VARCHAR},
+      site_state = #{record.siteState,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.scau.zxks.entity.Test_sites" >
+    update test_sites
+    <set >
+      <if test="siteName != null" >
+        site_name = #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="siteAddress != null" >
+        site_address = #{siteAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="siteRoomNumber != null" >
+        site_room_number = #{siteRoomNumber,jdbcType=INTEGER},
+      </if>
+      <if test="siteLinkman != null" >
+        site_linkman = #{siteLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="siteLinkphone != null" >
+        site_linkphone = #{siteLinkphone,jdbcType=VARCHAR},
+      </if>
+      <if test="siteState != null" >
+        site_state = #{siteState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where site_id = #{siteId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.scau.zxks.entity.Test_sites" >
+    update test_sites
+    set site_name = #{siteName,jdbcType=VARCHAR},
+      site_address = #{siteAddress,jdbcType=VARCHAR},
+      site_room_number = #{siteRoomNumber,jdbcType=INTEGER},
+      site_linkman = #{siteLinkman,jdbcType=VARCHAR},
+      site_linkphone = #{siteLinkphone,jdbcType=VARCHAR},
+      site_state = #{siteState,jdbcType=VARCHAR}
+    where site_id = #{siteId,jdbcType=VARCHAR}
+  </update>
+</mapper>

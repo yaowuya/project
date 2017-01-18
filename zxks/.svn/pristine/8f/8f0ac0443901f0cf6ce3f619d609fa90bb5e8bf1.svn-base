@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.scau.zxks.dao.Stu_punishmentMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.scau.zxks.entity.Stu_punishment" >
+    <id column="punish_id" property="punishId" jdbcType="VARCHAR" />
+    <result column="stu_num" property="stuNum" jdbcType="VARCHAR" />
+    <result column="punish_time" property="punishTime" jdbcType="TIMESTAMP" />
+    <result column="punish_detail" property="punishDetail" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="apply_id" property="applyId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    punish_id, stu_num, punish_time, punish_detail, remark, apply_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.scau.zxks.entity.Stu_punishmentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from stu_punishment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from stu_punishment
+    where punish_id = #{punishId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from stu_punishment
+    where punish_id = #{punishId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.edu.scau.zxks.entity.Stu_punishmentExample" >
+    delete from stu_punishment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.edu.scau.zxks.entity.Stu_punishment" >
+    insert into stu_punishment (punish_id, stu_num, punish_time, 
+      punish_detail, remark, apply_id
+      )
+    values (#{punishId,jdbcType=VARCHAR}, #{stuNum,jdbcType=VARCHAR}, #{punishTime,jdbcType=TIMESTAMP}, 
+      #{punishDetail,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.scau.zxks.entity.Stu_punishment" >
+    insert into stu_punishment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="punishId != null" >
+        punish_id,
+      </if>
+      <if test="stuNum != null" >
+        stu_num,
+      </if>
+      <if test="punishTime != null" >
+        punish_time,
+      </if>
+      <if test="punishDetail != null" >
+        punish_detail,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="applyId != null" >
+        apply_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="punishId != null" >
+        #{punishId,jdbcType=VARCHAR},
+      </if>
+      <if test="stuNum != null" >
+        #{stuNum,jdbcType=VARCHAR},
+      </if>
+      <if test="punishTime != null" >
+        #{punishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="punishDetail != null" >
+        #{punishDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null" >
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.edu.scau.zxks.entity.Stu_punishmentExample" resultType="java.lang.Integer" >
+    select count(*) from stu_punishment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update stu_punishment
+    <set >
+      <if test="record.punishId != null" >
+        punish_id = #{record.punishId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuNum != null" >
+        stu_num = #{record.stuNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.punishTime != null" >
+        punish_time = #{record.punishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.punishDetail != null" >
+        punish_detail = #{record.punishDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyId != null" >
+        apply_id = #{record.applyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update stu_punishment
+    set punish_id = #{record.punishId,jdbcType=VARCHAR},
+      stu_num = #{record.stuNum,jdbcType=VARCHAR},
+      punish_time = #{record.punishTime,jdbcType=TIMESTAMP},
+      punish_detail = #{record.punishDetail,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      apply_id = #{record.applyId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.scau.zxks.entity.Stu_punishment" >
+    update stu_punishment
+    <set >
+      <if test="stuNum != null" >
+        stu_num = #{stuNum,jdbcType=VARCHAR},
+      </if>
+      <if test="punishTime != null" >
+        punish_time = #{punishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="punishDetail != null" >
+        punish_detail = #{punishDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null" >
+        apply_id = #{applyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where punish_id = #{punishId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.scau.zxks.entity.Stu_punishment" >
+    update stu_punishment
+    set stu_num = #{stuNum,jdbcType=VARCHAR},
+      punish_time = #{punishTime,jdbcType=TIMESTAMP},
+      punish_detail = #{punishDetail,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      apply_id = #{applyId,jdbcType=VARCHAR}
+    where punish_id = #{punishId,jdbcType=VARCHAR}
+  </update>
+</mapper>

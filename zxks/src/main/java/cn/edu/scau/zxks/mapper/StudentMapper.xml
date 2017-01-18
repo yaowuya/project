@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.scau.zxks.dao.StudentMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.scau.zxks.entity.Student" >
+    <id column="stu_num" property="stuNum" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="school_id" property="schoolId" jdbcType="VARCHAR" />
+    <result column="major_id" property="majorId" jdbcType="VARCHAR" />
+    <result column="graduate_state" property="graduateState" jdbcType="INTEGER" />
+    <result column="essay_remark" property="essayRemark" jdbcType="DOUBLE" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="exam_score" property="examScore" jdbcType="DOUBLE" />
+    <result column="contact_person" property="contactPerson" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    stu_num, email, school_id, major_id, graduate_state, essay_remark, id_card, exam_score, 
+    contact_person, contact_phone
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.scau.zxks.entity.StudentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from student
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where stu_num = #{stuNum,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByEmail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where email = #{email,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from student
+    where stu_num = #{stuNum,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.edu.scau.zxks.entity.StudentExample" >
+    delete from student
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.edu.scau.zxks.entity.Student" >
+    insert into student (stu_num, email, school_id, 
+      major_id, graduate_state, essay_remark, 
+      id_card, exam_score, contact_person, 
+      contact_phone)
+    values (#{stuNum,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{schoolId,jdbcType=VARCHAR}, 
+      #{majorId,jdbcType=VARCHAR}, #{graduateState,jdbcType=INTEGER}, #{essayRemark,jdbcType=DOUBLE}, 
+      #{idCard,jdbcType=VARCHAR}, #{examScore,jdbcType=DOUBLE}, #{contactPerson,jdbcType=VARCHAR}, 
+      #{contactPhone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.scau.zxks.entity.Student" >
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stuNum != null" >
+        stu_num,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="schoolId != null" >
+        school_id,
+      </if>
+      <if test="majorId != null" >
+        major_id,
+      </if>
+      <if test="graduateState != null" >
+        graduate_state,
+      </if>
+      <if test="essayRemark != null" >
+        essay_remark,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="examScore != null" >
+        exam_score,
+      </if>
+      <if test="contactPerson != null" >
+        contact_person,
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stuNum != null" >
+        #{stuNum,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolId != null" >
+        #{schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="majorId != null" >
+        #{majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateState != null" >
+        #{graduateState,jdbcType=INTEGER},
+      </if>
+      <if test="essayRemark != null" >
+        #{essayRemark,jdbcType=DOUBLE},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="examScore != null" >
+        #{examScore,jdbcType=DOUBLE},
+      </if>
+      <if test="contactPerson != null" >
+        #{contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.edu.scau.zxks.entity.StudentExample" resultType="java.lang.Integer" >
+    select count(*) from student
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="countAll" resultType="java.lang.Integer" >
+    select count(*) from student
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update student
+    <set >
+      <if test="record.stuNum != null" >
+        stu_num = #{record.stuNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolId != null" >
+        school_id = #{record.schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.majorId != null" >
+        major_id = #{record.majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.graduateState != null" >
+        graduate_state = #{record.graduateState,jdbcType=INTEGER},
+      </if>
+      <if test="record.essayRemark != null" >
+        essay_remark = #{record.essayRemark,jdbcType=DOUBLE},
+      </if>
+      <if test="record.idCard != null" >
+        id_card = #{record.idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examScore != null" >
+        exam_score = #{record.examScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.contactPerson != null" >
+        contact_person = #{record.contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactPhone != null" >
+        contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update student
+    set stu_num = #{record.stuNum,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      school_id = #{record.schoolId,jdbcType=VARCHAR},
+      major_id = #{record.majorId,jdbcType=VARCHAR},
+      graduate_state = #{record.graduateState,jdbcType=INTEGER},
+      essay_remark = #{record.essayRemark,jdbcType=DOUBLE},
+      id_card = #{record.idCard,jdbcType=VARCHAR},
+      exam_score = #{record.examScore,jdbcType=DOUBLE},
+      contact_person = #{record.contactPerson,jdbcType=VARCHAR},
+      contact_phone = #{record.contactPhone,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.scau.zxks.entity.Student" >
+    update student
+    <set >
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolId != null" >
+        school_id = #{schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="majorId != null" >
+        major_id = #{majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateState != null" >
+        graduate_state = #{graduateState,jdbcType=INTEGER},
+      </if>
+      <if test="essayRemark != null" >
+        essay_remark = #{essayRemark,jdbcType=DOUBLE},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="examScore != null" >
+        exam_score = #{examScore,jdbcType=DOUBLE},
+      </if>
+      <if test="contactPerson != null" >
+        contact_person = #{contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where stu_num = #{stuNum,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.scau.zxks.entity.Student" >
+    update student
+    set email = #{email,jdbcType=VARCHAR},
+      school_id = #{schoolId,jdbcType=VARCHAR},
+      major_id = #{majorId,jdbcType=VARCHAR},
+      graduate_state = #{graduateState,jdbcType=INTEGER},
+      essay_remark = #{essayRemark,jdbcType=DOUBLE},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      exam_score = #{examScore,jdbcType=DOUBLE},
+      contact_person = #{contactPerson,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR}
+    where stu_num = #{stuNum,jdbcType=VARCHAR}
+  </update>
+</mapper>

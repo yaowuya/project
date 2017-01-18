@@ -1,0 +1,248 @@
+a {
+    text-decoration: none;
+    outline: none;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    color:#444;
+    font-size: 13px;
+    line-height: 25px;
+    -webkit-font-smoothing: antialiased;
+}
+.container-fluid {
+    padding: 0px;
+    margin: 0px;
+}
+
+
+/* 澶撮儴 */
+
+.header {
+    height: 58px;
+    background-color: #16CBE6;
+}
+
+.header h1 a {
+    color: #fff;
+    font-family: 'kaiti', sans-serif;
+    font-size: 22.2px;
+    text-decoration: none;
+}
+
+.header h1 {
+    margin-top: 6px;
+}
+
+.header .navbar {
+    margin-bottom: 0px;
+}
+
+.header .navbar .nav li {
+    text-align: center;
+}
+
+.header .navbar .nav .dropdown:nth-of-type(1) .dropdown-menu {
+    min-width: 125px;
+}
+
+.header .navbar .nav .dropdown:nth-of-type(2) .dropdown-menu {
+    min-width: 226px;
+}
+
+
+/* .header .navbar .nav {
+    padding-top: 7px;
+} */
+
+.header .navbar .nav .label {
+    font-size: 12px;
+    padding: 4px 8px;
+    margin: 0px 2px;
+    border-radius: 15px;
+}
+
+.header .navbar .dropdown-a {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding-top: 22px;
+}
+
+.header .navbar .dropdown-a:focus,
+.header .navbar .dropdown-a:hover,
+.header .navbar .dropdown-a:active {
+    background-color: #1BB6E3;
+}
+
+
+/* 涓棿閮ㄥ垎 */
+
+
+/* 涓棿閮ㄥ垎-宸﹁竟瀵艰埅鏍�*/
+
+.middle {
+    margin-top: 40px;
+}
+
+.middle .mid-left .nav {
+    width: 100%;
+}
+
+.middle .mid-left .nav li {
+    width: 100%;
+    border-bottom: 1px dashed #eee;
+}
+
+.middle .mid-left .navbar-default {
+    background-color: white;
+}
+
+.middle .mid-left .navbar-brand i {
+    margin-right: 7px;
+}
+
+.middle .mid-left .nav li ul {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    display: none;
+    float: left;
+    width: 100%;
+    padding: 5px 0px;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+.middle .mid-left .nav li a i {
+    margin-right: 7px;
+}
+
+.middle .mid-left .nav li a b {
+    margin-left: 10px;
+}
+
+.middle .mid-left .nav li ul li a {
+    display: block;
+    padding: 3px 20px 3px 29px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.middle .mid-left .nav li ul li a:hover,
+.middle .mid-left .nav li ul li a:active {
+    background-color: #E7E7E7;
+}
+
+
+/* 涓棿閮ㄩ棬 鍙宠竟 */
+
+.mid-right-up h2 {
+    font-size: 35px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.mid-right-up h2 i {
+    font-size: 30px;
+    margin-right: 5px;
+}
+
+.mid-right-up h2 i.color {
+    color: #16cbe6;
+}
+
+.mid-right-up h2 small {
+    font-size: 21px;
+    margin-left: 5px;
+}
+
+.mid-right-up hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.mid-r-down {
+    width: 100%;
+    height: 600px;
+    /*background-size: cover;*/
+    /*opacity: 0.5;*/
+}
+
+
+/* 搴曢儴 */
+
+.footer {
+    background-color: black;
+    border-top: 3px solid #ddd;
+    box-shadow: inset 0px 0px 3px #111;
+    color: #ccc;
+    font-size: 14px;
+    width: 100%;
+    height: 50px;
+    padding: 15px 0px 10px 0px;
+    margin-top: 30px;
+}
+.cdl1{
+    border-bottom:solid 1px black; 
+}
+.cdl2{
+    display:inline;
+    margin-left: 100px;
+}
+.biaoge1{
+    border:solid 1px;
+    margin-top: 50px;
+/*     width:100%; */
+    height:463px;
+}
+.biaoge1 li{
+    list-style: none;
+    margin-top:30px; 
+}
+
+label{
+    display: inline-block;
+    width: 150px;
+    text-align: center;
+    margin-top:20px; 
+}
+
+textarea{
+    display: inline-block;
+    width: 200px;
+    height: 100px;
+}
+.cdl3{
+    margin-left:700px; 
+}
+.cdl4{
+    margin-top:50px; 
+}
+
+.biaoge2{
+    border:solid 1px;
+    margin-top: 50px;
+    width:300px;
+    height:429px;
+}
+
+.biaoge2 li{
+    list-style: none;
+    margin-top:10px; 
+}
+

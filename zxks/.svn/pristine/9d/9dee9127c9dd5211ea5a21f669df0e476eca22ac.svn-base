@@ -1,0 +1,62 @@
+package cn.edu.scau.zxks.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import cn.edu.scau.zxks.dao.ExamSiteMapper;
+import cn.edu.scau.zxks.dao.Test_sitesMapper;
+import cn.edu.scau.zxks.entity.ExamMajorSite;
+import cn.edu.scau.zxks.entity.Test_sites;
+import cn.edu.scau.zxks.service.inter.SiteService;
+
+@Service
+public class SiteServiceImpl implements SiteService {
+	
+	private String cityNum = "01";
+	private String townNum = "01";
+	
+	@Autowired
+	private Test_sitesMapper test_sitesMapper;
+	
+	@Autowired
+	private ExamSiteMapper examSiteMapper;
+	
+	@Override
+	public List<Test_sites> getAll() {
+		return test_sitesMapper.selectAll();
+	}
+	
+	@Override
+	public List<ExamMajorSite> getComprehensive() {
+		return examSiteMapper.getComprehensive();
+	}
+
+	@Override
+	public Test_sites findById(String siteId) {
+		return test_sitesMapper.selectByPrimaryKey(siteId);
+	}
+
+	@Override
+	public void updateSite(Test_sites site) {
+		System.out.println(site);
+		test_sitesMapper.updateByPrimaryKey(site);
+	}
+
+	@Override
+	public void addSite(Test_sites site) {
+		// TODO Auto-generated method stub
+		int num = test_sitesMapper.countAll();
+		String siteId = String.format("%04d", num);
+		site.setSiteId(cityNum + townNum + siteId);
+		test_sitesMapper.insert(site);
+	}
+
+	@Override
+	public List<Test_sites> getLatestMsg() {
+		return examSiteMapper.getLatestMsg();
+	}
+
+
+}

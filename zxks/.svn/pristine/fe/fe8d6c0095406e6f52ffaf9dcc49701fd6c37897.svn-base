@@ -1,0 +1,17 @@
+package cn.edu.scau.zxks.service.inter;
+
+import java.util.List;
+
+import cn.edu.scau.zxks.entity.Exam;
+
+public interface ExamService {
+	public List<Exam> getAll();
+	
+	public List<Exam> getAllInTime();
+	
+	public Exam getByPrimaryKey(String examId);
+	
+	public void updateExam(Exam exam);
+	
+	public int insertExam(Exam exam);
+}

@@ -1,0 +1,18 @@
+package cn.edu.scau.zxks.service.inter;
+
+import java.util.List;
+
+import cn.edu.scau.zxks.entity.ExamMajorSite;
+import cn.edu.scau.zxks.entity.Test_sites;
+
+public interface SiteService {
+	List<Test_sites> getAll();
+	
+	List<ExamMajorSite> getComprehensive();
+	
+	Test_sites findById(String siteId); 
+	
+	void updateSite(Test_sites site);
+	
+	void addSite(Test_sites site);
+}

@@ -1,0 +1,104 @@
+package cn.edu.scau.zxks.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import cn.edu.scau.zxks.dao.Course_informationMapper;
+import cn.edu.scau.zxks.dao.TextbookMapper;
+import cn.edu.scau.zxks.entity.Course_information;
+import cn.edu.scau.zxks.entity.QuestionBankExtend;
+import cn.edu.scau.zxks.entity.Textbook;
+import cn.edu.scau.zxks.entity.TextbookExample;
+import cn.edu.scau.zxks.entity.TextbookExample.Criteria;
+import cn.edu.scau.zxks.service.inter.QuestionBankExtendInter;
+
+@Service
+public class QuestionBankExtendImpl implements QuestionBankExtendInter {
+	@Autowired
+	Course_informationMapper course_informationMapper;
+	@Autowired
+	TextbookMapper textbookMapper;
+	
+	@Override
+	public List<QuestionBankExtend> queryQuestionBankExtend(String search) {
+		List<QuestionBankExtend> questionBankExtendList = new ArrayList<QuestionBankExtend>();
+		//List<Course_information> course_informationList = course_informationMapper.selectAll();
+		
+		TextbookExample textbookExample = new TextbookExample();
+		Criteria criteria = textbookExample.createCriteria();
+		criteria.andBooknameLike("%"+search+"%");
+		List<Textbook> textbookList = textbookMapper.selectByExample(textbookExample);
+		
+		for(int i=0;i<textbookList.size();i++){
+			QuestionBankExtend questionBankExtend = new QuestionBankExtend();
+			Textbook textbook = textbookList.get(i);
+			Course_information course_information = course_informationMapper.selectByPrimaryKey(textbook.getCourseId());
+			questionBankExtend.setTestbookId(textbook.getTextbookId());
+			questionBankExtend.setTestbookName(textbook.getBookname());
+			questionBankExtend.setCourseName(course_information.getCourseName());
+			questionBankExtend.setBooktype(textbook.getBooktype());
+			questionBankExtend.setIsOverdue(textbook.getIsOverdue());
+			questionBankExtend.setOverdueTime(textbook.getOverdueTime());
+			questionBankExtendList.add(questionBankExtend);
+		}
+		
+		return questionBankExtendList;
+	}
+	
+	@Override
+	public List<QuestionBankExtend> query2QuestionBankExtend(String search) {
+		List<QuestionBankExtend> questionBankExtendList = new ArrayList<QuestionBankExtend>();
+		//List<Course_information> course_informationList = course_informationMapper.selectAll();
+		
+		TextbookExample textbookExample = new TextbookExample();
+		Criteria criteria = textbookExample.createCriteria();
+		criteria.andBooknameLike("%"+search+"%");
+		criteria.andIsOverdueEqualTo("000");
+		List<Textbook> textbookList = textbookMapper.selectByExample(textbookExample);
+		
+		for(int i=0;i<textbookList.size();i++){
+			QuestionBankExtend questionBankExtend = new QuestionBankExtend();
+			Textbook textbook = textbookList.get(i);
+			Course_information course_information = course_informationMapper.selectByPrimaryKey(textbook.getCourseId());
+			questionBankExtend.setTestbookId(textbook.getTextbookId());
+			questionBankExtend.setTestbookName(textbook.getBookname());
+			questionBankExtend.setCourseName(course_information.getCourseName());
+			questionBankExtend.setBooktype(textbook.getBooktype());
+			questionBankExtend.setIsOverdue(textbook.getIsOverdue());
+			questionBankExtend.setOverdueTime(textbook.getOverdueTime());
+			questionBankExtendList.add(questionBankExtend);
+		}
+		
+		return questionBankExtendList;
+	}
+	
+	@Override
+	public List<QuestionBankExtend> query3QuestionBankExtend() {
+		List<QuestionBankExtend> questionBankExtendList = new ArrayList<QuestionBankExtend>();
+		//List<Course_information> course_informationList = course_informationMapper.selectAll();
+		
+		TextbookExample textbookExample = new TextbookExample();
+		Criteria criteria = textbookExample.createCriteria();
+		criteria.andOverdueTimeIsNotNull();
+		List<Textbook> textbookList = textbookMapper.selectByExample(textbookExample);
+		
+		for(int i=0;i<textbookList.size();i++){
+			QuestionBankExtend questionBankExtend = new QuestionBankExtend();
+			Textbook textbook = textbookList.get(i);
+			Course_information course_information = course_informationMapper.selectByPrimaryKey(textbook.getCourseId());
+			questionBankExtend.setTestbookId(textbook.getTextbookId());
+			questionBankExtend.setTestbookName(textbook.getBookname());
+			questionBankExtend.setCourseName(course_information.getCourseName());
+			questionBankExtend.setBooktype(textbook.getBooktype());
+			questionBankExtend.setIsOverdue(textbook.getIsOverdue());
+			questionBankExtend.setOverdueTime(textbook.getOverdueTime());
+			questionBankExtend.setOverdueReason(textbook.getOverdueReason());
+			questionBankExtendList.add(questionBankExtend);
+		}
+		
+		return questionBankExtendList;
+	}
+}

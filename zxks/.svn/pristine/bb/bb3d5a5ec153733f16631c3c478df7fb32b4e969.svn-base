@@ -1,0 +1,115 @@
+package cn.edu.scau.zxks.dto;
+
+import java.io.Serializable;
+import java.util.List;
+
+public class Page implements Serializable 
+{
+private static final long serialVersionUID = 5356314552375586360L;
+	
+	//�ܼƶ�����
+	private int count;
+	//ÿҳ������
+	private int size = 10;
+	//�ܼƶ���ҳ
+	private int total;
+	//��ǰ�ڼ�ҳ
+	private int current = 1;
+	//start
+	private int start;
+	
+	private List<?> list;
+	
+	private String key;
+	
+	public Page() {}
+
+	public Page(int current) 
+	{
+		this.current = current;
+		
+		this.start = (current - 1) * this.size;
+	}
+
+	public int getCount() 
+	{
+		return count;
+	}
+
+	public void setCount(int count) 
+	{
+		this.count = count;
+		
+		this.total = (count / this.size) + ((count % this.size) > 0 ? 1 : 0);
+	}
+
+	public int getSize() 
+	{
+		return size;
+	}
+
+	public void setSize(int size)
+	{
+		this.size = size;
+	}
+
+	public int getTotal() 
+	{
+		return total;
+	}
+
+	public void setTotal(int total) 
+	{
+		this.total = total;
+	}
+
+	public int getCurrent() 
+	{
+		return current;
+	}
+
+	public void setCurrent(int current) 
+	{
+		this.current = current;
+	}
+	
+	public int getStart() 
+	{
+		return start;
+	}
+
+	public void setStart(int start) 
+	{
+		this.start = start;
+	}
+
+	public List<?> getList() 
+	{
+		return list;
+	}
+
+	public void setList(List<?> list) 
+	{
+		this.list = list;
+	}
+
+	
+	
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
+	@Override
+	public String toString() 
+	{
+		return "Page [count=" + count + ", size=" + size + ", total=" + total + ", current=" + current + ", list="
+				+ list + "]";
+	}
+	
+	
+
+}

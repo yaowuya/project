@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.scau.zxks.dao.ExamSiteMapper" >
+	<resultMap id="BaseResultMap" type="cn.edu.scau.zxks.entity.Test_sites" >
+	    <result column="exam_site_id" property="exam_sites.examSiteId" jdbcType="VARCHAR" />
+	    <result column="test_site.site_id" property="siteId" jdbcType="VARCHAR" />
+	    <result column="test_sites.site_name" property="siteName" jdbcType="VARCHAR" />
+	    <result column="test_sites.site_address" property="siteAddress" jdbcType="VARCHAR" />
+	    <result column="test_sites.site_room_number" property="siteRoomNumber" jdbcType="INTEGER" />
+	    <result column="exam.exam_id" property="exam.examId" jdbcType="VARCHAR" />
+	    <result column="exam.major_id" property="exam.major_id" jdbcType="DOUBLE" />
+	    <result column="major_name" property="major_info.majorName" jdbcType="VARCHAR" />
+	    <result column="exam_name" property="exam.examName" jdbcType="VARCHAR" />
+	    <result column="time" property="exam.time" jdbcType="TIMESTAMP" />
+	    <result column="apply_start" property="exam.applyStart" jdbcType="TIMESTAMP" />
+	    <result column="apply_end" property="exam.applyEnd" jdbcType="TIMESTAMP" />
+  	</resultMap>
+	<select id="getComprehensive" resultType="cn.edu.scau.zxks.entity.ExamMajorSite" >
+	    SELECT * FROM test_sites NATURAL JOIN exam_sites NATURAL JOIN exam NATURAL JOIN major_info;
+	 </select>
+	 
+	 <select id="searchKeyInPage" resultType="cn.edu.scau.zxks.entity.ExamMajorSite" >
+	    SELECT * FROM test_sites NATURAL JOIN exam_sites NATURAL JOIN exam NATURAL JOIN major_info 
+	    WHERE major_name LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+	    exam_name LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+	    site_name LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+	    site_linkman LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+	    site_linkphone LIKE CONCAT(CONCAT('%', #{key}), '%')
+	    LIMIT #{start},#{size}
+	 </select>
+	 
+	 <select id="countByKey" resultType="java.lang.Integer" >
+	    SELECT COUNT(*) FROM test_sites NATURAL JOIN exam_sites NATURAL JOIN exam NATURAL JOIN major_info 
+	    WHERE major_name LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+	    exam_name LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+	    site_name LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+	    site_linkman LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+	    site_linkphone LIKE CONCAT(CONCAT('%', #{key}), '%')
+	 </select>
+	 
+	 
+	 <select id="getLatestMsg" resultMap="BaseResultMap" >
+	    SELECT * FROM
+		(SELECT 
+				exam_site_id, 
+				test_sites.site_id, test_sites.site_name, test_sites.site_address, test_sites.site_room_number, 
+				exam.exam_id, exam.major_id, major_name, exam_name, time, apply_start, apply_end
+			FROM 
+				test_sites 
+			LEFT JOIN exam_sites ON test_sites.site_id = exam_sites.site_id
+			LEFT JOIN exam ON exam_sites.exam_id = exam.exam_id
+			LEFT JOIN major_info ON exam.major_id = major_info.major_id
+		) AS A 
+			GROUP BY site_id ORDER BY site_id
+		;
+	 </select>
+	 
+	 <select id="searchLatestMsgByKey" resultMap="BaseResultMap" >
+	    SELECT * FROM
+		(SELECT 
+				exam_site_id, 
+				test_sites.site_id, test_sites.site_name, test_sites.site_address, test_sites.site_room_number, 
+				exam.exam_id, exam.major_id, major_name, exam_name, time, apply_start, apply_end
+			FROM 
+				test_sites 
+			LEFT JOIN exam_sites ON test_sites.site_id = exam_sites.site_id
+			LEFT JOIN exam ON exam_sites.exam_id = exam.exam_id
+			LEFT JOIN major_info ON exam.major_id = major_info.major_id
+		) AS A WHERE site_id LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+		site_name LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+		site_address LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+		site_room_number LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+		major_name LIKE CONCAT(CONCAT('%', #{key}), '%')
+			GROUP BY site_id ORDER BY site_id LIMIT #{start},#{size}
+		;
+	 </select>
+	 
+	 <select id="countLatestMsgByKey" resultType="java.lang.Integer" >
+	    SELECT COUNT(*) FROM
+		(SELECT * FROM
+		(SELECT 
+				exam_site_id, 
+				test_sites.site_id, test_sites.site_name, test_sites.site_address, test_sites.site_room_number, 
+				exam.exam_id, exam.major_id, major_name, exam_name, time, apply_start, apply_end
+			FROM 
+				test_sites 
+			LEFT JOIN exam_sites ON test_sites.site_id = exam_sites.site_id
+			LEFT JOIN exam ON exam_sites.exam_id = exam.exam_id
+			LEFT JOIN major_info ON exam.major_id = major_info.major_id
+		) AS A WHERE site_id LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+		site_name LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+		site_address LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+		site_room_number LIKE CONCAT(CONCAT('%', #{key}), '%') OR
+		major_name LIKE CONCAT(CONCAT('%', #{key}), '%')
+			GROUP BY site_id ORDER BY site_id) AS B
+	 </select>
+ </mapper>

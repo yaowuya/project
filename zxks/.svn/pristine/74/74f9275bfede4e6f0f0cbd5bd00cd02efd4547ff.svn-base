@@ -1,0 +1,124 @@
+package cn.edu.scau.zxks.controller;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import cn.edu.scau.zxks.entity.Exam;
+import cn.edu.scau.zxks.entity.ExamMajorSite;
+import cn.edu.scau.zxks.entity.Major_info;
+import cn.edu.scau.zxks.service.inter.ApplyService;
+import cn.edu.scau.zxks.service.inter.ExamApplyService;
+import cn.edu.scau.zxks.service.inter.MajorService;
+import cn.edu.scau.zxks.service.inter.SiteService;
+
+@Controller
+@RequestMapping("/apply")
+public class ApplyController {
+	
+	@Autowired
+	ApplyService applyService;
+	
+	@Autowired
+	SiteService siteService;
+	
+	@Autowired
+	ExamApplyService examApplyService;
+	
+	@Autowired
+	MajorService majorService;
+	
+	/**
+	 * 去到applytime.jsp页面，同时把考试信息和专业信息也传到前台
+	 * @author Pavilion 15
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/trunToSetApplyTime")
+	public String trunToSetApplyTime(Model model){
+		List<Exam> examList = applyService.getAllExam();
+		model.addAttribute("examList", examList);
+		//System.out.println(examList.get(0));
+		
+		List<Major_info> majorList = majorService.getAll();
+		model.addAttribute("majorList", majorList);
+		return "applytime";
+	}
+	
+	/**
+	 * 根据url传的值去到指定的修改页面
+	 * @author Pavilion 15
+	 * @param exam
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/changeExamMsg")
+	public String changeExamMsg(Exam exam, Model model){
+		exam = applyService.getExam(exam.getExamId());
+		model.addAttribute("exam", exam);
+		return "applytime_son";
+	}
+	
+	/**
+	 * 更新考试时间，如果时间不能转化，抛出异常
+	 * @author Pavilion 15
+	 * @param exam
+	 * @param model
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 */
+	@RequestMapping("/updateTime")
+	public String updateTime(Exam exam, Model model, String startDate, String endDate){
+		exam = applyService.getExam(exam.getExamId());
+		model.addAttribute("exam", exam);
+		System.out.println(startDate);
+		System.out.println(endDate);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+		try {
+			Date applyStart = sdf.parse(startDate);
+			Date applyEnd = sdf.parse(endDate);
+			exam.setApplyStart(applyStart);
+			exam.setApplyEnd(applyEnd);
+			applyService.updateExam(exam);
+		} catch (ParseException e) {
+			System.out.println(e);
+			return "error";
+		}
+		
+		List<Exam> examList = applyService.getAllExam();
+		model.addAttribute("examList", examList);
+		//System.out.println(examList.get(0));
+		
+		List<Major_info> majorList = majorService.getAll();
+		model.addAttribute("majorList", majorList);
+		return "applytime";
+	}
+	
+	/**
+	 * 该方法用于返回考试报名情况
+	 * @author Pavilion 15
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/checkApply")
+	public String checkApply(Model model){
+		//List<Test_sites> siteList = siteService.getAll();
+		List<ExamMajorSite> list = siteService.getComprehensive();
+		
+		for(int i = 0; i < list.size(); i++){
+			int temp = examApplyService.getApplyNumDepOnSiteId(list.get(i).getSiteId());
+			list.get(i).setNum(temp);
+		}
+		//System.out.println(list.get(0));
+		model.addAttribute("list", list);
+		return "state";
+	}
+
+}

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.scau.zxks.dao.Stu_awardMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.scau.zxks.entity.Stu_award" >
+    <id column="award_id" property="awardId" jdbcType="VARCHAR" />
+    <result column="stu_num" property="stuNum" jdbcType="VARCHAR" />
+    <result column="award_time" property="awardTime" jdbcType="TIMESTAMP" />
+    <result column="award_detail" property="awardDetail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    award_id, stu_num, award_time, award_detail
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.scau.zxks.entity.Stu_awardExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from stu_award
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from stu_award
+    where award_id = #{awardId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from stu_award
+    where award_id = #{awardId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.edu.scau.zxks.entity.Stu_awardExample" >
+    delete from stu_award
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.edu.scau.zxks.entity.Stu_award" >
+    insert into stu_award (award_id, stu_num, award_time, 
+      award_detail)
+    values (#{awardId,jdbcType=VARCHAR}, #{stuNum,jdbcType=VARCHAR}, #{awardTime,jdbcType=TIMESTAMP}, 
+      #{awardDetail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.scau.zxks.entity.Stu_award" >
+    insert into stu_award
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="awardId != null" >
+        award_id,
+      </if>
+      <if test="stuNum != null" >
+        stu_num,
+      </if>
+      <if test="awardTime != null" >
+        award_time,
+      </if>
+      <if test="awardDetail != null" >
+        award_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="awardId != null" >
+        #{awardId,jdbcType=VARCHAR},
+      </if>
+      <if test="stuNum != null" >
+        #{stuNum,jdbcType=VARCHAR},
+      </if>
+      <if test="awardTime != null" >
+        #{awardTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="awardDetail != null" >
+        #{awardDetail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.edu.scau.zxks.entity.Stu_awardExample" resultType="java.lang.Integer" >
+    select count(*) from stu_award
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update stu_award
+    <set >
+      <if test="record.awardId != null" >
+        award_id = #{record.awardId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuNum != null" >
+        stu_num = #{record.stuNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.awardTime != null" >
+        award_time = #{record.awardTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.awardDetail != null" >
+        award_detail = #{record.awardDetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update stu_award
+    set award_id = #{record.awardId,jdbcType=VARCHAR},
+      stu_num = #{record.stuNum,jdbcType=VARCHAR},
+      award_time = #{record.awardTime,jdbcType=TIMESTAMP},
+      award_detail = #{record.awardDetail,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.scau.zxks.entity.Stu_award" >
+    update stu_award
+    <set >
+      <if test="stuNum != null" >
+        stu_num = #{stuNum,jdbcType=VARCHAR},
+      </if>
+      <if test="awardTime != null" >
+        award_time = #{awardTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="awardDetail != null" >
+        award_detail = #{awardDetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where award_id = #{awardId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.scau.zxks.entity.Stu_award" >
+    update stu_award
+    set stu_num = #{stuNum,jdbcType=VARCHAR},
+      award_time = #{awardTime,jdbcType=TIMESTAMP},
+      award_detail = #{awardDetail,jdbcType=VARCHAR}
+    where award_id = #{awardId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,377 @@
+package cn.edu.scau.zxks.controller;
+
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.edu.scau.zxks.dto.Page;
+import cn.edu.scau.zxks.entity.Role;
+import cn.edu.scau.zxks.entity.Student;
+import cn.edu.scau.zxks.entity.User;
+import cn.edu.scau.zxks.exception.UserException;
+import cn.edu.scau.zxks.service.inter.RoleService;
+import cn.edu.scau.zxks.service.inter.StudentService;
+import cn.edu.scau.zxks.service.inter.UserService;
+import cn.edu.scau.zxks.utill.VerifyCode;
+
+
+@Controller
+@RequestMapping("/user")
+public class UserController {
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
+	
+	@Autowired
+	private StudentService studentService;
+	
+	/**
+	 * 登陆功能使用的controller
+	 * @author Pavilion 15
+	 * @param model
+	 * @param user
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/login")
+	public String login(Model model, User user, HttpSession session, String verifyCode){
+		
+		String vc_code = (String) session.getAttribute("session_vCode");
+		
+		if(!vc_code.equalsIgnoreCase(verifyCode)){
+			model.addAttribute("msg", "验证码错误");
+			return "login";
+		}
+		else{
+			try{
+				user = userService.login(user.getEmail(), user.getPassword());
+			}catch(UserException e){
+				model.addAttribute("msg", e.getMessage());
+				model.addAttribute("u", user);
+				return "login";
+			}
+			session.setAttribute("user", user);
+			return "redirect:/menu/generateMenu";
+		}
+		
+	}
+	
+	/**用户登出功能，清空用户登录时产生的session的所有值，包括：
+	 * 	1.用户，user
+	 * 	2.用户允许访问的菜单，menuList
+	 *  3.生成菜单用到的父菜单，fatherList
+	 * @author Pavilion 15
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/logout")
+	public String logout(HttpSession session){
+		//session.setAttribute("user", null);
+		session.removeAttribute("user");
+		session.removeAttribute("menuList");
+		session.removeAttribute("fatherList");
+		return "login";
+	}
+	
+	/**
+	 * 注册功能用的controller
+	 * @author Pavilion 15
+	 * @param model
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/register")
+	public String register(Model model, User user){
+
+		try{
+			//System.out.println(user);
+			userService.register(user);
+		}catch(UserException e){
+			model.addAttribute("msg", e.getMessage());
+			return "login";
+		}	
+		return "login";
+	}
+	
+	/**
+	 * 去到用户管理列表，超级管理员可以管理所有非超级管理员用户
+	 * 					管理员可以管理所有非超级管理员以及管理员用户
+	 * @author Pavilion 15
+	 * @param model
+	 * @param user
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/user_manager")
+	public String user_manager(Model model, User user, HttpSession session){
+		
+		return "forward:/user/searchUser";
+	}
+	
+	/**
+	 * 根据管理员选择的用户Id，对该用户信息进行修改
+	 * @author Pavilion 15
+	 * @param model
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/changeUser")
+	public String changeUser(Model model, User user){
+		user = userService.findByEmail(user.getEmail());
+		model.addAttribute("u", user);
+		return "changeuser";
+	}
+	
+	/**
+	 * 根据前台传来的值，更新用户信息
+	 * @author Pavilion 15
+	 * @param user
+	 * @param model
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/updateUser")
+	public String updateUser(User user, Model model, HttpSession session){
+		User u = userService.findByEmail(user.getEmail());
+		user.setRoleId(u.getRoleId());
+		userService.updateUser(user);
+		
+		return "forward:/user/searchUser";
+	}
+	
+	
+	/**
+	 * 删除用户信息，数据库存在外键的用户不支持删除
+	 * @author Pavilion 15
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/deleteUser")
+	public String deleteUser(User user, Model model){
+		try{
+			userService.deleteUser(user.getEmail());
+		}
+		catch(UserException e){
+			model.addAttribute("msg", e.getMessage());
+			return "forward:/user/user_manager";
+		}
+		return "forward:/user/user_manager";
+	}
+	
+	/**跳转至权限管理页面，超级管理员可以对所有非超级管理员用户的权限进行变更
+	 * 					    管理员可以对所有非超级管理员以及非管理员用户的权限进行变更
+	 * @author Pavilion 15
+	 * @param model
+	 * @param user
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/userAuthority")
+	public String userAuthority(Model model, User user, HttpSession session, String key, String pageNum){
+		User u = (User) session.getAttribute("user");
+		
+		Page page = new Page();
+		page.setCount(userService.countByKey(key));
+		//System.out.println(userService.countByKey(key));
+		int num = 0;
+		if(pageNum != null){
+			num = Integer.parseInt(pageNum);
+			num--;
+		}
+		page.setStart(num * page.getSize());
+		page.setKey(key);
+		page.setList(userService.searchUserInPage(page, u.getRoleId()));
+		if(page.getList() == null){
+			return "error";
+		}
+		//System.out.println(page.getList().size());
+		model.addAttribute("page", page);
+		model.addAttribute("key",key);
+		model.addAttribute("pageNum", num + 1);
+		
+		List<Role> roleList = roleService.getAllRole();
+		model.addAttribute("r", roleList);
+		
+		return "authority";
+	}
+	
+	/**
+	 * 管理员对用户更改权限，超级管理员可以选择任命所有非超级管理员角色
+	 * 						管理员可以选择任命所有非超级管理员以及管理员角色
+	 * @author Pavilion 15
+	 * @param model
+	 * @param user
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/updateAuthority")
+	public String updateAuthority(Model model, User user, HttpSession session){
+		User u = (User) session.getAttribute("user");
+		
+		//System.out.println(userList.get(0));
+		user = userService.findByEmail(user.getEmail());
+		List<Role> roleList = roleService.getAllRole();
+
+		for(int i = 0; i < roleList.size(); i++){
+			if(u.getRoleId().equals("000") && roleList.get(i).getRoleName().equals("超级管理员")){
+				roleList.remove(i);
+				break;
+			}
+			if(u.getRoleId().equals("001") && roleList.get(i).getRoleName().equals("超级管理员")){
+				roleList.remove(i);
+			}
+			if(u.getRoleId().equals("001") && roleList.get(i).getRoleName().equals("管理员")){
+				roleList.remove(i);
+			}
+		}
+
+		//System.out.println(roleList.size());
+		model.addAttribute("u", user);
+		model.addAttribute("r", roleList);
+		return "authority_son";
+	}
+	
+	
+	/**
+	 * 更改权限，如果更改后的权限为学生赋予该用户学号，学号自动生成
+	 * @author Pavilion 15
+	 * @param model
+	 * @param user
+	 * @param role
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/changeAuthority")
+	public String changeAuthority(Model model, User user, String role, HttpSession session){
+		//System.out.println(userList.get(0));
+		User u = (User) session.getAttribute("user");
+		user = userService.findByEmail(user.getEmail());
+		//System.out.println(role);
+		
+		Role r = roleService.getById(role);
+		if(r.getRoleName().equals("学生")){
+			Student student = studentService.getByEmail(user.getEmail());
+			if(student == null){
+				student = new Student();
+				student.setStuNum(generateStuNum());
+				student.setEmail(user.getEmail());
+				studentService.insertStudent(student);
+			}
+		}
+		
+		user.setRoleId(role);
+		userService.updateUser(user);
+		
+		return "forward:/user/userAuthority";
+	}
+	
+	
+	/**
+	 * 验证码传递用controller，将生成的验证码图片以及对应的验证码文字传入前台
+	 * @author Pavilion 15
+	 * @param model
+	 * @param response
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/verifyCode")
+	public String VerifyCode(Model model, HttpServletResponse response, HttpSession session){
+		
+		VerifyCode vc = new VerifyCode();
+		BufferedImage image = vc.getImage();
+		session.setAttribute("session_vCode", vc.getText());
+		//model.addAttribute("session_vCode", vc.getText());
+		try {
+			VerifyCode.output(image, response.getOutputStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
+	@RequestMapping("/searchUser")
+	public String searchUserInPage(String key, String pageNum, Model model, HttpSession session){
+		
+		User u = (User) session.getAttribute("user");
+		
+		Page page = new Page();
+		page.setCount(userService.countByKey(key));
+		//System.out.println(userService.countByKey(key));
+		int num = 0;
+		if(pageNum != null){
+			num = Integer.parseInt(pageNum);
+			num--;
+		}
+		page.setStart(num * page.getSize());
+		page.setKey(key);
+		page.setList(userService.searchUserInPage(page, u.getRoleId()));
+		if(page.getList() == null){
+			return "error";
+		}
+		//System.out.println(page.getList().size());
+		model.addAttribute("page", page);
+		model.addAttribute("key",key);
+		model.addAttribute("pageNum", num + 1);
+		return "usermanage_son";
+	}
+	
+	/**
+	 * 注册时验证该邮箱是否被注册
+	 * @author Pavilion 15
+	 * @param email
+	 * @return
+	 */
+	@RequestMapping("/check")
+	@ResponseBody
+	public Map<String, Object> chenk(String email){
+		
+		User u = userService.findByEmail(email);
+		Map<String, Object> m = new HashMap<String, Object>();
+		if(u == null){
+			m.put("flag", new Boolean(true));
+		}
+		else{
+			m.put("flag", new Boolean(false));
+		}
+		System.out.println(m.get("flag"));
+		return m;
+	}
+	
+	
+	/**
+	 * 自动生成学号
+	 * @return
+	 */
+	private String generateStuNum(){
+		Date date = new Date();
+		String d = new SimpleDateFormat("yyyy").format(date);
+
+		int num = studentService.countAll();
+				
+		String temp = String.format("%08d", num);
+		
+		String stuNum = d + temp;
+		
+		//System.out.println(stuNum);
+		return stuNum;
+	}
+}

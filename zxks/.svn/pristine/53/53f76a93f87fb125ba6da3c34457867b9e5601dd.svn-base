@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.scau.zxks.dao.Major_infoMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.scau.zxks.entity.Major_info" >
+    <id column="major_id" property="majorId" jdbcType="VARCHAR" />
+    <result column="school_id" property="schoolId" jdbcType="VARCHAR" />
+    <result column="major_name" property="majorName" jdbcType="VARCHAR" />
+    <result column="major_credit" property="majorCredit" jdbcType="DOUBLE" />
+    <result column="major_reply" property="majorReply" jdbcType="TINYINT" />
+    <result column="is_exam_together" property="isExamTogether" jdbcType="TINYINT" />
+    <result column="major_type" property="majorType" jdbcType="VARCHAR" />
+    <result column="major_layer" property="majorLayer" jdbcType="VARCHAR" />
+    <result column="major_pro" property="majorPro" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    major_id, school_id, major_name, major_credit, major_reply, is_exam_together, major_type, 
+    major_layer, major_pro
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.scau.zxks.entity.Major_infoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from major_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from major_info
+    where major_id = #{majorId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from major_info
+  </select>
+  
+  <select id="searchAll" resultMap="BaseResultMap" parameterType="cn.edu.scau.zxks.dto.Page">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM major_info LIMIT #{start}, #{size}
+  </select>
+  
+  
+  <select id="selectByKeyInPage" resultMap="BaseResultMap" parameterType="cn.edu.scau.zxks.dto.Page">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM major_info WHERE major_id LIKE CONCAT(CONCAT('%', #{key}), '%') OR major_name LIKE CONCAT(CONCAT('%', #{key}), '%') OR major_type LIKE CONCAT(CONCAT('%', #{key}), '%') OR major_layer LIKE CONCAT(CONCAT('%', #{key}), '%') OR major_pro LIKE CONCAT(CONCAT('%', #{key}), '%') LIMIT #{start}, #{size}
+  </select>
+  
+  
+  <select id="selectByKey" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM major_info WHERE major_id LIKE CONCAT(CONCAT('%', #{key}), '%') OR major_name LIKE CONCAT(CONCAT('%', #{key}), '%') OR major_type LIKE CONCAT(CONCAT('%', #{key}), '%') OR major_layer LIKE CONCAT(CONCAT('%', #{key}), '%') OR major_pro LIKE CONCAT(CONCAT('%', #{key}), '%')
+  </select>
+  
+  <select id="countByKey" resultType="java.lang.Integer">
+    SELECT 
+    count(*)
+    FROM major_info WHERE major_id LIKE CONCAT(CONCAT('%', #{key}), '%') OR major_name LIKE CONCAT(CONCAT('%', #{key}), '%') OR major_type LIKE CONCAT(CONCAT('%', #{key}), '%') OR major_layer LIKE CONCAT(CONCAT('%', #{key}), '%') OR major_pro LIKE CONCAT(CONCAT('%', #{key}), '%')
+  </select>
+  <select id="getMaxId" resultType="java.lang.String">
+    SELECT 
+    major_id
+    FROM major_info ORDER BY major_id DESC LIMIT 0,1
+  </select>
+  
+  <select id="countAll" resultType="java.lang.Integer" >
+    select count(*) from major_info
+  </select>
+  <select id="selectAllinExam" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from major_info WHERE major_id in (SELECT major_id FROM exam)
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from major_info
+    where major_id = #{majorId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.edu.scau.zxks.entity.Major_infoExample" >
+    delete from major_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.edu.scau.zxks.entity.Major_info" >
+    insert into major_info (major_id, school_id, major_name, 
+      major_credit, major_reply, is_exam_together, 
+      major_type, major_layer, major_pro
+      )
+    values (#{majorId,jdbcType=VARCHAR}, #{schoolId,jdbcType=VARCHAR}, #{majorName,jdbcType=VARCHAR}, 
+      #{majorCredit,jdbcType=DOUBLE}, #{majorReply,jdbcType=TINYINT}, #{isExamTogether,jdbcType=TINYINT}, 
+      #{majorType,jdbcType=VARCHAR}, #{majorLayer,jdbcType=VARCHAR}, #{majorPro,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.scau.zxks.entity.Major_info" >
+    insert into major_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="majorId != null" >
+        major_id,
+      </if>
+      <if test="schoolId != null" >
+        school_id,
+      </if>
+      <if test="majorName != null" >
+        major_name,
+      </if>
+      <if test="majorCredit != null" >
+        major_credit,
+      </if>
+      <if test="majorReply != null" >
+        major_reply,
+      </if>
+      <if test="isExamTogether != null" >
+        is_exam_together,
+      </if>
+      <if test="majorType != null" >
+        major_type,
+      </if>
+      <if test="majorLayer != null" >
+        major_layer,
+      </if>
+      <if test="majorPro != null" >
+        major_pro,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="majorId != null" >
+        #{majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolId != null" >
+        #{schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="majorName != null" >
+        #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="majorCredit != null" >
+        #{majorCredit,jdbcType=DOUBLE},
+      </if>
+      <if test="majorReply != null" >
+        #{majorReply,jdbcType=TINYINT},
+      </if>
+      <if test="isExamTogether != null" >
+        #{isExamTogether,jdbcType=TINYINT},
+      </if>
+      <if test="majorType != null" >
+        #{majorType,jdbcType=VARCHAR},
+      </if>
+      <if test="majorLayer != null" >
+        #{majorLayer,jdbcType=VARCHAR},
+      </if>
+      <if test="majorPro != null" >
+        #{majorPro,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.edu.scau.zxks.entity.Major_infoExample" resultType="java.lang.Integer" >
+    select count(*) from major_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update major_info
+    <set >
+      <if test="record.majorId != null" >
+        major_id = #{record.majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolId != null" >
+        school_id = #{record.schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.majorName != null" >
+        major_name = #{record.majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.majorCredit != null" >
+        major_credit = #{record.majorCredit,jdbcType=DOUBLE},
+      </if>
+      <if test="record.majorReply != null" >
+        major_reply = #{record.majorReply,jdbcType=TINYINT},
+      </if>
+      <if test="record.isExamTogether != null" >
+        is_exam_together = #{record.isExamTogether,jdbcType=TINYINT},
+      </if>
+      <if test="record.majorType != null" >
+        major_type = #{record.majorType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.majorLayer != null" >
+        major_layer = #{record.majorLayer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.majorPro != null" >
+        major_pro = #{record.majorPro,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update major_info
+    set major_id = #{record.majorId,jdbcType=VARCHAR},
+      school_id = #{record.schoolId,jdbcType=VARCHAR},
+      major_name = #{record.majorName,jdbcType=VARCHAR},
+      major_credit = #{record.majorCredit,jdbcType=DOUBLE},
+      major_reply = #{record.majorReply,jdbcType=TINYINT},
+      is_exam_together = #{record.isExamTogether,jdbcType=TINYINT},
+      major_type = #{record.majorType,jdbcType=VARCHAR},
+      major_layer = #{record.majorLayer,jdbcType=VARCHAR},
+      major_pro = #{record.majorPro,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.scau.zxks.entity.Major_info" >
+    update major_info
+    <set >
+      <if test="schoolId != null" >
+        school_id = #{schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="majorName != null" >
+        major_name = #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="majorCredit != null" >
+        major_credit = #{majorCredit,jdbcType=DOUBLE},
+      </if>
+      <if test="majorReply != null" >
+        major_reply = #{majorReply,jdbcType=TINYINT},
+      </if>
+      <if test="isExamTogether != null" >
+        is_exam_together = #{isExamTogether,jdbcType=TINYINT},
+      </if>
+      <if test="majorType != null" >
+        major_type = #{majorType,jdbcType=VARCHAR},
+      </if>
+      <if test="majorLayer != null" >
+        major_layer = #{majorLayer,jdbcType=VARCHAR},
+      </if>
+      <if test="majorPro != null" >
+        major_pro = #{majorPro,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where major_id = #{majorId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.scau.zxks.entity.Major_info" >
+    update major_info
+    set school_id = #{schoolId,jdbcType=VARCHAR},
+      major_name = #{majorName,jdbcType=VARCHAR},
+      major_credit = #{majorCredit,jdbcType=DOUBLE},
+      major_reply = #{majorReply,jdbcType=TINYINT},
+      is_exam_together = #{isExamTogether,jdbcType=TINYINT},
+      major_type = #{majorType,jdbcType=VARCHAR},
+      major_layer = #{majorLayer,jdbcType=VARCHAR},
+      major_pro = #{majorPro,jdbcType=VARCHAR}
+    where major_id = #{majorId,jdbcType=VARCHAR}
+  </update>
+</mapper>

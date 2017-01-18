@@ -1,0 +1,64 @@
+package cn.edu.scau.zxks.interceptor;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.filefilter.IOFileFilter;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import cn.edu.scau.zxks.entity.Menu;
+import cn.edu.scau.zxks.entity.User;
+
+public class LoginInterceptor implements HandlerInterceptor {
+
+	@Override
+	public void afterCompletion(HttpServletRequest arg0,
+			HttpServletResponse arg1, Object arg2, Exception arg3)
+			throws Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1,
+			Object arg2, ModelAndView arg3) throws Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
+			Object arg2) throws Exception {
+		//System.out.println("hello");
+		String url = request.getRequestURI();
+		String path = request.getContextPath();
+		User user = (User)request.getSession().getAttribute("user");
+		
+		
+		if(url.contains("login") || url.contains("regist") || url.contains("verify") || url.contains("logout") || url.contains("menu") || url.contains("check") || url.contains("updateUser")|| url.contains("Password") || url.contains("changeMessage")){
+			return true;
+		}
+		
+		@SuppressWarnings("unchecked")
+		List<Menu> menuList = (List<Menu>) request.getSession().getAttribute("menuList");
+		
+		if(user == null){
+			response.sendRedirect(path  + "/login.jsp");
+		}
+		else{
+			for(int i = 0; i < menuList.size(); i++){
+				//System.out.println(menuList.get(i).getUrl());
+				if(url.contains(menuList.get(i).getUrl())){
+					return true;
+				}
+			}
+			response.sendRedirect(path  + "/index.jsp");
+			return false;
+		}
+		return false;
+	}
+
+}
